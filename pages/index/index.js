@@ -1,14 +1,25 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp()  
 
 Page({
   data: {
     motto: 'Carexx',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    imgUrls: [
+      'images/index.png',
+      'images/index.png',
+      'images/index.png',],
+    indicatorDots: true,
+    autoplay: true,
+    interval: 5000,
+    duration: 1000,
+    indicatoractivecolor:"#f9f9f9",
+    indicatorcolor:"rgba(249,249,249,.4)",
+    circular: true
+  },  
   //事件处理函数 
   bindViewTap: function() {
     wx.navigateTo({

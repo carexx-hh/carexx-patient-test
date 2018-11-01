@@ -1,0 +1,17 @@
+<view class='header'>
+<view class='left'>
+<image class='tx'></image>
+</view>
+ <view class='right'>
+ <view class='name'>歇斯底里</view>
+ <view class='phone'>18721242145</view>
+ </view>
+</view>
+<view class='b-t'>我的</view>
+<view class='middle'>
+<view class='z-h'>
+<image src='./images/z-h.png'></image>
+</view>
+<view class='set'></view>
+<view class='g-y'></view>
+</view>
