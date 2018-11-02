@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/order/order",
-    "pages/mine/mine"
+    "pages/logs/logs",
+    "pages/mine/mine",
+    "pages/address/address"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,6 +14,7 @@
     "color": "#999",
     "selectedColor": "#5489FD",
     "backgroundColor": "#fff",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",

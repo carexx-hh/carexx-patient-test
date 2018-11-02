@@ -1,2 +1,49 @@
-<!--pages/order/order.wxml-->
-
+<view class='header'>
+<view class='d-l'>订单列表</view>
+</view>
+<view class='top-cat'>
+<view class=' hot'>全部</view>
+<view class='xuanx-ka'>待排班</view>
+<view class='xuanx-ka'>进行中</view>
+<view class='xuanx-ka'> 已完成</view>
+</view>
+<view class='yuan-j'></view>
+<!--  -->
+<view class='lie-b' style='position: relative;top: -3rpx;'>
+<image src='./images/o-o.png' style="width:160rpx;height:160rpx;"></image>
+<view class='xiang-q'>
+<view class='title'>护工一对一</view>
+<view class='time'>开始时间：2018.06.16</view>
+<view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>240</text>/天</view>
+</view>
+<view class='cao-z'>
+<view class='zh-tai'>待排班</view>
+<view class='ddan-tai'>取消订单</view>
+</view>
+</view>
+<!--  -->
+<view class='lie-b' style='margin-top:20rpx;'>
+<image src='./images/o-m.png' style="width:160rpx;height:160rpx;"></image>
+<view class='xiang-q'>
+<view class='title'>护工一对多</view>
+<view class='time'>开始时间：2018.06.16</view>
+<view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>360</text>/天</view>
+</view>
+<view class='cao-z'>
+<view class='zh-tai'>进行中</view>
+<view class='ddan-tai-2'>支付并结束</view>
+</view>
+</view>
+<!--  -->
+<view class='lie-b' style='margin-top:20rpx;'>
+<image src='./images/o-m.png' style="width:160rpx;height:160rpx;"></image>
+<view class='xiang-q'>
+<view class='title'>护工一对多</view>
+<view class='time' style=''>服务天数：2018.06.16-2018.06.18</view>
+<view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>160</text>.00</view>
+</view>
+<view class='cao-z'>
+<view class='zh-tai-2'>已完成</view>
+<view class='ddan-tai'>查看详情</view>
+</view>
+</view>

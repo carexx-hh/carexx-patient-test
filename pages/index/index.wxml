@@ -8,6 +8,43 @@
   </block>
 </swiper>
 </view>
-<view>
-
+<view class='header'>
+<navigator class='address' url='/pages/address/address'>徐汇区</navigator> 
+<view class='b-sea'>
+<image class='icon-sea' src='./images/search.png' style="width:27rpx;height:27rpx;margin-left:30rpx;margin-top:20rpx;"></image>
+<input class='search' placeholder='搜索您所在的医院' placeholder-style='font-size:26rpx;font-family:PingFang-SC-Medium;font-weight:500;color:rgba(165,170,184,1);magin-left:13rpx;'style='height:64rpx;margin-left:13rpx;'></input>
+</view>
+</view>
+<view style='width:100%;height:21rpx;background:rgba(249,249,249,1);'></view>
+<view class='middle'>
+<view class='left' style='background:#f6f6f6'>
+<view class=' hot'>中山医院</view>
+<view class='yi-mc'>华山医院</view>
+<view class='yi-mc'>金山医院</view>
+<view class='yi-mc'>一妇婴</view>
+<view class='yi-mc'>中山医院</view>
+<view class='yi-mc'>华山医院</view>
+<view class='yi-mc'>一妇婴</view>
+<view class='yi-mc'>金山医院</view>
+</view>
+<view class='right'>
+<view class='title'>服务项目</view>
+<view class='xm-xq'>
+<view class='o-o'>
+<image class='t-x' src='./images/o-o.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
+<view class='bt-xq'>护工一对一</view>
+<view class='price'>￥280/天</view>
+</view>
+<view class='o-m'>
+<image class='t-x'src='./images/o-m.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
+<view class='bt-xq'>护工一对多</view>
+<view class='price'>￥260/天</view>
+</view>
+<view class='yue-s'>
+<image class='t-x'src='./images/yue-s.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
+<view class='bt-xq'>月嫂</view>
+<view class='price'>￥420/天</view>
+</view>
+</view>
+</view>
 </view>

@@ -10,8 +10,20 @@
 <view class='b-t'>我的</view>
 <view class='middle'>
 <view class='z-h'>
-<image src='./images/z-h.png'></image>
+<image src='./images/z-h.png' class='img' style='width:40rpx;height:40rpx;'></image>
+<view class='m-s'>我的账户</view>
+<image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
 </view>
-<view class='set'></view>
-<view class='g-y'></view>
+<view class='x-hx'></view>
+<view class='set'>
+<image src='./images/set.png' class='img' style='width:40rpx;height:40rpx;'></image>
+<view class='m-s'>设置</view>
+<image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
+</view>
+<view class='x-hx'></view>
+<view class='g-y'>
+<image src='./images/g-y.png' class='img' style='width:40rpx;height:40rpx;'></image>
+<view class='m-s'>关于我们</view>
+<image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
+</view>
 </view>

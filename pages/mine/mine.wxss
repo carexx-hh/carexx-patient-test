@@ -1,3 +1,6 @@
+page{
+  background: #f6f6f6;
+}
 .header{
 width: 100%;
 height: 348rpx;
@@ -45,22 +48,38 @@ background:rgba(255,255,255,1);
 }
 .z-h{
   padding-left: 38rpx;
-  width: 100%;
   height: 103rpx;
   display: flex;
-  background: pink;
+  align-items: center; 
+  /* background: pink; */
+  line-height: 103rpx;
 }
 .set{
   padding-left: 38rpx;
-  width: 100%;
   height: 103rpx;
   display: flex;
-  background: yellow;
+  align-items: center; 
+  /* background: yellow; */
+  line-height: 103rpx;
 }
 .g-y{
   padding-left: 38rpx;
-  width: 100%;
   height: 103rpx;
   display: flex;
-  background:red;
+  align-items: center; 
+  /* background:red; */
+  line-height: 103rpx;
+}
+.middle .m-s{
+width: 603rpx;
+margin-left: 26rpx;
+font-size:30rpx;
+font-family:PingFang-SC-Medium;
+font-weight:500;
+color:rgba(59,64,78,1);
+}
+.middle .x-hx{
+margin-left: 38rpx;
+height: 2rpx;
+background: rgba(222,229,235,1);
 }

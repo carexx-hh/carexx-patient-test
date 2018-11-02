@@ -1,3 +1,6 @@
+page{
+  background:rgba(255,255,255,1);
+}
 swiper{
   display: block;
   height: 390rpx;
@@ -5,4 +8,109 @@ swiper{
 .slide-image{
   width: 100%;
   height: 100%;
+}
+.header{
+  width: 692rpx;
+  height: 64rpx;
+  position: fixed;
+  z-index: 999;
+  left: 26rpx;
+  top: 53rpx;
+  display: flex;
+}
+.header .address{
+  width: 132rpx;
+  height: 100%;
+  font-size:26rpx;
+  font-family:PingFang-SC-Medium;
+  font-weight:500;
+  line-height: 64rpx;
+  color: #ffffff;
+}
+.header .b-sea{
+  display: flex;
+  width: 560rpx;
+  height: 100%;
+  border-radius:32rpx;
+  background:rgba(255,255,255,1);
+}
+.middle{
+  width: 100%;
+  height:865rpx;
+  display: flex;
+}
+.middle .left{
+  width: 159rpx;
+  height: 100%;
+  background: yellow;
+}
+.middle .right{
+  width: 591rpx;
+  height: 100%;
+  background:rgba(255,255,255,1);
+}
+.middle .right .title{
+  width: 100%;
+  height: 99rpx;
+  padding-left: 42rpx;
+  font-size:30rpx;
+  font-family:PingFang-SC-Bold;
+  font-weight:bold;
+  color:rgba(59,64,78,1);
+  line-height: 99rpx;
+}
+.middle .right .xm-xq{
+  width: 100%;
+  height: 766rpx;
+  display: flex;
+  padding-left: 39rpx;
+  padding:0 39rpx 0 39rpx;
+}
+.middle .right .xm-xq .o-o{
+  height: 207rpx;
+  width: 171rpx;
+}.middle .right .xm-xq .o-m{
+  height: 207rpx;
+  width: 171rpx;
+}
+.middle .right .xm-xq .yue-s{
+  height: 207rpx;
+  width: 171rpx;
+}
+.middle .right .xm-xq .bt-xq{
+margin-top: 10rpx;
+font-size:26rpx;
+font-family:PingFang-SC-Medium;
+font-weight:500;
+color:rgba(59,64,78,1);
+text-align: center;
+}
+.middle .right .xm-xq .price{
+margin-top: 6rpx;
+font-size:22rpx;
+font-family:PingFang-SC-Medium;
+font-weight:500;
+color:rgba(254,98,13,1);
+text-align: center;
+}
+.middle .left .yi-mc{
+  width: 100%;
+  height: 99rpx;
+  line-height: 99rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-family:PingFang-SC-Bold;
+  font-weight:bold;
+  color:rgba(118,124,140,1);
+}
+.hot{
+  width: 100%;
+  height: 99rpx;
+  line-height: 99rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-family:PingFang-SC-Bold;
+  font-weight:bold;
+  background:rgba(255,255,255,1);
+  color:rgba(84,137,253,1);
 }
