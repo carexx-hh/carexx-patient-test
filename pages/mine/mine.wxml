@@ -7,11 +7,10 @@
  <view class='phone'>18721242145</view>
  </view>
 </view>
-<view class='b-t'>我的</view>
 <view class='middle'>
 <view class='z-h'>
 <image src='./images/z-h.png' class='img' style='width:40rpx;height:40rpx;'></image>
-<view class='m-s'>我的账户</view>
+<navigator class='m-s' url='/pages/address/address' hover-class="none">我的账户</navigator>
 <image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
 </view>
 <view class='x-hx'></view>

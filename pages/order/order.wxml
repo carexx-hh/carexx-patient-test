@@ -1,6 +1,3 @@
-<view class='header'>
-<view class='d-l'>订单列表</view>
-</view>
 <view class='top-cat'>
 <view class=' hot'>全部</view>
 <view class='xuanx-ka'>待排班</view>

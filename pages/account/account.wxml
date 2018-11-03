@@ -1,0 +1,7 @@
+<view class='header'>
+<view class='t-header'>
+<navigator class='fan-h' open-type='navigateBack' hover-class="none"></navigator>
+<view class='my-detail'>我的账户</view>
+<navigator class='m-xi'  url='/pages/detail/detail' hover-class="none">明细</navigator>
+</view>
+</view>

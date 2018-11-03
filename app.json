@@ -1,14 +1,15 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/account/account",
+    "pages/address/address",
     "pages/order/order",
     "pages/logs/logs",
     "pages/mine/mine",
-    "pages/address/address"
+    "pages/detail/detail"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationStyle": "custom"
+    "backgroundTextStyle": "light"
   },
   "tabBar": {
     "color": "#999",

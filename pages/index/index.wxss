@@ -26,6 +26,10 @@ swiper{
   font-weight:500;
   line-height: 64rpx;
   color: #ffffff;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAALCAYAAACd1bY6AAAAv0lEQVQokaXSPUoDURTF8TcQBMsQTDAEi2CVwj3FfaSw0CIf27CQJOBSgtrYiAtQCLES5GfhDQzDJDMmDx6Pe885f95XwgWukY6YQ1wl3Pkb8wNB48g/JLTxFI3FP0GTyH3gMi+8hLCsCZqFf40WUtHwXHOH0xyos+0XTRlWYXysAH3iLK+VmTO8RuC+oN1G/wvnxeyuYzRKgKOoN+iW5fbdywneA/AW6zd6uzJVL3aaA/6gv89f5ws0cYNBlfcXg8qdP4A4SRYAAAAASUVORK5CYII=) ;
+  background-repeat: no-repeat;
+	background-size:20rpx 12rpx ;
+  background-position: 90rpx 28rpx;
 }
 .header .b-sea{
   display: flex;

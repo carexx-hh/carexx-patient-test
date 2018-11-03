@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "和护健康"
+  "navigationBarTitleText": "和护健康",
+  "navigationBarBackgroundColor":"#ffffff",
+  "navigationBarTextStyle":"black"
 }

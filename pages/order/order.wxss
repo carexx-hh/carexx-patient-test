@@ -22,6 +22,7 @@ display: flex;
   height: 98rpx;
   background:rgba(255,255,255,1);
   border-bottom: 1rpx solid rgba(222,229,235,1);
+  /* border-top: 1rpx solid rgba(222,229,235,1); */
   display: flex;
 }
 .top-cat .xuanx-ka{

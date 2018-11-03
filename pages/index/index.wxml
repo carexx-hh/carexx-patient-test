@@ -9,7 +9,7 @@
 </swiper>
 </view>
 <view class='header'>
-<navigator class='address' url='/pages/address/address'>徐汇区</navigator> 
+<navigator class='address' url='/pages/address/address' hover-class="none">徐汇区</navigator> 
 <view class='b-sea'>
 <image class='icon-sea' src='./images/search.png' style="width:27rpx;height:27rpx;margin-left:30rpx;margin-top:20rpx;"></image>
 <input class='search' placeholder='搜索您所在的医院' placeholder-style='font-size:26rpx;font-family:PingFang-SC-Medium;font-weight:500;color:rgba(165,170,184,1);magin-left:13rpx;'style='height:64rpx;margin-left:13rpx;'></input>
