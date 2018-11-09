@@ -1,0 +1,11 @@
+<view class='content'>
+<image src='./images/ab.png' class='img' style='width:159rpx;height:162rpx;display:block;margin:0 auto 24rpx;'></image>
+<view class='ban-b-h'>版本号：V1.2.0</view>
+<view class='m-s'>
+<text class='m-s-t'>和护健康以延续护理为导向，为患者提供基于康</text>
+<text class='m-s-t'>复医学和护理服务为核心的全新医患交互方式，</text>
+<text class='m-s-t'>提供从综合医院到康复医院到社区卫生到家庭护</text>
+<text class='m-s-t'>理的一站式延续康复护理服务平台。</text>
+</view>
+<view class='company'>上海上晖信息科技有限公司</view>
+</view>

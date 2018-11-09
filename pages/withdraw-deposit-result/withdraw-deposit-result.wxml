@@ -1,0 +1,6 @@
+<view class='content'>
+<image class='img' src='./images/ok.png' style='width:132rpx;height:132rpx;'></image>
+<view class='big-m-s'>提现申请已提交，等待处理</view>
+<view class='small-m-s'>3-5个工作日内到账</view>
+<navigator class='true' url='/pages/account/account'>完成</navigator>
+</view>

@@ -1,0 +1,36 @@
+page{
+  background: #f6f6f6;
+}
+.content{
+  width: 100%;
+  border-top: 1rpx solid #f6f6f6;
+}
+.content .hospital{
+  height: 220rpx;
+  padding: 0 33rpx;
+  display: flex;
+  background:rgba(255,255,255,1);
+  align-items: center;
+  box-sizing: border-box;
+}
+.content .hospital .xiang-q{
+  margin-left: 29rpx;
+}
+.content .hospital .xiang-q .title{
+font-size:32rpx;
+font-family:PingFang;
+font-weight:bold;
+color:rgba(59,64,78,1);
+}
+.content .hospital .xiang-q .phone{
+font-size:26rpx;
+font-family:PingFang;
+color:rgba(165,170,184,1);
+margin-top: 44rpx;
+}
+.content .hospital .xiang-q .address{
+font-size:26rpx;
+font-family:PingFang;
+color:rgba(165,170,184,1);
+margin-top: 20rpx;
+}

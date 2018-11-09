@@ -1,7 +1,19 @@
 <view class='header'>
-<view class='t-header'>
-<navigator class='fan-h' open-type='navigateBack' hover-class="none"></navigator>
-<view class='my-detail'>我的账户</view>
-<navigator class='m-xi'  url='/pages/detail/detail' hover-class="none">明细</navigator>
+<navigator class='m-xi' url='/pages/detail/detail' hover-class="none">明细</navigator>
+<view class='yu-e'>账户余额（元）</view>
+<view class='money'>500.00</view>
+</view>
+<view class='middle'>
+<view class='c-z'>
+<image src='./images/ti-x.png' class='img' style='width:38rpx;height:38rpx;'></image>
+<navigator class='m-s' url='/pages/recharge/recharge' hover-class="none">充值</navigator>
+<image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
+</view>
+<view class='x-hx'></view>
+<view class='t-x'>
+<image src='./images/ti-x.png' class='img' style='width:38rpx;height:38rpx;'></image>
+<navigator class='m-s' url='/pages/withdraw-deposit/withdraw-deposit' hover-class="none">提现</navigator>
+<image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
 </view>
 </view>
+

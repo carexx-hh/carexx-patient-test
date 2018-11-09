@@ -1,0 +1,71 @@
+page{
+  background: #f6f6f6;
+}
+.content{
+  width: 100%;
+  padding: 29rpx 30rpx 0 30rpx; 
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  background:rgba(255,255,255,1);
+}
+.content .top{
+width: 100%;
+border-bottom: 1rpx solid rgba(222,229,235,1);
+box-sizing: border-box;
+}
+.content .top .m-s{
+font-size:30rpx;
+font-family:PingFang;
+font-weight:500;
+color:rgba(51,51,51,1);
+margin-top: 29rpx;
+}
+.content .top .money{
+  display: flex;
+  margin-left:10rpx;
+  width:100%;
+  margin-top:26rpx;
+  line-height:55rpx;
+  margin-bottom: 27rpx;
+}
+.content .top .money .money-bs,.content .top .money .money-input{
+font-size:50rpx;
+font-family:PingFang;
+color:rgba(51,51,51,1);
+}
+.content .bottom{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding:17rpx 0 18rpx 0;
+}
+.content .bottom .left{
+width: 446rpx;
+font-size:26rpx;
+font-family:PingFang;
+font-weight:500;
+color:rgba(153,153,153,1);
+}
+.content .bottom .right{
+  width:280rpx;
+  display: flex;
+  justify-content: flex-end;
+  font-size:26rpx;
+  font-family:PingFang;
+  font-weight:500;
+  color:rgba(97,143,255,1);
+  text-align: right;
+}
+.true{
+width:530rpx;
+height:88rpx;
+background:linear-gradient(90deg,rgba(87,145,253,1) 0%,rgba(80,120,252,1) 98%);
+border-radius:44rpx;
+margin: 71rpx auto 0;
+font-size:34rpx;
+font-family:PingFang;
+font-weight:500;
+color:rgba(255,255,255,1);
+text-align: center;
+line-height: 88rpx;
+}

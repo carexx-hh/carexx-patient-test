@@ -1,0 +1,34 @@
+page{
+  background:#f6f6f6;
+}
+.content{
+  padding: 110rpx 61rpx 0 61rpx;
+  border-top: 2rpx solid #f6f6f6;
+}
+.content .ban-b-h{
+width: 100%;
+text-align: center;
+font-size:28rpx;
+font-family:PingFang;
+color:rgba(165,170,184,1);
+margin-bottom: 115rpx;
+}
+.content .m-s{
+width: 100%;
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(165,170,184,1);
+}
+.content .m-s .m-s-t{
+  display: block;
+  margin-bottom: 21rpx;
+  text-align: center;
+}
+.content .company{
+  font-size:24rpx;
+  font-family:PingFang;
+  color:rgba(165,170,184,1);
+  position: absolute;
+  bottom: 31rpx;
+  padding: 0 172rpx 0 172rpx;
+}

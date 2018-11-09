@@ -1,39 +1,67 @@
+page{
+  background: #f6f6f6;
+}
 .header{
-width: 100%;
-height: 128rpx;
-background:linear-gradient(90deg,rgba(87,145,253,1) 0%,rgba(80,120,252,1) 98%);
-position: fixed;
+width:100%;
+height:340rpx;
+background:rgba(255,255,255,1);
+padding: 40rpx 29rpx 0 29rpx;
+box-sizing: border-box;
+border-top: 1rpx solid #f6f6f6;
 }
-.header .t-header{
+.header .m-xi{
   width: 100%;
-  height: 34rpx;
-  display: flex;
-  margin-top: 68rpx;
-}
-.header .t-header .my-detail{
-  width:612rpx;
-  text-align: center;
-  font-size:34rpx;
-  font-family:PingFang-SC-Bold;
-  font-weight:bold;
-  color:rgba(255,255,255,1);
-  margin-top: -8rpx;
-}
-.header .t-header .fan-h{
-  width:25rpx;
-  height:30rpx;
-  margin-left:30rpx;
-  margin-top: 2rpx;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAeCAYAAAAhDE4sAAABaElEQVRIiZ3Vv2sUQRQA4GciGkJQEBWCQRAFEbSxsLOwCZL8CRbBJpBWUEgbULAVFFtBbYWkDbE1lrlUIaQKByaVjY3Ez2L34LJ592P2wcDu7Ow3O/PesIFo2ZZwhC6etkVeOB17bZA1Z6NTApzDuwTp4sG4yCQ+JcgB7iDGQS7gW4LsYq43bhQyjc0E+Ylr/WOHIZfxI0G+189iHOg6OgmyUX/lmXcy5Cb2E+Srar/SyZsdd3GYIB9VmRu4Ff03D3GcIG9VNTQ0Mb2Lx/idIKujgH5oHn8awD+sjIv0oKMG8hfPShDERERMxOkQESdRGlhMlnaC5dKlBZ4M2OyXpVDgkTz9r0uhwH15Qb43opayztvyI/LZkOoeNMMN+aFdx8USKHAV2wm2hZkSKHCpfrEZ27hSAgWm6iU1o4PZEihwHl8SbB+3SqBQpf9Dgh3iXtHBrNubBNtpAwVeNaBuWyjwHL9UP8mF/7ePs5RvP2jsAAAAAElFTkSuQmCC) ;
-  background-repeat: no-repeat;
-	background-size:18rpx 30rpx ;
-  z-index: 999;
-}
-.header .t-header .m-xi{
-  line-height: 34rpx;
-  width: 64rpx;
+  text-align: right;
   font-size:32rpx;
   font-family:PingFang-SC-Medium;
-  font-weight:500;
-  color:rgba(255,255,255,1);
+  color:rgba(51,51,51,1);
+}
+.header .yu-e{
+  width: 100%;
+  font-size:28rpx;
+  font-family:PingFang-SC-Medium;
+  color:rgba(51,51,51,1);
+  text-align: center;
+  margin-top: 32rpx;
+}
+.header .money{
+width: 100%;
+font-size:80rpx;
+font-family:PingFang-SC-Bold;
+font-weight:bold;
+color:rgba(51,51,51,1);
+text-align: center;
+margin-top: 35rpx;
+}
+.middle{
+width: 100%;
+height: 200rpx;
+margin-top: 28rpx;
+background:rgba(255,255,255,1);
+}
+.c-z{
+  padding-left: 30rpx;
+  height: 103rpx;
+  display: flex;
+  align-items: center; 
+  line-height: 100rpx;
+}
+.t-x{
+  padding-left: 30rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center; 
+  line-height: 100rpx;
+}
+.middle .m-s{
+width: 603rpx;
+margin-left: 29rpx;
+font-size:30rpx;
+font-family:PingFang-SC-Medium;
+color:rgba(59,64,78,1);
+}
+.middle .x-hx{
+margin-left: 30rpx;
+height: 2rpx;
+background: rgba(222,229,235,1);
 }

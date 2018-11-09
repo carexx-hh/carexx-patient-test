@@ -1,2 +1,33 @@
-<!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view class='count'>
+<view class='type'>
+<view class='m-s'>
+<view class='big-ms'>充值</view>
+<view class='time'>2018-08-06  19:08:04</view>
+</view>
+<view class='money'>+300.00</view>
+</view>
+<!--  -->
+<view class='type'>
+<view class='m-s'>
+<view class='big-ms'>提现</view>
+<view class='time'>2018-08-06  19:08:04</view>
+</view>
+<view class='money-t'>-500.00</view>
+</view>
+<!--  -->
+<view class='type'>
+<view class='m-s'>
+<view class='big-ms'>订单支付</view>
+<view class='time'>2018-08-06  19:08:04</view>
+</view>
+<view class='money-t'>-800.00</view>
+</view>
+<!--  -->
+<view class='type'>
+<view class='m-s'>
+<view class='big-ms'>充值</view>
+<view class='time'>2018-08-06  19:08:04</view>
+</view>
+<view class='money'>+300.00</view>
+</view>
+</view>

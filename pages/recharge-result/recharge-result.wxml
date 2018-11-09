@@ -1,0 +1,10 @@
+<view class="content">
+<view class='title'>
+<view class='small-tit'>充值成功</view>
+<view class='money'>100.00<text class='yuan'>元</text></view>
+</view>
+<view class='cao-z' style='margin-top:120rpx;display:flex;'>
+<navigator class='mine-account' url='/pages/account/account'>我的账户</navigator>
+<navigator class='continue' url='/pages/recharge/recharge'>继续充值</navigator>
+</view>
+</view>

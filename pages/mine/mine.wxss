@@ -18,13 +18,13 @@ display: flex;
   margin-left: 50rpx;
   margin-top: 60rpx;
   font-size:30rpx;
-  font-family:PingFang-SC-Bold;
+  font-family:PingFang;
   font-weight:bold;
   color:rgba(255,255,255,1);
 }
 .right .phone{
 font-size:30rpx;
-font-family:PingFang-SC-Medium;
+font-family:PingFang;
 font-weight:500;
 color:rgba(255,255,255,1);
 margin-top: 29rpx;
@@ -36,7 +36,7 @@ margin-left: 50rpx;
   top:69rpx;
   text-align: center;
   font-size:34rpx;
-  font-family:PingFang-SC-Bold;
+  font-family:PingFang;
   font-weight:bold;
   color:rgba(255,255,255,1);
 }
@@ -74,7 +74,7 @@ background:rgba(255,255,255,1);
 width: 603rpx;
 margin-left: 26rpx;
 font-size:30rpx;
-font-family:PingFang-SC-Medium;
+font-family:PingFang;
 font-weight:500;
 color:rgba(59,64,78,1);
 }

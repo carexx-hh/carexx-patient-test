@@ -1,0 +1,9 @@
+<view class='middle'>
+<navigator class='set' url='/pages/set-phone/set-phone' hover-class="none">
+<view class='m-s'>手机绑定</view>
+<view class='bang-d'>
+<text class='phone'>17612107324</text>
+<image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;margin-left:20rpx;'></image>
+</view>
+</navigator>
+</view>

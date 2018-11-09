@@ -1,0 +1,76 @@
+.header{
+  width: 100%;
+  height: 230rpx;
+  background:rgba(255,255,255,1);
+  display: flex;
+  padding:30rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #f6f6f6;
+  align-items: center;
+}
+.header .xiang-q{
+  margin-left: 31rpx;
+}
+.header .xiang-q .title{
+margin-top: 10rpx;
+font-size:32rpx;
+font-family:PingFangd;
+font-weight:bold;
+color:rgba(59,64,78,1);
+}
+.header .xiang-q .time{
+margin-top: 18rpx;
+font-size:24rpx;
+font-family:PingFang;
+color:rgba(165,170,184,1);
+}
+.header .xiang-q .price{
+margin-top: 20rpx;
+font-size:24rpx;
+font-family:PingFang;
+color:rgba(254,98,13,1);
+}
+.header .xiang-q .price .holiday{
+ color:rgba(165,170,184,1);
+}
+.tiao{
+  background: #f6f6f6;
+  width: 100%;
+  height: 20rpx;
+}
+.material .title{
+  width: 100%;
+  height: 99rpx;
+  border-bottom: 1rpx solid #f6f6f6;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.material .title .z-s{
+width:6rpx;
+height:30rpx;
+background:rgba(84,137,253,1);
+border-radius:3rpx;
+}
+.material .title .m-s{
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+margin-left: 15rpx;
+}
+.list .kind{
+  width: 100%;
+  height: 99rpx;
+  padding-right: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #f6f6f6;
+  display: flex;
+  align-items: center;
+}
+.list .kind .kind-name{
+width: 50%;
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+}

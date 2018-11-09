@@ -1,6 +1,9 @@
 page{
   background:rgba(255,255,255,1);
 }
+.banner{
+  position:relative;
+}
 swiper{
   display: block;
   height: 390rpx;
@@ -8,22 +11,22 @@ swiper{
 .slide-image{
   width: 100%;
   height: 100%;
+  position: fixed;
 }
 .header{
   width: 692rpx;
   height: 64rpx;
-  position: fixed;
+  position: absolute;
   z-index: 999;
   left: 26rpx;
-  top: 53rpx;
+  top: 29rpx;
   display: flex;
 }
 .header .address{
   width: 132rpx;
   height: 100%;
   font-size:26rpx;
-  font-family:PingFang-SC-Medium;
-  font-weight:500;
+  font-family:PingFang;
   line-height: 64rpx;
   color: #ffffff;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAALCAYAAACd1bY6AAAAv0lEQVQokaXSPUoDURTF8TcQBMsQTDAEi2CVwj3FfaSw0CIf27CQJOBSgtrYiAtQCLES5GfhDQzDJDMmDx6Pe885f95XwgWukY6YQ1wl3Pkb8wNB48g/JLTxFI3FP0GTyH3gMi+8hLCsCZqFf40WUtHwXHOH0xyos+0XTRlWYXysAH3iLK+VmTO8RuC+oN1G/wvnxeyuYzRKgKOoN+iW5fbdywneA/AW6zd6uzJVL3aaA/6gv89f5ws0cYNBlfcXg8qdP4A4SRYAAAAASUVORK5CYII=) ;
@@ -58,10 +61,11 @@ swiper{
   height: 99rpx;
   padding-left: 42rpx;
   font-size:30rpx;
-  font-family:PingFang-SC-Bold;
+  font-family:PingFang;
   font-weight:bold;
   color:rgba(59,64,78,1);
   line-height: 99rpx;
+  box-sizing: border-box;
 }
 .middle .right .xm-xq{
   width: 100%;
@@ -69,6 +73,7 @@ swiper{
   display: flex;
   padding-left: 39rpx;
   padding:0 39rpx 0 39rpx;
+  box-sizing: border-box;
 }
 .middle .right .xm-xq .o-o{
   height: 207rpx;
@@ -84,16 +89,14 @@ swiper{
 .middle .right .xm-xq .bt-xq{
 margin-top: 10rpx;
 font-size:26rpx;
-font-family:PingFang-SC-Medium;
-font-weight:500;
+font-family:PingFang;
 color:rgba(59,64,78,1);
 text-align: center;
 }
 .middle .right .xm-xq .price{
 margin-top: 6rpx;
 font-size:22rpx;
-font-family:PingFang-SC-Medium;
-font-weight:500;
+font-family:PingFang;
 color:rgba(254,98,13,1);
 text-align: center;
 }
@@ -103,7 +106,7 @@ text-align: center;
   line-height: 99rpx;
   text-align: center;
   font-size: 28rpx;
-  font-family:PingFang-SC-Bold;
+  font-family:PingFang;
   font-weight:bold;
   color:rgba(118,124,140,1);
 }
@@ -113,7 +116,7 @@ text-align: center;
   line-height: 99rpx;
   text-align: center;
   font-size: 28rpx;
-  font-family:PingFang-SC-Bold;
+  font-family:PingFang;
   font-weight:bold;
   background:rgba(255,255,255,1);
   color:rgba(84,137,253,1);

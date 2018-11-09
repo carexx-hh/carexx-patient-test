@@ -1,0 +1,38 @@
+.content{
+  width: 100%;
+  border-top: 1rpx solid #f6f6f6;
+  padding-top: 80rpx;
+  box-sizing: border-box;
+}
+.content .img{
+  display: block;
+  margin: 0 auto;
+}
+.content .big-m-s{
+width: 100%;
+text-align: center;
+margin: 51rpx auto 0;
+font-size:32rpx;
+font-family:PingFang;
+color:rgba(51,51,51,1);
+}
+.content .small-m-s{
+width: 100%;
+text-align: center;
+font-size:32rpx;
+font-family:PingFang;
+color:#999999;
+margin-top: 19rpx;
+}
+.content .true{
+width:560rpx;
+height:88rpx;
+background:linear-gradient(90deg,rgba(87,145,253,1) 12%,rgba(80,120,252,1) 100%);
+border-radius:44rpx;
+margin: 119rpx auto 0;
+font-size:34rpx;
+font-family:PingFang;
+color:rgba(255,255,255,1);
+line-height: 88rpx;
+text-align: center;
+}

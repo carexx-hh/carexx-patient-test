@@ -1,0 +1,34 @@
+page{
+  background: #f6f6f6;
+}
+.middle{
+  margin-top: 20rpx;
+}
+.middle .set{
+  display: flex;
+  width: 750rpx;
+  height: 98rpx;
+  padding: 0 30rpx 0 30rpx;
+  box-sizing: border-box;
+  background:rgba(255,255,255,1);
+  line-height: 98rpx;
+}
+.middle .set .m-s{
+width: 50%;
+font-size:30rpx;
+font-family:PingFang;
+font-weight:500;
+color:rgba(59,64,78,1);
+}
+.middle .set .bang-d{
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.middle .set .phone{
+font-size:28rpx;
+font-family:PingFang;
+font-weight:500;
+color:rgba(153,153,153,1);
+}

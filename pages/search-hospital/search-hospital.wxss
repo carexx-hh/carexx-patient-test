@@ -1,0 +1,51 @@
+.content{
+  width: 100%;
+  border-top: 1rpx solid #f6f6f6;
+  padding: 44rpx 33rpx 0;
+  box-sizing: border-box; 
+}
+.content .list{
+  width: 100%;
+  height: 100%;
+  background:rgba(255,255,255,1);
+}
+.content .list .title{
+  width: 100%;
+  font-size:30rpx;
+  font-family:PingFang;
+  font-weight:bold;
+  color:rgba(59,64,78,1);
+  box-sizing: border-box;
+}
+.content .list .xm-xq{
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  margin-top: 40rpx;
+}
+.content .list .xm-xq .o-o{
+  height: 207rpx;
+  width: 171rpx;
+}
+.content .list .xm-xq .o-m{
+  height: 207rpx;
+  width: 171rpx;
+}
+.content .list .xm-xq .yue-s{
+  height: 207rpx;
+  width: 171rpx;
+}
+.content .list .xm-xq .bt-xq{
+margin-top: 10rpx;
+font-size:26rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+text-align: center;
+}
+.content .list .xm-xq .price{
+margin-top: 6rpx;
+font-size:22rpx;
+font-family:PingFang;
+color:rgba(254,98,13,1);
+text-align: center;
+}

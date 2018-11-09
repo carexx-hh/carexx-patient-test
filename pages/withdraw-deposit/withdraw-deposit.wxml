@@ -1,0 +1,14 @@
+<view class='content'>
+<view class='top'>
+<view class='m-s'>提现金额</view>
+<view class='money'>
+<text class='money-bs' style=''>￥</text>
+<input class='money-input' style='margin-left:11rpx;height:54rpx;align-items: center;' type='digit' focus='true'></input>
+</view>
+</view>
+<view class='bottom'>
+<view class='left'>额外扣除￥0.50手续费（费率0.1%）</view>
+<view class='right'>全部提现</view>
+</view>
+</view>
+<navigator class='true' url='/pages/withdraw-deposit-result/withdraw-deposit-result'>确认提现</navigator>
