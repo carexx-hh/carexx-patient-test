@@ -1,18 +1,17 @@
-// pages/recharge/recharge.js
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    num:1,
+
   },
-  changePrice: function (e) {
-    console.log(e);
-    this.setData({
-      num: e.target.dataset.num
-    })
-  },
+btnClick:function(){
+wx.navigateTo({
+  url: '../order-confirm/order-confirm',
+})
+},
   /**
    * 生命周期函数--监听页面加载
    */

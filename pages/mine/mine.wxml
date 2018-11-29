@@ -1,11 +1,14 @@
 <view class='header'>
+<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='h-button'> 获取头像昵称 </button>
+<block wx:else>
 <view class='left'>
-<image class='tx'></image>
+<image  src="{{userInfo.avatarUrl}}"  class='tx'></image>
 </view>
  <view class='right'>
- <view class='name'>歇斯底里</view>
- <view class='phone'>18721242145</view>
+ <view class='name'>{{userInfo.nickName}}</view>
+ <view class='phone' bindtap='bindphone' data-phone='{{phone}}'>{{phone}}</view>
  </view>
+ </block>
 </view>
 <view class='middle'>
 <view class='z-h'>

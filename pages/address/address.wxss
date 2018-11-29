@@ -75,5 +75,5 @@ font-family:PingFang-SC-Medium;
 font-weight:500;
 color:rgba(59,64,78,1);
 line-height: 96rpx;
-border-bottom: 1rpx solid rgba(222,229,235,1);
+border-bottom: 1rpx solid rgba(222,229,235,1)
 }

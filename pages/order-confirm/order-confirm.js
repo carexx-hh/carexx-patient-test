@@ -1,16 +1,30 @@
-// pages/recharge/recharge.js
+// pages/order-confirm/order-confirm.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    num:1,
+    items: [
+      { name: '微信支付', value: 'wchat', checked: 'true'  },
+      { name: '钱包支付', value: 'wallet'},
+    ]
   },
-  changePrice: function (e) {
-    console.log(e);
-    this.setData({
-      num: e.target.dataset.num
+  radioChange: function (e) {
+    console.log('选择的支付方式是：', e.detail.value)
+  },
+  btnClick:function(){
+    wx.requestPayment({
+      timeStamp: '',
+      nonceStr: '',
+      package: '',
+      signType: 'MD5',
+      paySign: '',
+      success(res) {
+        console.log(res)
+       },
+      fail(res) { 
+        console.log(res)}
     })
   },
   /**

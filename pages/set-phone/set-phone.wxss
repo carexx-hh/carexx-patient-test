@@ -9,28 +9,29 @@
   width: 100%;
   height: 120rpx;
   line-height: 120rpx;
-  border-bottom: 1rpx solid rgba(222,229,235,1);
-  margin: 
+  border-bottom: 1rpx solid rgba(222,229,235,1); 
 }
 .content .phone .y-z{
 width:50%; 
 display: flex;
 justify-content: flex-end;
 font-size:30rpx;
-font-family:PingFang;
-font-weight:500;
 color:rgba(97,143,255,1);
+border: none;
 }
 .content .t-j{
 width:560rpx;
 height:88rpx;
-background:linear-gradient(90deg,rgba(87,145,253,1) 12%,rgba(80,120,252,1) 100%);
+background:#5078FC;
+/* opacity:0.5; */
 border-radius:44rpx;
 font-size:34rpx;
-font-family:PingFang;
-font-weight:500;
 color:rgba(255,255,255,1);
 text-align: center;
 line-height: 88rpx; 
 margin: 80rpx auto 0;
+}
+.active{
+  background: #5078FC;
+  opacity: 1
 }

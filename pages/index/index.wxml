@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class='banner'>
+<view class='banner' id='banner'>
 <swiper indicator-dots="{{indicatorDots}}"autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatoractivecolor}}" indicator-colo="{{indicatorcolor}}" circular="{{circular}}">
   <block wx:for="{{imgUrls}}">
     <swiper-item >
@@ -8,43 +8,35 @@
   </block>
 </swiper>
 <view class='header'>
-<navigator class='address' url='/pages/address/address' hover-class="none">徐汇区</navigator> 
+<navigator class='address' url='/pages/address/address' hover-class="none">{{district}}</navigator> 
 <navigator class='b-sea'hover-class="none" url='/pages/search/search'>
 <image class='icon-sea' src='./images/search.png' style="width:27rpx;height:27rpx;margin-left:30rpx;margin-top:20rpx;"></image>
 <view class='search'  style='font-size:26rpx;font-family:PingFang;color:rgba(165,170,184,1);magin-left:13rpx;height:64rpx;margin-left:13rpx;line-height:64rpx;'>搜索您所在的医院</view>
 </navigator>
 </view>
 </view>
-<view style='width:100%;height:21rpx;background:rgba(249,249,249,1);'></view>
-<view class='middle'>
-<view class='left' style='background:#f6f6f6'>
-<view class=' hot'>中山医院</view>
-<view class='yi-mc'>华山医院</view>
-<view class='yi-mc'>金山医院</view>
-<view class='yi-mc'>一妇婴</view>
-<view class='yi-mc'>中山医院</view>
-<view class='yi-mc'>华山医院</view>
-<view class='yi-mc'>一妇婴</view>
-<view class='yi-mc'>金山医院</view>
-</view>
+<view style='width:100%;height:21rpx;background:rgba(249,249,249,1);' id="tiao"></view>
+<!-- 中间style -->
+<view class='middle'style="position:relative;overflow:hidden">
+<!-- 左侧栏 -->
+<scroll-view class="left" bindscrolltolower="lower" scroll-y="true" style="height:{{height}}px;overflow-y:scroll">
+      <block wx:for="{{menu}}" wx:key="">
+        <view class="nav_left_items">
+          <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.name}}</view>
+        </view>
+      </block>
+</scroll-view>  
+<!-- 右侧栏 -->
 <view class='right'>
 <view class='title'>服务项目</view>
 <view class='xm-xq'>
-<view class='o-o'>
-<image class='t-x' src='./images/o-o.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
-<view class='bt-xq'>护工一对一</view>
-<view class='price'>￥280/天</view>
+<block wx:for="{{project}}" wx:for-index='{{key}}'>
+<view class='o-o' bindtap='tapClick' id='{{key}}' data-name='{{item.name}}' data-money='{{item.money}}'>
+<image class='t-x' src='{{item.src}}' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
+<view class='bt-xq' >{{item.name}}</view>
+<view class='price' >￥{{item.money}}/天</view>
 </view>
-<view class='o-m'>
-<image class='t-x'src='./images/o-m.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
-<view class='bt-xq'>护工一对多</view>
-<view class='price'>￥260/天</view>
-</view>
-<view class='yue-s'>
-<image class='t-x'src='./images/yue-s.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
-<view class='bt-xq'>月嫂</view>
-<view class='price'>￥420/天</view>
-</view>
+</block>
 </view>
 </view>
 </view>

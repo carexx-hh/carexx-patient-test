@@ -4,18 +4,14 @@
 </view> -->
 <view class='now-address'>
 <view class='x-ms'>当前位置</view>
-<view class='d-ms'>徐汇区</view>
+<view class='d-ms' bindtap='nowadsclick'>{{district}}</view>
 </view> 
 <view class='ti-ao'></view>
 <view class='other'>
 <view class='qt-address'>其他区域</view>
 <view class='oth-address'>
-<view class='list-other'>嘉定区</view>
-<view class='list-other'>杨浦区</view>
-<view class='list-other'>静安区</view>
-<view class='list-other'>青浦区</view>
-<view class='list-other'>黄浦区</view>
-<view class='list-other'>浦东新区</view>
-<view class='list-other' style='border-bottom:none;'>普陀区</view>
+<block wx:for='{{address}}' wx:for-index='key'>
+<view class='list-other' data-name='{{item.name}}'   style='border:{{item.border}}'  bindtap='adsclick'  id="{{key}}">{{item.name}}</view>
+</block>
 </view>
 </view>

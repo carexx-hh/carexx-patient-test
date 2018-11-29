@@ -1,0 +1,246 @@
+page{
+  width: 100%;
+  height: 100%;
+  background: #f6f6f6;
+  position: relative;
+  z-index: 1;
+}
+.header{
+  width: 100%;
+  height: 230rpx;
+  background:rgba(255,255,255,1);
+  display: flex;
+  padding:30rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #f6f6f6;
+  align-items: center;
+}
+.header .xiang-q{
+  margin-left: 31rpx;
+}
+.header .xiang-q .title{
+margin-top: 10rpx;
+font-size:32rpx;
+font-family:PingFangd;
+font-weight:bold;
+color:rgba(59,64,78,1);
+}
+.header .xiang-q .time{
+margin-top: 18rpx;
+font-size:24rpx;
+font-family:PingFang;
+color:rgba(165,170,184,1);
+}
+.header .xiang-q .price{
+margin-top: 20rpx;
+font-size:24rpx;
+font-family:PingFang;
+color:rgba(254,98,13,1);
+}
+.header .xiang-q .price .holiday{
+ color:rgba(165,170,184,1);
+}
+.material{
+  margin-top: 20rpx;
+  background: #ffffff;
+}
+.material .title{
+  width: 100%;
+  height: 99rpx;
+  border-bottom: 1rpx solid #f6f6f6;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.material .title .z-s{
+width:6rpx;
+height:30rpx;
+background:rgba(84,137,253,1);
+border-radius:3rpx;
+}
+.material .title .m-s{
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+margin-left: 15rpx;
+}
+.list{
+  background: #ffffff;
+}
+.list .kind{
+  width: 100%;
+  height: 99rpx;
+  padding-right: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list .kind .kind-name{
+width: 50%;
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+}
+.list .kind .t-k-name{
+  width:34%;
+  display: flex;
+  justify-content: flex-end;
+  font-size:28rpx;
+  font-family:PingFang;
+  color:rgba(165,170,184,1);
+}
+.b-zhu{
+  width: 100%;
+  height: 98rpx;
+  padding: 35rpx 30rpx 0;
+  box-sizing: border-box;
+  background: #ffffff;
+  margin-top: 20rpx;
+  z-index: 10;
+  display: flex;
+}
+.b-zhu .title{
+width: 30%;
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+z-index: 9；
+}
+.b-zhu .right{
+  width:70%;
+  display:flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  font-size:28rpx;
+  font-family:PingFang;
+  color:rgba(165,170,184,1);
+}
+.z-f-m{
+  width: 100%;
+  height: 99rpx;
+  padding-right:30rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: #ffffff
+}
+.z-f-m .right{
+width: 52%;
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+}
+.money-r{
+  width: 100%;
+  height: 99rpx;
+  padding-right:30rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  background: #ffffff;
+  line-height: 99rpx;
+}
+.money-r .right{
+  width: 50%;
+  height: 100%;
+  display:flex;
+  justify-content: flex-end;
+  font-size: 24rpx;
+  color:rgba(254,98,13,1);
+  line-height: 99rpx;
+}
+.money-r .right .r-l{
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+}
+.middle{
+width: 100%;
+margin-top: 20rpx;
+background:rgba(255,255,255,1);
+overflow: hidden;
+}
+.z-h{
+  padding-left: 30rpx;
+  height: 103rpx;
+  display: flex;
+  align-items: center; 
+  line-height: 103rpx;
+  box-sizing: border-box;
+}
+.set{
+  padding-left: 30rpx;
+  height: 103rpx;
+  display: flex;
+  align-items: center; 
+  line-height: 103rpx;
+}
+.g-y{
+  padding-left: 30rpx;
+  height: 103rpx;
+  display: flex;
+  align-items: center; 
+  line-height: 103rpx;
+}
+.middle .m-s{
+width: 100%;
+margin-left: 26rpx;
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+padding-right: 30rpx;
+box-sizing: border-box;
+}
+.middle .x-hx{
+margin-left: 30rpx;
+height:1rpx;
+background: rgba(222,229,235,1);
+}
+.bottom{
+width:100%;
+height:98rpx;
+background:rgba(255,255,255,1);
+margin-top: 60rpx;
+display: flex;
+padding-left: 30rpx;
+box-sizing: border-box;
+}
+.bottom .b-left{
+  width: 63%;
+  height: 100%;
+  font-size: 24rpx;
+  color:rgba(254,98,13,1);
+  line-height: 99rpx;
+  display: flex;
+}
+.bottom .b-left .r-l{
+font-size:30rpx;
+font-family:PingFang;
+color:rgba(59,64,78,1);
+}
+.bottom .b-right{
+  width: 37%;
+  background:linear-gradient(90deg,rgba(87,145,253,1) 12%,rgba(80,120,252,1) 100%);
+  font-size:34rpx;
+  font-family:PingFang;
+  color:rgba(255,255,255,1);
+  line-height: 98rpx;
+  
+}
+.bottom .b-right button{
+  height: 98rpx;
+  width: 100%;
+  text-align: center;
+  line-height: 98rpx;
+}
+button[plain]{
+  border:0;
+} 
+.radio-group{
+  margin-top: 96rpx;
+  margin-right: -11rpx;
+}

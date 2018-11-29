@@ -2,11 +2,11 @@
 <view class='list'>
 <view class='title'>服务项目</view>
 <view class='xm-xq'>
-<view class='o-o'>
+<navigator class='o-o' url='/pages/Project-reservation/Project-reservation' hover-class='none'>
 <image class='t-x' src='../index/images/o-o.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
 <view class='bt-xq'>护工一对一</view>
 <view class='price'>￥280/天</view>
-</view>
+</navigator>
 <view class='o-m'>
 <image class='t-x'src='../index/images/o-m.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
 <view class='bt-xq'>护工一对多</view>

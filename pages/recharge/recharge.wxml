@@ -3,15 +3,15 @@
 <text class='big-tit'>充值金额</text>
 <text class='small-tit'>充值后可提现</text>
 </view>
-<view class='price'>
-<view class='pre-x-t'>300<text class='yuan'>元</text></view>
-<view class='pre-x'>500<text class='yuan'>元</text></view>
-<view class='pre-x' style='margin-right:0;'>800<text class='yuan'>元</text></view>
+<view class="price">
+<view class='pre_x {{num==1?"active":""}}' data-num='1' catchtap='changePrice'>300<text class='yuan'>元</text></view>
+<view class='pre_x {{num==2?"active":""}}' data-num='2' catchtap='changePrice'>500<text class='yuan'>元</text></view>
+<view class='pre_x {{num==3?"active":""}}' data-num='3' catchtap='changePrice' style='margin-right:0;'>800<text class='yuan'>元</text></view>
 </view>
 <view class='price' style='margin-top:40rpx;'>
-<view class='pre-x'>1000<text class='yuan'>元</text></view>
-<view class='pre-x'>2000<text class='yuan'>元</text></view>
-<view class='pre-x' style='margin-right:0;'>其他金额</view>
+<view class='pre_x {{num==4?"active":""}}' data-num='4' catchtap='changePrice'>1000<text class='yuan'>元</text></view>
+<view class='pre_x {{num==5?"active":""}}' data-num='5' catchtap='changePrice'>2000<text class='yuan'>元</text></view>
+<view class='pre_x {{num==6?"active":""}}' data-num='6' catchtap='changePrice' style='margin-right:0;'>其他金额</view>
 </view>
 <view class='ti-shi'>提示：自定义充值时最低金额不能少于300元</view>
 <navigator class='q-r' url='/pages/recharge-result/recharge-result'>确认充值</navigator>

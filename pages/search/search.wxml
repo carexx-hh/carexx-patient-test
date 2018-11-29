@@ -1,33 +1,19 @@
 <view class='header'>
-<view class='b-sea'>
+<from class='b-sea' bindsubmit='searchSubmitFn'>
 <image class='icon-sea' src='../index/images/search.png' style="width:27rpx;height:27rpx;margin:0 13rpx 0 30rpx;"></image>
-<input class='search' placeholder='搜索您所在的医院' type='text' confirm-type='search' focus='true' bindconfirm="searchBtn" placeholder-style='font-size:26rpx;font-family:PingFang;color:rgba(165,170,184,1);'></input>
-</view>
+<input class='search' name='input' value="{{searchValue}}"  placeholder='搜索您所在的医院' type='text' confirm-type='search' focus='true' bindconfirm="searchSubmitFn" placeholder-style='font-size:26rpx;font-family:PingFang;color:rgba(165,170,184,1);'/>
+</from>
 <navigator class='fan-h' open-type="navigateBack" hover-class="none">取消</navigator>
 </view>
-<view class='title'>
+<view class='title' wx:if="{{searchRecord.length!==0}}">
 <view class='left'>历史搜索</view>
-<view class='right'>清除历史</view>
+<view class='right' bindtap="historyDelFn">清除历史</view>
 </view>
-<view class='list'>
+<view class='list' wx:for="{{searchRecord}}" wx:for-index='key' >
 <view class='hospital'>
-<view class='name'>华山医院</view>
+<text class='name'>{{item.value}}</text>
 <view class='o-cancel'>
-<image class='cancel' src='./images/cancel.png' style="width:20rpx;height:20rpx;"></image>
-</view>
-</view>
-<!--  -->
-<view class='hospital'>
-<view class='name'>金山医院</view>
-<view class='o-cancel'>
-<image class='cancel' src='./images/cancel.png' style="width:20rpx;height:20rpx;"></image>
-</view>
-</view>
-<!--  -->
-<view class='hospital'>
-<view class='name'>中山医院</view>
-<view class='o-cancel'>
-<image class='cancel' src='./images/cancel.png' style="width:20rpx;height:20rpx;"></image>
+<image class='cancel' src='./images/cancel.png' style="width:20rpx;height:20rpx;"  bindtap='remove' id="{{key}}"></image>
 </view>
 </view>
 </view>

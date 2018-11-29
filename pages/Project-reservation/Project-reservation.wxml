@@ -1,22 +1,114 @@
+<scroll-view scroll-y style="height:1350rpx;z-index:1;position:relative;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 <view class='header'>
 <image src='../order/images/o-o.png' style="width:160rpx;height:160rpx;"></image>
 <view class='xiang-q'>
-<view class='title'>护工一对一</view>
+<view class='title'>{{name}}</view>
 <view class='time'>详细介绍：适用于病情处于稳定期的病人</view>
-<view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>240</text>/天<text class='holiday'> (法定节假日当天费用翻倍)</text></view>
+<view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>{{money}}</text>/天<text class='holiday'> (法定节假日当天费用翻倍)</text></view>
 </view>
 </view>
-<view class='tiao'></view>
 <view class='material'>
-<view class='title'>
+  <view class='title'>
 <view class='z-s'></view>
 <view class='m-s'>个人资料</view>
+  </view>
 </view>
-</view>
-<view class='list'style='padding-left:30rpx;box-sizing:border-box;'>
+<!--  -->
+<view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
 <view class='kind'>
 <view class='kind-name'>姓名</view>
-<view style='display:flex;'>
-<input placeholder='请输入您的名字' class='input-name' type='text' placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);display:block;justify-content:flex-end;'></input>
+<view class='t-k-name'>
+<input placeholder='请输入您的姓名' class='input-name' type='text' placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);' style="text-align:right;"  bindinput="nameInput"></input>
 </view>
-</view></view>
+</view>
+</view>
+<!--  -->
+<view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
+<view class='kind'>
+<view class='kind-name'>手机号</view>
+<view class='t-k-name' style='width:38%;'>
+<input placeholder='请输入您的手机号' class='input-name' value="{{phone}}" type='number' maxlength="11" bindinput="mobileInput" placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);' style="text-align:right;"></input>
+</view>
+</view>
+</view>
+<!--  -->
+<view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
+<view class='kind'>
+<view class='kind-name'>病区</view>
+<view class='date-name' style='width:50%;'>
+<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" class='picker-date'  style="text-align:right;">
+    <view class="picker" style="text-align:right;">
+    {{multiArray[1][multiIndex[1]]}}
+    </view>
+    <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
+  </picker>
+</view>
+</view>
+</view>
+<!--  -->
+<view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
+<view class='kind'>
+<view class='kind-name'>床号</view>
+<view class='t-k-name'>
+<input placeholder='请输入您的床号' class='input-name' type='text' placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);' style="text-align:right;" bindinput="bedInput"></input>
+</view>
+</view>
+</view>
+<!--  -->
+<view class='material'>
+  <view class='title'>
+<view class='z-s'></view>
+<view class='m-s'>服务时间</view>
+<view class='add-m-s'>（不足半天按半天计算)</view>
+  </view>
+</view>
+<!--  -->
+<view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
+<view class='kind'>
+<view class='kind-name' style='width:50%;'>开始日期</view>
+<view class='date-name' style='width:50%;'>
+<picker mode="date" value="{{date}}" start="2015-09-01" end="2050-09-01" bindchange="bindDateChange" class='picker-date'>
+    <view class="picker">
+     {{date}}
+    </view>
+    <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
+  </picker>
+</view>
+</view>
+</view>
+<!--  -->
+<view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
+<view class='kind'>
+<view class='kind-name' style='width:50%;'>开始时间</view>
+<view class='date-name' style='width:50%;'>
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='picker-time'>
+    <view class="picker">
+    {{array[index]}}
+    </view>
+    <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
+  </picker>
+</view>
+</view>
+</view>
+<!--  -->
+<view class='b-zhu'>
+<view class='title'>备注</view>
+<textarea  wx:if='{{!isShowText}}' bindblur='onRemarkInput'  value='{{remark}}'  disabled="{{disabled}}" bindconfirm='onShowText' focus='{{onFacus}}' class='m-s' placeholder='请在这里输入备注内容' placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);' style='margin-top:rpx;height:70rpx;width:100%;'></textarea>
+<text class='m-s' wx:else bindtap='onShowTextare'  style='margin-top:20rpx;height:70rpx;width:100%;font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);'>{{remark.length != 0?remark:'请在这里输入备注内容'}}</text> 
+</view>
+</scroll-view>
+<view class="button {{mobile&&name&&bed?'active':''}}" bindtap="regist">确认预约</view>
+<view class="buuton-t"></view>
+<!-- 弹出框 -->
+<!-- <view class='tan-k'>
+<view class='tishi'>预约前需先绑定手机号</view>
+<view class='buttom'>
+<view class='qu-x-t'>
+<button class='qu-x' plain='flase' class='t-k-bt'>取消</button>
+</view>
+<view class='qu-b-d'>
+<button style='color:#5489FD;width：50%；'plain='flase' class='t-k-bt' bindtap='go_Phone'>去绑定</button>
+</view>
+</view>
+</view>
+<view class='page-y'  catchtouchmove="ture"></view> -->
