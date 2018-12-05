@@ -51,12 +51,21 @@ Page({
     })
   },
   bindphone:function(event){
-    var app =getApp()
-    var phone = event.currentTarget.dataset.phone
-    app.phone=phone
-    console.log(app.phone)
-    wx:wx.navigateTo({
+    // var app =getApp()
+    // var phone = event.currentTarget.dataset.phone
+    // app.phone=phone
+    // console.log(app.phone)
+    wx.navigateTo({
       url: '../set-phone/set-phone',
+    })
+  },
+  setbind: function (){
+    var app = getApp()
+    var phone = this.data.phone
+    app.phone = phone
+    console.log(app.phone)
+    wx.navigateTo({
+      url: '../set/set',
     })
   },
   /**
@@ -70,7 +79,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var phone = this.data.phone
+    wx.setStorageSync('phone', phone)
   },
 
   /**

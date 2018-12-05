@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/Project-reservation/Project-reservation",
+    
     "pages/order-confirm/order-confirm",
     "pages/Order-details-pay/Order-details-pay",
     "pages/Order-details/Order-details",

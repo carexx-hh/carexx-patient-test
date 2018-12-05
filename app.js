@@ -3,7 +3,8 @@ App({
   globalData: {
     userInfo: null,
   },
-  onLoad: function () {  
+  onLoad: function () {
+    console.log(app.phone)  
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -13,8 +14,31 @@ App({
 
     // 登录
     wx.login({
-      success: res => {
+      success: res =>{
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res.code)
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: '',
+            method: 'POST',
+            data: {
+              // x: '',
+              // y: ''
+              code: res.code//将code发给后台拿token
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+              // 存token
+              console.log('token=' + res.data.data.token)
+              that.globalData.token = res.data.data.token;//拿到后将token存入全局变量  以便其他页面使用
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
       }
     })
     // 获取用户信息

@@ -178,12 +178,32 @@ Page({
       });
     }
   },
-  regist:function(){
-    var app=getApp()
-    console.log(app)
-    // wx.switchTab({
-    //   url: '../order/order',
-    // })
+  formSubmit:function(e){
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    let phone=wx.getStorageSync('phone')
+    if(phone==='未绑定'){
+      wx.showModal({
+        cancelColor: '#333333',
+        confirmText:'去绑定',
+        confirmColor:'#5489FD',
+        content: '预约前需先绑定手机号',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../set-phone/set-phone',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }else{
+      wx.request({
+        url: '',
+        method:'post',
+        
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
