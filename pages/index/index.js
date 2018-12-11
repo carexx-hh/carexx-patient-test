@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-const app = getApp()
+var app = getApp()
 const util = require('../../utils/util.js');  
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
@@ -27,41 +27,26 @@ Page({
     // 左边scroll
     hospitallist: 0,
     height:'',
-    menu: [
-      { id: 0, name: "华山医院" },
-      { id: 1, name: "金山医院" },
-      { id: 2, name: "一妇婴" },
-      { id: 3, name: "中山医院" },
-      { id: 4, name: "华山医院" },
-      { id: 5, name: "一妇婴" },
-      { id: 6, name: "金山医院" },
-      { id: 7, name: "华山医院" },
-      { id: 8, name: "中山医院" },
-      { id: 9, name: "一妇婴" },
-      { id: 10, name: "华山医院" },
-    ],
+    menu: [],
     project:[
       { id: 0, name: '护工一对一', money: '280', src:'images/o-o.png'},
       { id: 1, name: '护工一对多', money: '260', src:'images/o-m.png' },
       { id: 2, name: '月嫂', money: '420', src:'images/yue-s.png' },
     ],
     windowHeight: 0,
-    // navbar的高度
     navbarHeight: 0,
-    // header的高度
     bannerHeight: 0,
-    // scroll-view的高度
-    scrollViewHeight: 0 
+    scrollViewHeight: 0 ,
   },  
   //事件处理函数 
-  onLoad: function () {
+  onLoad: function (options) {
     var that = this
     qqmapsdk = new QQMapWX({
       key: '22QBZ-ST5AI-KUTGL-5L3JZ-D42F6-SMBY5' //这里自己的key秘钥进行填充
     });
     let vm = this;
     vm.getUserLocation();
-  // 左边scroll
+  // 左边scroll高度
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -80,6 +65,26 @@ Page({
         height: scrollViewHeight
       });
     });
+    
+   
+    // // 服务项目
+    // wx.request({
+    //   url: app.globalData.baseUrl + '/careservice/list_all_inst',
+    //   method: 'post',
+    //   data: {
+    //     instId:1
+    //   },
+    //   header: {
+    //     'content-Type': 'application/x-www-form-urlencoded', // 默认值
+    //     'auth-token': app.globalData.token
+    //   },
+    //   success: function (res) {
+    //     // that.setData({
+    //     //   menu: res.data.data
+    //     // })
+    //     console.log(res)
+    //   }
+    // })
   },
   turnMenu: function (e) {
     var type = e.target.dataset.index;
@@ -93,11 +98,29 @@ Page({
       hidden: false
     })
   }, 
-  onShow: function () {
+  onShow: function (){
+    var that=this;
     var address = app.datads;
-    this.setData({
-      district:address
+    that.setData({
+      district:address 
     })
+    wx.request({
+      url: app.globalData.baseUrl + '/careinst/all',
+      method: 'post',
+      data: {
+        instRegion: that.data.district
+      },
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': 'jo7lusmjW7W3j6ussuaHs2P9jedrb233'
+      },
+      success: function (res) {
+        that.setData({
+          menu: res.data.data
+        })
+      }
+    })
+    this.hospitalmenu();
   },
   getUserLocation: function () {
     let vm = this;
@@ -193,9 +216,6 @@ Page({
       fail: function (res) {
         console.log(res);
       },
-      complete: function (res) {
-        // console.log(res);
-      }
     });
   },
   tapClick: function (event){
@@ -209,4 +229,10 @@ Page({
       url: '../Project-reservation/Project-reservation',
     })
   },
-})
+  hospitalmenu:function(){
+    var that=this;
+    console.log(this.data)
+    // 机构医院
+    
+  },
+}) 

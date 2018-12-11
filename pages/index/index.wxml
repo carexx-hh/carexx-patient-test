@@ -20,9 +20,9 @@
 <view class='middle'style="position:relative;overflow:hidden">
 <!-- 左侧栏 -->
 <scroll-view class="left" bindscrolltolower="lower" scroll-y="true" style="height:{{height}}px;overflow-y:scroll">
-      <block wx:for="{{menu}}" wx:key="">
+      <block wx:for="{{menu}}" wx:key="id">
         <view class="nav_left_items">
-          <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.name}}</view>
+          <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.instName}}</view>
         </view>
       </block>
 </scroll-view>  
