@@ -20,7 +20,7 @@
 <view class='middle'style="position:relative;overflow:hidden">
 <!-- 左侧栏 -->
 <scroll-view class="left" bindscrolltolower="lower" scroll-y="true" style="height:{{height}}px;overflow-y:scroll">
-      <block wx:for="{{menu}}" wx:key="id">
+      <block wx:for="{{menu}}" wx:key="index">
         <view class="nav_left_items">
           <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.instName}}</view>
         </view>
@@ -30,13 +30,13 @@
 <view class='right'>
 <view class='title'>服务项目</view>
 <view class='xm-xq'>
-<block wx:for="{{project}}" wx:for-index='{{key}}'>
-<view class='o-o' bindtap='tapClick' id='{{key}}' data-name='{{item.name}}' data-money='{{item.money}}'>
-<image class='t-x' src='{{item.src}}' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
-<view class='bt-xq' >{{item.name}}</view>
-<view class='price' >￥{{item.money}}/天</view>
+<block wx:for="{{project}}"  wx:key="index">
+<view class='o-o' data-index="{{index}}" bindtap='tapClick'  data-name='{{item.serviceName}}' data-money='{{item.servicePrice}}' data-serviceid='{{item.serviceId}}' data-serviceexplain='{{item.serviceExplain}}'>
+     <image class='t-x' src='./images/o-o.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
+     <view class='bt-xq'>{{item.serviceName}}</view>
+     <view class='price'>￥{{item.servicePrice}}/天</view>
 </view>
-</block>
+</block> 
 </view>
 </view>
 </view>

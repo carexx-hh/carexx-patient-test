@@ -19,7 +19,7 @@
 <view class='x-hx'></view>
 <view class='set'>
 <image src='./images/set.png' class='img' style='width:40rpx;height:40rpx;'></image>
-<navigator class='m-s'  hover-class="none" bindtap='setbind'>设置</navigator>
+<view class='m-s'  hover-class="none" bindtap='setbind'>设置</view>
 <image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
 </view>
 <view class='x-hx'></view>

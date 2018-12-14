@@ -2,8 +2,8 @@
 <view class='header'>
 <image src='../order/images/o-o.png' style="width:160rpx;height:160rpx;"></image>
 <view class='xiang-q'>
-<view class='title'>{{name}}</view>
-<view class='time'>详细介绍：适用于病情处于稳定期的病人</view>
+<view class='title'>{{servicename}}</view>
+<view class='time'>{{serviceExplain}}</view>
 <view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>{{money}}</text>/天<text class='holiday'> (法定节假日当天费用翻倍)</text></view>
 </view>
 </view>
@@ -37,9 +37,9 @@
 <view class='kind'>
 <view class='kind-name'>病区</view>
 <view class='date-name' style='width:50%;'>
-<picker mode="multiSelector" bindchange="bindMultiPickerChange" name='input_bq' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" class='picker-date'  style="text-align:right;">
+<picker mode="selector" bindchange="bindPickerChange" name='input_bq'  value="{{inpatientAreaId[pickerindex]}}" range="{{pickerArray}}" class='picker-date'  style="text-align:right;">
     <view class="picker" style="text-align:right;">
-    {{multiArray[1][multiIndex[1]]}}
+    {{pickerArray[pickerindex]}}
     </view>
     <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
   </picker>
@@ -82,9 +82,9 @@
 <view class='kind'>
 <view class='kind-name' style='width:50%;'>开始时间</view>
 <view class='date-name' style='width:50%;'>
-<picker bindchange="bindPickerChange" name='input_starttime'  value="{{index}}" range="{{array}}" class='picker-time'>
+<picker bindchange="bindTimeChange" name='input_starttime'  value="{{timearray[timeindex]}}" range="{{timearray}}" class='picker-time'>
     <view class="picker">
-    {{array[index]}}
+    {{timearray[timeindex]}}
     </view>
     <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
   </picker>

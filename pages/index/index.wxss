@@ -83,7 +83,7 @@ swiper{
 }
 .middle .right .title{
   width: 100%;
-  height: 99rpx;
+  height:65rpx;
   padding-left: 42rpx;
   font-size:30rpx;
   color:rgba(59,64,78,1);
@@ -93,19 +93,13 @@ swiper{
 }
 .middle .right .xm-xq{
   width: 100%;
-  display: flex;
-  padding-left: 39rpx;
+  float: left;
   padding:0 39rpx 0 39rpx;
   box-sizing: border-box;
 }
 .middle .right .xm-xq .o-o{
-  height: 207rpx;
-  width: 171rpx;
-}.middle .right .xm-xq .o-m{
-  height: 207rpx;
-  width: 171rpx;
-}
-.middle .right .xm-xq .yue-s{
+  margin-top: 34rpx;
+  float: left;
   height: 207rpx;
   width: 171rpx;
 }

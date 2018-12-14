@@ -17,7 +17,7 @@ Page({
     longitude: '',
     address: [
       { id: 0, name: "杨浦区" },
-      { id: 1, name: "静安区" },
+      { id: 1, name: "闵行区" },
       { id: 2, name: "青浦区" },
       { id: 3, name: "浦东区" },
       { id: 4, name: "普陀区" },

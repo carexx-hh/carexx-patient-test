@@ -7,44 +7,19 @@ Page({
    */
   data: {
     phone:getApp().phone,
-    name:'',
+    servicename:'',
     money:'',
-    array: ['08：00', '20：00'],
-    objectArray: [
-      {
-        id: 0,
-        name: '08:00'
-      },
-      {
-        id: 1,
-        name: '20:00'
-      }],
-    multiArray: [['一科室', '二科室'], ['健康护理1区', '健康护理2区']],
-    objectMultiArray: [
-      [
-        {
-          id: 0,
-          name: '一科室'
-        },
-        {
-          id: 1,
-          name: '二科室'
-        }
-      ], [
-        {
-          id: 0,
-          name: '健康护理1区'
-        },
-        {
-          id: 1,
-          name: '健康护理2区'
-        }
-      ]
-    ],
-    multiIndex: [0,0],
-    index: 0,
-    date: '2016-09-01',
-    time: '12:01',
+    service:'',
+    instId: '',
+    serviceExplain: '',
+    timearray: [],
+    objectArray: [],
+    pickerArray:[],
+    objectpickerArray: [],
+    inpatientAreaId:[],
+    pickerindex: 0,
+    timeindex: 0,
+    date: '2018-09-01',
     onFocus:false,    //textarea焦点是否选中
     isShowText:false, //控制显示 textarea 还是 text
     remark:'',
@@ -59,10 +34,67 @@ Page({
   onShow: function () {
     var dataname = app.dataname;
     var datamoney = app.datamoney;
-    this.setData({
-      name: dataname,
-      money: datamoney
-    })
+    var dataservice = app.dataservice;
+    var dataserviceExplain = app.dataserviceExplain;
+    var datainstId = app.datainstId;
+    var that=this;
+    that.setData({
+      servicename: dataname,
+      money: datamoney,
+      instId: datainstId,
+      serviceExplain: dataserviceExplain,
+      service: dataservice
+    }),
+   wx.request({
+        url: app.globalData.baseUrl + '/inpatientarea/all/'+that.data.instId,
+        method: 'GET',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success:function(res){
+          console.log(res)
+          var inpatientArea=[];
+          var inpatientAreaId=[];
+          for(var i=0;i<=res.data.data.length;i++){
+            inpatientArea.push(res.data.data[i].inpatientArea)
+            inpatientAreaId.push(res.data.data[i].id)
+            that.setData({
+              pickerArray:inpatientArea,
+              inpatientAreaId: inpatientAreaId
+            })
+          }
+        }
+      }),
+   wx.request({
+        url: app.globalData.baseUrl + '/customerordertime/get_by_instId/' + that.data.instId,
+        method: 'GET',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var starttime = res.data.data[0].startTime
+          var endtime = res.data.data[0].endTimeTime
+          console.log(res)
+          var
+            S = starttime/1000,
+            E = S+43200,
+            T = new Date(1E3 * S),
+            F = new Date(1E3 * E),
+            Format = function (Q) { return Q < 10 ? '0' + Q : Q },
+            ResultStart = Format(T.getHours()) + ':' + Format(T.getMinutes());
+            ResultEnd = Format(F.getHours()) + ':' + Format(F.getMinutes());
+            console.log(ResultStart, ResultEnd)
+            var timeArray=[]
+            timeArray.push(ResultStart, ResultEnd)
+            console.log(timeArray)
+            that.setData({
+              timearray: timeArray
+            })
+      
+        }
+      })
   },
 
   // textarea事件
@@ -86,45 +118,22 @@ Page({
       remark:value,
     });
   },
-  // 
-  bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = ['健康护理1区', '健康护理2区', '健康护理3区', '健康护理4区', '健康护理5区'];
-            break;
-          case 1:
-            data.multiArray[1] = ['重病1区', '重病2区', '重病3区'];
-            break;
-        }
-        data.multiIndex[1] = 0;
-        break;
-    }
-    this.setData(data);
-  },
   bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log(e)
     this.setData({
-      index: e.detail.value
+      pickerindex: e.detail.value
     })
   },
   bindDateChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('Date发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
     })
   },
   bindTimeChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('Time发送选择改变，携带值为', e.detail.value)
     this.setData({
-      time: e.detail.value
+      timeindex: e.detail.value
     })
   },
   //去绑定手机
@@ -180,36 +189,95 @@ Page({
   },
   formSubmit:function(e){
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    let phone=wx.getStorageSync('phone')
-    if(phone==='未绑定'){
-      wx.showModal({
-        cancelColor: '#333333',
-        confirmText:'去绑定',
-        confirmColor:'#5489FD',
-        content: '预约前需先绑定手机号',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../set-phone/set-phone',
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
+    var that = this;
+    var instId = that.data.instId;
+    var serviceId = that.data.service;
+    var patientName = e.detail.value.input_name;
+    var phone = e.detail.value.input_phone;
+    var inpatientAreaId = e.detail.value.input_bq;
+    var accurateAddress = e.detail.value.input_bed;
+    var orderRemark = e.detail.value.input_textarea;
+    var serviceStartTime = e.detail.value.input_datastart +" "+e.detail.value.input_starttime+':00';
+    var bed=that.data.bed;
+    var mobile=that.data.mobile;
+    var name=that.data.name;
+    if (bed != true || mobile != true || bed != true){
+      wx.showToast({
+        title:'请先完善资料',
+        icon: 'none',
+        duration: 1500
       })
     }else{
       wx.request({
-        url: '',
-        method:'post',
-        
+        url: app.globalData.baseUrl + '/customerorder/add_appointOrder',
+        method: 'POST',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        data: {
+          instId:that.data.instId,
+          serviceId:serviceId,
+          patientName:patientName,
+          phone:phone,
+          inpatientAreaId:inpatientAreaId,
+          accurateAddress: accurateAddress,
+          orderRemark:orderRemark,
+          serviceStartTime:serviceStartTime,
+        },
+        success: function (res) {
+          console.log(res)
+          if(res.data.code==200){
+            wx.showModal({
+              cancelColor: '#333333',
+              confirmText: '查看订单',
+              cancelText: '返回首页',
+              content: '预约成功',
+              confirmColor: '#5489FD',
+              success(res) {
+                if (res.confirm) {
+                  wx.switchTab({
+                    url: '../order/order',
+                  })
+                } else if (res.cancel) {
+                  wx.switchTab({
+                    url: '../index/index',
+                  })
+                }
+              }
+            })
+          }else if (res.data.code == 400){
+            wx.showModal({
+              cancelColor: '#333333',
+              confirmText: '再次预约',
+              cancelText: '取消',
+              content: '预约失败',
+              confirmColor: '#5489FD',
+              success(res) {
+                if (res.confirm) {
+                  wx.hideToast()
+                } else if (res.cancel) {
+                  wx.switchTab({
+                    url: '../index/index',
+                  })
+                }
+              }
+            })
+          }
+
+        }
       })
+
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+  var that=this;
+    that.setData({
+      token: wx.getStorageSync('token')
+    })
   },
 
   /**

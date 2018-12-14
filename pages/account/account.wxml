@@ -1,7 +1,7 @@
 <view class='header'>
 <navigator class='m-xi' url='/pages/detail/detail' hover-class="none">明细</navigator>
 <view class='yu-e'>账户余额（元）</view>
-<view class='money'>500.00</view>
+<view class='money'>{{money}}</view>
 </view>
 <view class='middle'>
 <view class='c-z'>

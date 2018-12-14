@@ -8,13 +8,12 @@ Page({
   data: {
     // 轮播
     imgUrls: [
-      'images/index.png',
-      'images/index.png',
-      'images/index.png',],
+      'images/index1.png',
+      'images/index2.png'],
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
-    duration: 1000,
+    duration: 500,
     indicatoractivecolor:"#f9f9f9",
     indicatorcolor:"rgba(249,249,249,.4)",
     circular: true,
@@ -26,20 +25,72 @@ Page({
     longitude: '',
     // 左边scroll
     hospitallist: 0,
+    servicelist:'',
     height:'',
     menu: [],
-    project:[
-      { id: 0, name: '护工一对一', money: '280', src:'images/o-o.png'},
-      { id: 1, name: '护工一对多', money: '260', src:'images/o-m.png' },
-      { id: 2, name: '月嫂', money: '420', src:'images/yue-s.png' },
-    ],
+    project:[],
     windowHeight: 0,
     navbarHeight: 0,
     bannerHeight: 0,
     scrollViewHeight: 0 ,
+    instId:'',
   },  
+  onShow: function () {
+    var address = app.datads;
+    var that=this;
+    that.setData({
+      district: address
+    }, function () {
+      //机构
+      wx.request({
+        url: app.globalData.baseUrl + '/careinst/all',
+        method: 'post',
+        data: {
+          instRegion: that.data.district
+        },
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var instId = res.data.data[that.data.hospitallist].id
+          console.log(res)
+          console.log(instId)
+          that.setData({
+            menu: res.data.data,
+            instId:instId
+          }, function () {
+            // 服务项目
+            console.log(res.data.data.instName) 
+            wx.request({
+              url: app.globalData.baseUrl + '/careservice/list_all_service',
+              method: 'post',
+              data: {
+                instId: instId
+              },
+              header: {
+                'content-Type': 'application/x-www-form-urlencoded', 
+                'auth-token': that.data.token
+              },
+              success: function (res) {
+                console.log(res)
+                that.setData({
+                  project: res.data.data,
+                })
+                console.log(res)
+              }
+            }) 
+          })
+        }
+      })
+    })
+  },
   //事件处理函数 
   onLoad: function (options) {
+    // 把token存data
+   this.setData({
+     token: wx.getStorageSync('token')
+   })
     var that = this
     qqmapsdk = new QQMapWX({
       key: '22QBZ-ST5AI-KUTGL-5L3JZ-D42F6-SMBY5' //这里自己的key秘钥进行填充
@@ -64,64 +115,59 @@ Page({
       this.setData({
         height: scrollViewHeight
       });
-    });
-    
-   
-    // // 服务项目
-    // wx.request({
-    //   url: app.globalData.baseUrl + '/careservice/list_all_inst',
-    //   method: 'post',
-    //   data: {
-    //     instId:1
-    //   },
-    //   header: {
-    //     'content-Type': 'application/x-www-form-urlencoded', // 默认值
-    //     'auth-token': app.globalData.token
-    //   },
-    //   success: function (res) {
-    //     // that.setData({
-    //     //   menu: res.data.data
-    //     // })
-    //     console.log(res)
-    //   }
-    // })
+    }); 
   },
   turnMenu: function (e) {
+    var that=this;
     var type = e.target.dataset.index;
     console.log(type)
-    this.setData({
-      hospitallist: type
-    })
-  },
-  loadmore() {
-    this.setData({
-      hidden: false
-    })
-  }, 
-  onShow: function (){
-    var that=this;
-    var address = app.datads;
     that.setData({
-      district:address 
+      hospitallist: type
+    },function(){
+      // that.getLocation();
+      wx.request({
+        url: app.globalData.baseUrl + '/careinst/all',
+        method: 'post',
+        data: {
+          instRegion: that.data.district
+        },
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var instId = res.data.data[that.data.hospitallist].id
+          console.log(res)
+          console.log(instId)
+          that.setData({
+            menu: res.data.data,
+            instId:instId
+          }, function () {
+            // 服务项目
+            wx.request({
+              url: app.globalData.baseUrl + '/careservice/list_all_service',
+              method: 'post',
+              data: {
+                instId: instId
+              },
+              header: {
+                'content-Type': 'application/x-www-form-urlencoded',
+                'auth-token': that.data.token
+              },
+              success: function (res) {
+                that.setData({
+                  project: res.data.data,
+                })
+                console.log(res)
+              }
+            })
+          })
+        }
+      })
     })
-    wx.request({
-      url: app.globalData.baseUrl + '/careinst/all',
-      method: 'post',
-      data: {
-        instRegion: that.data.district
-      },
-      header: {
-        'content-Type': 'application/x-www-form-urlencoded',
-        'auth-token': 'jo7lusmjW7W3j6ussuaHs2P9jedrb233'
-      },
-      success: function (res) {
-        that.setData({
-          menu: res.data.data
-        })
-      }
-    })
-    this.hospitalmenu();
   },
+  
+  
   getUserLocation: function () {
     let vm = this;
     wx.getSetting({
@@ -212,6 +258,46 @@ Page({
           longitude: longitude,
           district: district
         })
+        // 机构医院
+        wx.request({
+          url: app.globalData.baseUrl + '/careinst/all',
+          method: 'post',
+          data: {
+            instRegion: vm.data.district
+          },
+          header: {
+            'content-Type': 'application/x-www-form-urlencoded',
+            'auth-token': vm.data.token
+          },
+          success: function (res) {
+            var instId = res.data.data[vm.data.hospitallist].id
+            console.log(res)
+            console.log(instId)
+            vm.setData({
+              menu: res.data.data,
+              instId: instId
+            },function(){
+              // 服务项目
+              wx.request({
+                  url: app.globalData.baseUrl + '/careservice/list_all_service',
+                  method: 'post',
+                  data: {
+                         instId: instId
+                   },
+              header: {
+              'content-Type': 'application/x-www-form-urlencoded', 
+              'auth-token': vm.data.token
+              },
+            success: function (res) {
+                vm.setData({
+                  project: res.data.data,
+                })
+            console.log(res)
+            }
+          })
+            })
+          }
+        })
       },
       fail: function (res) {
         console.log(res);
@@ -219,20 +305,27 @@ Page({
     });
   },
   tapClick: function (event){
+    var that=this;
+    // console.log(event.currentTarget.dataset)
     var name = event.currentTarget.dataset.name
     var money = event.currentTarget.dataset.money
+    var service = event.currentTarget.dataset.serviceid
+    var serviceExplain = event.currentTarget.dataset.serviceexplain
+    var instId = that.data.instId
+    console.log(name, money, service, serviceExplain, instId)
     var app = getApp();
     app.dataname = name;
     app.datamoney = money
-    // console.log(app.dataname, app.datamoney)
+    app.dataservice = service;
+    app.dataserviceExplain = serviceExplain
+    app.datainstId = instId
     wx.navigateTo({
       url: '../Project-reservation/Project-reservation',
     })
-  },
-  hospitalmenu:function(){
-    var that=this;
-    console.log(this.data)
-    // 机构医院
+  }
     
-  },
+  
+    
+    
+  
 }) 
