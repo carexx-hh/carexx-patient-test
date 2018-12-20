@@ -36,62 +36,175 @@ Page({
     instId:'',
   },  
   onShow: function () {
+    this.setData({
+      token: wx.getStorageSync('token')
+    })
     var address = app.datads;
     var that=this;
-    that.setData({
-      district: address
-    }, function () {
-      //机构
-      wx.request({
-        url: app.globalData.baseUrl + '/careinst/all',
-        method: 'post',
-        data: {
-          instRegion: that.data.district
-        },
-        header: {
-          'content-Type': 'application/x-www-form-urlencoded',
-          'auth-token': that.data.token
-        },
-        success: function (res) {
-          var instId = res.data.data[that.data.hospitallist].id
-          console.log(res)
-          console.log(instId)
-          that.setData({
-            menu: res.data.data,
-            instId:instId
-          }, function () {
-            // 服务项目
-            console.log(res.data.data.instName) 
-            wx.request({
-              url: app.globalData.baseUrl + '/careservice/list_all_service',
-              method: 'post',
-              data: {
-                instId: instId
-              },
-              header: {
-                'content-Type': 'application/x-www-form-urlencoded', 
-                'auth-token': that.data.token
-              },
-              success: function (res) {
-                console.log(res)
-                that.setData({
-                  project: res.data.data,
-                })
-                console.log(res)
-              }
-            }) 
-          })
-        }
+    if(address==undefined){
+      that.setData({
+        district: that.data.district
+      }, function () {
+        //机构
+        wx.request({
+          url: app.globalData.baseUrl + '/careinst/all',
+          method: 'post',
+          data: {
+            instRegion: that.data.district
+          },
+          header: {
+            'content-Type': 'application/x-www-form-urlencoded',
+            'auth-token': that.data.token
+          },
+          success: function (res) {
+            var instId = res.data.data[that.data.hospitallist].id
+            console.log(res)
+            console.log(instId)
+            that.setData({
+              menu: res.data.data,
+              instId: instId
+            }, function () {
+              // 服务项目
+              wx.request({
+                url: app.globalData.baseUrl + '/careservice/list_all_service',
+                method: 'post',
+                data: {
+                  instId: instId
+                },
+                header: {
+                  'content-Type': 'application/x-www-form-urlencoded',
+                  'auth-token': that.data.token
+                },
+                success: function (res) {
+                  console.log(res)
+                  that.setData({
+                    project: res.data.data,
+                  })
+                  console.log(res)
+                }
+              })
+            })
+          }
+        })
       })
-    })
+    }else{
+      that.setData({
+        district: address
+      }, function () {
+        //机构
+        wx.request({
+          url: app.globalData.baseUrl + '/careinst/all',
+          method: 'post',
+          data: {
+            instRegion: that.data.district
+          },
+          header: {
+            'content-Type': 'application/x-www-form-urlencoded',
+            'auth-token': that.data.token
+          },
+          success: function (res) {
+            var instId = res.data.data[that.data.hospitallist].id
+            console.log(res)
+            console.log(instId)
+            that.setData({
+              menu: res.data.data,
+              instId: instId
+            }, function () {
+              // 服务项目
+              console.log(res.data.data.instName)
+              wx.request({
+                url: app.globalData.baseUrl + '/careservice/list_all_service',
+                method: 'post',
+                data: {
+                  instId: instId
+                },
+                header: {
+                  'content-Type': 'application/x-www-form-urlencoded',
+                  'auth-token': that.data.token
+                },
+                success: function (res) {
+                  console.log(res)
+                  that.setData({
+                    project: res.data.data,
+                  })
+                  console.log(res)
+                }
+              })
+            })
+          }
+        })
+      })
+    }
   },
   //事件处理函数 
   onLoad: function (options) {
+    var that = this;
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            lang: "zh_CN",
+            success: res => {
+              that.setData({
+                userInfo: res.userInfo,
+                region: res.userInfo.province + '/' + res.userInfo.city
+              })
+              //  登录
+              wx.login({
+                success: res => {
+                  // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                  if (res.code) {
+                    wx.request({
+                      url: app.globalData.baseUrl + '/auth/patient_login',
+                      method: 'POST',
+                      data: {
+                        code: res.code,//将code发给后台拿token
+                        nickname: that.data.userInfo.nickName,
+                        avatar: that.data.userInfo.avatarUrl,
+                        sex: that.data.userInfo.gender,
+                        region: that.data.region
+                      },
+                      header: {
+                        'content-type': 'application/x-www-form-urlencoded',
+                      },
+                      success: function (res) {
+                        console.log(res)
+                        console.log('token=' + res.data.data.token)
+                        wx.setStorageSync('token', res.data.data.token)
+                      },
+                    })
+                  } else {
+                    console.log('获取用户登录态失败！' + res.errMsg)
+                  }
+                }
+              })
+              if (that.userInfoReadyCallback) {
+                that.userInfoReadyCallback(res)
+              }
+            }
+          })
+        }else{
+          wx.showModal({
+            content: '需要获取您的用户信息',
+            showCancel:false,
+            confirmText:'去授权',
+            success(res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../mine/mine',
+                })
+              }
+            }
+          })
+        }
+      },
+    });
     // 把token存data
    this.setData({
      token: wx.getStorageSync('token')
    })
-    var that = this
+   
     qqmapsdk = new QQMapWX({
       key: '22QBZ-ST5AI-KUTGL-5L3JZ-D42F6-SMBY5' //这里自己的key秘钥进行填充
     });
@@ -120,7 +233,6 @@ Page({
   turnMenu: function (e) {
     var that=this;
     var type = e.target.dataset.index;
-    console.log(type)
     that.setData({
       hospitallist: type
     },function(){
@@ -137,8 +249,6 @@ Page({
         },
         success: function (res) {
           var instId = res.data.data[that.data.hospitallist].id
-          console.log(res)
-          console.log(instId)
           that.setData({
             menu: res.data.data,
             instId:instId
@@ -158,7 +268,6 @@ Page({
                 that.setData({
                   project: res.data.data,
                 })
-                console.log(res)
               }
             })
           })
@@ -180,6 +289,7 @@ Page({
           wx.showModal({
             title: '请求授权当前位置',
             content: '需要获取您的地理位置，请确认授权',
+            showCancel:false,
             success: function (res) {
               if (res.cancel){
                 wx.showToast({
@@ -322,10 +432,5 @@ Page({
     wx.navigateTo({
       url: '../Project-reservation/Project-reservation',
     })
-  }
-    
-  
-    
-    
-  
+  },
 }) 

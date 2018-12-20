@@ -17,32 +17,20 @@
   color:rgba(59,64,78,1);
   box-sizing: border-box;
 }
-.content .list .xm-xq{
-  width: 100%;
-  display: flex;
-  box-sizing: border-box;
+.content .list .o-o{
   margin-top: 40rpx;
-}
-.content .list .xm-xq .o-o{
   height: 207rpx;
   width: 171rpx;
+  float: left;
 }
-.content .list .xm-xq .o-m{
-  height: 207rpx;
-  width: 171rpx;
-}
-.content .list .xm-xq .yue-s{
-  height: 207rpx;
-  width: 171rpx;
-}
-.content .list .xm-xq .bt-xq{
+.content .list .bt-xq{
 margin-top: 10rpx;
 font-size:26rpx;
 font-family:PingFang;
 color:rgba(59,64,78,1);
 text-align: center;
 }
-.content .list .xm-xq .price{
+.content .list .price{
 margin-top: 6rpx;
 font-size:22rpx;
 font-family:PingFang;

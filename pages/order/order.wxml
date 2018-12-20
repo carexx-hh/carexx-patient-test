@@ -1,33 +1,30 @@
 <!--头部tab切换部分start-->
-<view class='menu'>
-<view class="xuanx-ka {{currentTab==index?'select':'default'}}" wx:for="{{switchtab}}" wx:key='' data-current="{{index}}" catchtap="switchNav" >{{item.name}}</view>
+<view class='menu' id='menu'>
+<view class="xuanx-ka {{index==current?'select':''}}" wx:for="{{switchtab}}" wx:key='' data-index="{{index}}" bindtap="switchNav" >{{item.name}}</view>
 </view>
  <!--头部tab切换部分end-->
 <!--切换内容部分start-->
-<swiper current='{{currentTab}}' bindchange="tabChange" class='mySwiper'>
-    <block wx:for="{{coupons}}" wx:key="">
-      <swiper-item class='my-swiper'>
-        <block wx:for="{{item}}" wx:key="" wx:for-item="spItem">
-        <view class='item'>
-        <view style='width:160rpx;height:160rpx;'>
-          <image src='./images/o-o.png' style="width:160rpx;height:160rpx;"></image>
-        </view>
-            <view class='xiang-q'>
-               <view class='title'>{{spItem.title}}</view>
-               <view class='time'>开始时间：<text >{{spItem.time}}</text></view>
-               <view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>{{spItem.price}}</text>/天</view>
+<scroll-view class='mySwiper' scroll-y="true" style="height:{{height}}px;overflow-y:scroll">
+      <block wx:for="{{coupons}}" wx:key="">
+        <view class='item' data-index='{{index}}' bindtap='clickDetails' data-orderno='{{item.orderNo}}' data-orderstatus='{{item.orderStatus}}'>
+             <view style='width:160rpx;height:160rpx;'>
+               <image src='./images/o-o.png' style="width:160rpx;height:160rpx;"></image>
+             </view>
+             <view class='xiang-q'>
+               <view class='title'>{{item.serviceName}}</view>
+               <view class='time' wx:key='index'>开始时间：<text >{{serviceStartTime[index]}}</text></view>
+               <view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>{{item.orderAmt}}</text></view>
              </view>
              <view class='cao-z'>
-               <view class='zh-tai'>{{spItem.kind}}</view>
-               <view class='ddan-tai' style="background-color:{{spItem.backgroundColor}};border:{{spItem.border}};color:{{spItem.color}};width:{{spItem.width}};height:{{spItem.height}}" bindtap='operationClick'>{{spItem.operation}}</view>
+               <view class='zh-tai' value='{{Status}}'>{{item.orderStatus==1?"待排班":(item.orderStatus==4?"进行中":"已完成")}}                 </view>
+               <view class='ddan-tai' data-orderno='{{item.orderNo}}' data-orderstatus='{{item.orderStatus}}' catchtap='operationClick'>{{item.orderStatus==1?"取消订单":(item.orderStatus==4?"支付并结束":"查看详情")}}</view>
             </view>
-          </view>
-        </block>
-      </swiper-item>
-    </block>
-  </swiper>
+       </view>
+      </block>
+</scroll-view>
 <!--切换内容部分end-->
-<!-- <block>
+<block wx:if='{{isShow}}'>
 <image class='img' src='./images/no_order.png' style="width:326rpx;height:319rpx;position:absolute;top:220rpx;left:0;right:0;margin:auto;"></image>
 <button class="gobtn" bindtap='btntap'>去预约</button>
-</block> -->
+</block>
+<!-- style="background-color:{{coupons.backgroundColor}};border:{{coupons.border}};color:{{coupons.color}};width:{{coupons.width}};height:{{coupons.height}}" -->

@@ -129,7 +129,7 @@ z-index: 9；
   background: #ffffff
 }
 .z-f-m .right{
-width: 52%;
+width: 57%;
 font-size:30rpx;
 font-family:PingFang;
 color:rgba(59,64,78,1);

@@ -1,4 +1,5 @@
 // pages/search-result/search-result.js
+var app=getApp();
 Page({
 
   /**
@@ -12,7 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      token: wx.getStorageSync('token')
+    })
+    
   },
 
   /**
@@ -26,9 +30,47 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      token: wx.getStorageSync('token')
+    })
+    var inputVal = app.inputVal;
+    var that = this;
+    that.setData({
+      inputVal: inputVal
+    },function(){
+      wx.request({
+        url: app.globalData.baseUrl + '/careinst/all',
+        method: 'post',
+        data: {
+          instName: inputVal
+        },
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          that.setData({
+            project: res.data.data,
+          },function(){
+            if (that.data.project == '') {
+              wx.showToast({
+                title: '无搜索结果',
+                icon: 'none',
+                duration: 1500
+              })
+            }
+          })
+        }
+      })
+    });
   },
-
+  clickproject:function(e){
+    var instId = e.currentTarget.dataset.id;
+    app.instId = instId;
+    wx.navigateTo({
+      url: '../search-hospital/search-hospital',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

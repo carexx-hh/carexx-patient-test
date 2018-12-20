@@ -32,7 +32,7 @@ Page({
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
+    wx.getUserInfo({
         success: res => {
           app.userInfo = res.userInfo
           this.setData({
@@ -44,10 +44,52 @@ Page({
     }
   },
   getUserInfo: function (e) {
+    var that=this;
     app.userInfo = e.detail.userInfo
-    this.setData({
+    that.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    },function(){
+      wx.getUserInfo({
+        lang: "zh_CN",
+        success: res => {
+          var region = res.userInfo.province + '/' + res.userInfo.city
+          //  登录
+          wx.login({
+            success: res => {
+              // 发送 res.code 到后台换取 openId, sessionKey, unionId
+              if (res.code) {
+                wx.request({
+                  url: app.globalData.baseUrl + '/auth/patient_login',
+                  method: 'POST',
+                  data: {
+                    code: res.code,
+                    nickname: that.data.userInfo.nickName,
+                    avatar: that.data.userInfo.avatarUrl,
+                    sex: that.data.userInfo.gender,
+                    region:region
+                  },
+                  header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                  },
+                  success: function (res) {
+                    console.log(res)
+                    console.log('token=' + res.data.data.token)
+                    console.log('openId=' + res.data.data.openId)
+                    wx.setStorageSync('token', res.data.data.token)
+                    wx.setStorageSync('openId', res.data.data.openId)
+                  },
+                })
+              } else {
+                console.log('获取用户登录态失败！' + res.errMsg)
+              }
+            }
+          })
+          if (that.userInfoReadyCallback) {
+            that.userInfoReadyCallback(res)
+          }
+        }
+      })
     })
   },
   bindphone:function(event){

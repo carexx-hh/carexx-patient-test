@@ -1,9 +1,9 @@
 <view class='header'>
 <image src='../order/images/o-o.png' style="width:160rpx;height:160rpx;"></image>
 <view class='xiang-q'>
-<view class='title'>护工一对一</view>
-<view class='time'>详细介绍：适用于病情处于稳定期的病人</view>
-<view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>240</text>/天<text class='holiday'> (法定节假日当天费用翻倍)</text></view>
+<view class='title'>{{project.serviceName}}</view>
+<view class='time'>详细介绍：{{project.serviceExplain}}</view>
+<view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>{{project.servicePrice}}</text>/天<text class='holiday'> (法定节假日当天费用翻倍)</text></view>
 </view>
 </view>
 <!--  -->
@@ -18,21 +18,21 @@
 <view class='kind'>
 <view class='kind-name'>订单开始日期</view>
 <view class='t-k-name' style='width:40%;'>
-<text>2018.05.29     08:00</text>
+<text>{{starttime}}</text>
 </view>
 </view>
 <!--  -->
 <view class='kind'>
 <view class='kind-name'>订单结束日期</view>
 <view class='t-k-name' style='width:40%;'>
-<text>2018.05.30     20:00</text>
+<text>{{endtime}}</text>
 </view>
 </view>
 </view>
 <!--  -->
 <view class='z-f-m'>
 <view class='right'>
-<text style='color:#A5AAB8;font-size:24rpx;'>（包含1天节假日）</text>总天数：<text>2天</text>
+<text style='color:#A5AAB8;font-size:24rpx;'>（包含{{project.holiday}}天节假日）</text>总天数：<text>{{newdata}}天</text>
 </view>
 </view>
 <!--  -->
@@ -47,14 +47,14 @@
 <view class='kind'>
 <view class='kind-name'>护理费用</view>
 <view class='t-k-name' style='width:40%;'>
-<text>2x240.00</text>
+<text>{{newdata}}x{{project.servicePrice}}</text>
 </view>
 </view>
 <!--  -->
 <view class='kind'>
 <view class='kind-name'>节假日费用</view>
 <view class='t-k-name' style='width:40%;'>
-<text>1x240.00</text>
+<text>{{project.holiday}}x{{project.servicePrice}}</text>
 </view>
 </view>
 <!--  -->
@@ -71,7 +71,7 @@
 <view class='r-l'>总金额：</view>
 <view>
 <text>￥</text>
-<text style='font-size:46rpx;'>724</text>
+<text style='font-size:46rpx;'>{{price}}</text>
 <text>.00</text>
 </view>
 </view>
@@ -101,7 +101,7 @@
 <view class='r-l'>总金额：</view>
 <view>
 <text>￥</text>
-<text style='font-size:46rpx;'>724</text>
+<text style='font-size:46rpx;'>{{price}}</text>
 <text>.00</text>
 </view>
 </view>

@@ -1,7 +1,12 @@
+page{
+padding-left: 25rpx;
+padding-right: 25rpx;
+box-sizing: border-box;
+}
 .header{
   display: flex;
   width: 100%;
-  padding: 22rpx 23rpx;
+  padding: 22rpx 0;
   box-sizing: border-box;
   box-shadow:0px 4px 10px 0px rgba(53,53,53,0.04);
   align-items: center;
@@ -18,11 +23,11 @@ align-items: center;
 font-size:30rpx;
 font-family:PingFang;
 color:rgba(118,124,140,1);
-margin-left: 28rpx;
+margin-left: 25rpx;
 }
 .title{
   width: 100%;
-  padding: 41rpx 25rpx 13rpx;
+  padding: 41rpx 0rpx 13rpx;
   box-sizing: border-box;
   display: flex;
 }
@@ -41,11 +46,19 @@ color:rgba(59,64,78,1);
   justify-content: flex-end;
 }
 .list{
-  padding: 0 25rpx;
-  width: 100%;
+  padding: 0 32rpx;
   box-sizing: border-box;
+  margin-right: 20rpx;
+  float: left;
+  height:62rpx;
+  background:rgba(240,240,244,1);
+  border-radius:4px;
+  line-height: 62rpx;
+  font-size:24rpx;
+  color:rgba(118,124,140,1);
+  margin-top: 19rpx;
 }
-.list .hospital{
+/* .list .hospital{
   width: 100%;
   display: flex;
   height: 90rpx;
@@ -57,9 +70,9 @@ color:rgba(59,64,78,1);
   color: #a5aab8;
   font-size: 28rpx;
   font-family:PingFang;
-}
-.list .hospital .o-cancel{
+} */
+/* .list .hospital .o-cancel{
 width: 50%;
 display:flex;
 justify-content: flex-end;
-}
+} */

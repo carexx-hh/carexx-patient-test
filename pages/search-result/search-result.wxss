@@ -18,19 +18,16 @@ page{
 }
 .content .hospital .xiang-q .title{
 font-size:32rpx;
-font-family:PingFang;
 font-weight:bold;
 color:rgba(59,64,78,1);
 }
 .content .hospital .xiang-q .phone{
 font-size:26rpx;
-font-family:PingFang;
 color:rgba(165,170,184,1);
-margin-top: 44rpx;
+margin-top: 15rpx;
 }
 .content .hospital .xiang-q .address{
 font-size:26rpx;
-font-family:PingFang;
 color:rgba(165,170,184,1);
-margin-top: 20rpx;
+margin-top: 35rpx;
 }

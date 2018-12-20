@@ -94,23 +94,8 @@
 <!--  -->
 <view class='b-zhu'>
 <view class='title'>备注</view>
-<textarea  wx:if='{{!isShowText}}' name='input_textarea' bindblur='onRemarkInput'  value='{{remark}}'  disabled="{{disabled}}" bindconfirm='onShowText' focus='{{onFacus}}' class='m-s' placeholder='请在这里输入备注内容' placeholder-style='font-size:28rpx;color:rgba(165,170,184,1);' style='height:70rpx;width:100%;'></textarea>
-<text class='m-c' wx:else bindtap='onShowTextare'  style='font-size:28rpx;color:rgba(165,170,184,1);'>{{remark.length != 0?remark:'请在这里输入备注内容'}}</text> 
+<input  name='input_text' type='text' maxlength="255"  bindinput="onmarkInput"  value='{{remark}}'  class='m-s' placeholder='请在这里输入备注内容' placeholder-style='font-size:28rpx;color:rgba(165,170,184,1);' style='height:70rpx;width:100%;'></input>
 </view>
 <button class="button {{mobile&&name&&bed?'active':''}}" bindtap="regist" form-type='submit'>确认预约</button>
 <view class="buuton-t"></view>
 </form>
-<!-- </scroll-view> -->
-<!-- 弹出框 -->
-<!-- <view class='tan-k'>
-<view class='tishi'>预约前需先绑定手机号</view>
-<view class='buttom'>
-<view class='qu-x-t'>
-<button class='qu-x' plain='flase' class='t-k-bt'>取消</button>
-</view>
-<view class='qu-b-d'>
-<button style='color:#5489FD;width：50%；'plain='flase' class='t-k-bt' bindtap='go_Phone'>去绑定</button>
-</view>
-</view>
-</view>
-<view class='page-y'  catchtouchmove="ture"></view> -->

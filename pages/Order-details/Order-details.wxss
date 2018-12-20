@@ -132,3 +132,14 @@ font-size:24rpx;
 font-family:PingFang;
 color:#FE620D;
 }
+.bottom .btn{
+  line-height: 60rpx;
+  margin-right: 0;
+  background: #5791FD;
+  width:214rpx;
+  height:60rpx;
+  border-radius:30rpx;
+  font-size:28rpx;
+  color:rgba(255,255,255,1);
+  margin-top: 19rpx;
+}

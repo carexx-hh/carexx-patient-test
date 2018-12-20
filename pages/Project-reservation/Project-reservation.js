@@ -19,11 +19,8 @@ Page({
     inpatientAreaId:[],
     pickerindex: 0,
     timeindex: 0,
-    date: '2018-09-01',
-    onFocus:false,    //textarea焦点是否选中
-    isShowText:false, //控制显示 textarea 还是 text
+    date:'',
     remark:'',
-    isShowText:true,       //用于存储textarea输入内容
     mobile:false,
     name:false,
     bed:false,
@@ -32,6 +29,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var newdata=new Date()
+    y = newdata.getFullYear(),
+    m = newdata.getMonth() + 1,
+    d = newdata.getDate();
+    var newsdata= y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d);
+    this.setData({
+      date:newsdata
+    })
     var dataname = app.dataname;
     var datamoney = app.datamoney;
     var dataservice = app.dataservice;
@@ -98,40 +103,37 @@ Page({
   },
 
   // textarea事件
-  onShowTextare() {       //显示textare
-    this.setData({
-      disabled:false,
-      isShowText: false,
-      onFacus: true
-    })
-  },
-  onShowText() {       //显示text
-    this.setData({
-      disabled:true,
-      isShowText: true,
-      onFacus: false
-    })
-  },
-  onRemarkInput(event) {               //保存输入框填写内容
-    var value = event.detail.value;
-    this.setData({
-      remark:value,
-    });
-  },
+  // onShowTextare() {       //显示textare
+  //   this.setData({
+  //     disabled:false,
+  //     isShowText: false,
+  //     onFacus: true
+  //   })
+  // },
+  // onShowText() {       //显示text
+  //   this.setData({
+  //     disabled:true,
+  //     isShowText: true,
+  //     onFacus: false
+  //   })
+  // },
+  // onRemarkInput(event) {               //保存输入框填写内容
+  //   var value = event.detail.value;
+  //   this.setData({
+  //     remark:value,
+  //   });
+  // },
   bindPickerChange: function (e) {
-    console.log(e)
     this.setData({
       pickerindex: e.detail.value
     })
   },
   bindDateChange: function (e) {
-    console.log('Date发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
     })
   },
   bindTimeChange: function (e) {
-    console.log('Time发送选择改变，携带值为', e.detail.value)
     this.setData({
       timeindex: e.detail.value
     })
@@ -176,7 +178,6 @@ Page({
     this.setData({
       bed: e.detail.value
     });
-
     if (this.data.bed.length == '') {
       this.setData({
         bed: false
@@ -196,7 +197,7 @@ Page({
     var phone = e.detail.value.input_phone;
     var inpatientAreaId = e.detail.value.input_bq;
     var accurateAddress = e.detail.value.input_bed;
-    var orderRemark = e.detail.value.input_textarea;
+    var orderRemark = e.detail.value.input_text;
     var serviceStartTime = e.detail.value.input_datastart +" "+e.detail.value.input_starttime+':00';
     var bed=that.data.bed;
     var mobile=that.data.mobile;

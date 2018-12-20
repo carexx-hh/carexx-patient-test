@@ -21,6 +21,7 @@ Page({
       { id: 2, name: "青浦区" },
       { id: 3, name: "浦东区" },
       { id: 4, name: "普陀区" },
+      { id: 0, name: "徐汇区" },
       { id: 5, name: "嘉定区", border: 'none'},
       ],
   },

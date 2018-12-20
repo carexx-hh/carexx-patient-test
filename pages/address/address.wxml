@@ -8,7 +8,7 @@
 </view> 
 <view class='ti-ao'></view>
 <view class='other'>
-<view class='qt-address'>其他区域</view>
+<view class='qt-address'>全部区域</view>
 <view class='oth-address'>
 <block wx:for='{{address}}' wx:for-index='key'>
 <view class='list-other' data-name='{{item.name}}'   style='border:{{item.border}}'  bindtap='adsclick'  id="{{key}}">{{item.name}}</view>

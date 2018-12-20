@@ -2,20 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/Project-reservation/Project-reservation",
-    
     "pages/order-confirm/order-confirm",
-    "pages/Order-details-pay/Order-details-pay",
     "pages/Order-details/Order-details",
     "pages/order/order",
-    
     "pages/address/address",
     "pages/search/search",
     "pages/set-phone/set-phone",
     "pages/set/set",
-    
     "pages/recharge/recharge",
-    
-    
     "pages/search-result/search-result",
     "pages/search-hospital/search-hospital",
     "pages/withdraw-deposit-result/withdraw-deposit-result",
@@ -25,9 +19,7 @@
     "pages/detail/detail",
     "pages/account/account",
     "pages/logs/logs",
-    "pages/mine/mine",
-    
-    "pages/Order-details-cancel/Order-details-cancel"
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundTextStyle": "light"

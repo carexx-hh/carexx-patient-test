@@ -1,5 +1,5 @@
 <view class='header'>
-<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='h-button'> 获取头像昵称 </button>
+<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='h-button'> 点击授权 </button>
 <block wx:else>
 <view class='left'>
 <image  src="{{userInfo.avatarUrl}}"  class='tx'></image>

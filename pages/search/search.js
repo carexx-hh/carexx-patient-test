@@ -7,7 +7,8 @@ Page({
    */
   data: {
     inputVal:'',
-    searchRecord:[]
+    searchRecord:[],
+    searchhot:[]
   
   },
   openHistorySearch: function () {
@@ -24,7 +25,7 @@ Page({
     }
     else {
       //将搜索值放入历史记录中,只能放前10条
-      if (searchRecord.length < 10) {
+      if (searchRecord.length < 7) {
         searchRecord.unshift(
           {
             value:inputVal,
@@ -42,34 +43,44 @@ Page({
         )
       }
       //将历史记录数组整体储存到缓存中
-      wx.setStorageSync('searchRecord', searchRecord)
+      wx.setStorageSync('searchRecord', searchRecord);
+      if (inputVal !== '') {
+        app.inputVal = inputVal,
+        wx.navigateTo({ 
+          url: '../search-result/search-result',
+         })
+      }
     }
-    wx.navigateTo({
-      url: '../search-result/search-result'
-    });
+    // wx.navigateTo({
+    //   url: '../search-result/search-result'
+    // });
     // console.log(searchRecord)
   },
   historyDelFn: function () {
-    wx.clearStorageSync('searhRecord')
+    wx.removeStorage({
+      key: 'searchRecord',
+    })
     this.setData({
       searchRecord:[]
     })
   },
   // 删除单条记录
-  remove:function (event) {
-    var searchRecord = this.data.searchRecord;
-    var id = event.currentTarget.id;
-    this.data.searchRecord.splice(id, 1);
-    this.setData({
-      searchRecord: this.data.searchRecord
-    })
-    wx.setStorageSync('searchRecord', searchRecord)
-  },
+  // remove:function (event) {
+  //   var searchRecord = this.data.searchRecord;
+  //   var id = event.currentTarget.id;
+  //   this.data.searchRecord.splice(id, 1);
+  //   this.setData({
+  //     searchRecord: this.data.searchRecord
+  //   })
+  //   wx.setStorageSync('searchRecord', searchRecord)
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that=this;
+    this.setData({
+      token: wx.getStorageSync('token')
+    })
     this.openHistorySearch()
    
   },
@@ -84,9 +95,41 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that=this;
+    that.setData({
+      token: wx.getStorageSync('token')
+    })
+    wx.request({
+      url: app.globalData.baseUrl + '/careinst/all',
+      method: 'post',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        that.setData({
+          searchhot: res.data.data,
+        })
+      }
+    })
   },
-
+  clickSearch:function(e){
+    var that = this;
+    var name = e.target.dataset.name;
+    var instId = e.target.dataset.id;
+    app.instName=name;
+    app.instId = instId;
+    wx.navigateTo({
+      url: '../search-hospital/search-hospital',
+    })
+  },
+  clickhistory:function(event){
+    var instName = event.currentTarget.dataset.name
+    app.inputVal = instName
+    wx.navigateTo({
+      url: '../search-result/search-result',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

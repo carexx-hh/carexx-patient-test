@@ -1,170 +1,350 @@
 // pages/order/order.js
 const util = require('../../utils/util.js')
+var app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    switchtab: [{
-      name: '全部',
-      _type: 'all'
-    }, {
-      name: '待排班',
-      _type: 'wait'
+    switchtab: [
+    {
+    name: '全部',
+    orderStatus:1||4||6
     },
     {
-      name: '进行中',
-      _type: 'ongoing'
-      }, {
-        name: '已完成',
-        _type: 'done'
-      }
+    name: '待排班',
+    orderStatus: 1
+    },
+    {
+    name: '进行中',
+    orderStatus: 4
+      }, 
+    {
+    name: '已完成',
+    orderStatus: 6
+    }
     ],
-    currentTab: 0,
-    coupons: []
+    current:0,
+    coupons:[],
+    serviceStartTime:[],
+    windowHeight:'',
+    height:'',
+
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      coupons: this.loadCoupons()
+    var that = this;
+    that.setData({
+      token: wx.getStorageSync('token')
     });
   },
-
-  //tab切换函数，让swiper当前滑块的current的index与tab头部index一一对应
-  switchNav: function (e) {
-    var index = e.target.dataset.current;
-    if (this.data.currentTab == index) {
-      return false;
-    } else {
-      this.setData({
-        currentTab: index
-      });
-    }
-  },
-  //滑动swiper切换，让swiper当前滑块的current的index与tab头部index一一对应
-  tabChange(e) {
-    this.setData({
-      currentTab: e.detail.current
-    })
-  },
-  //自定义数据函数
-  loadCoupons: function () {
-    let switchtab = this.data.switchtab,
-      coupons = [
-      {
-        id: "0",
-        price:"240",
-        title:"护工一对一",
-        time:"2018.06.16",
-        kind:"待排班",
-        operation:"取消订单",
-        _type: "all"
-      },
-      {
-        id: "0",
-          price: "360",
-          title: "护工一对一",
-          time: "2018.06.16",
-          kind: "进行中",
-          operation:"支付并结束",
-          backgroundColor:'#5791FD',
-          border:'none',
-          width:'194rpx',
-          height:'60rpx',
-          color:'#fff',
-        _type: "all",
-      }, 
-      {
-        id: "0",
-          price: "160",
-          title: "护工一对多",
-          time: "2018.06.16-2018.06.18",
-          kind: "已完成",
-          operation:"查看详情",
-         _type: "all",
-      }, 
-      {
-        id: "1",
-          price: "240",
-          title: "护工一对一",
-          time: "2018.06.16",
-          kind: "待排班",
-          operation:"取消订单",
-          _type: "wait"
-      }, 
-      {
-        id: "1",
-          price: "240",
-          title: "护工一对多",
-          time: "2018.06.16",
-          kind: "待排班",
-          operation:"取消订单",
-          _type: "wait"
-      }, 
-      {
-        id: "2",
-          price: "360",
-          title: "护工一对一",
-          time: "2018.06.16",
-          kind: "进行中",
-          operation:"支付并结束",
-          backgroundColor:'#5791FD',
-          border:'none',
-          width:'194rpx',
-          height:'60rpx',
-          color:'#fff',
-        _type: "ongoing"
+  switchNav: function (e){
+    var that = this;
+    var index = e.target.dataset.index;
+    that.setData({
+        current: index
+    });
+    if (index == 1) {
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/list_order',
+        method: 'POST',
+        data: {
+          orderStatus: 1
         },
-        {
-          id: "3",
-          price: "160",
-          title: "护工一对一",
-          time: "2018.06.16-2018.06.18",
-          kind: "已完成",
-          operation:"查看详情",
-          _type: "done"
-        }];
-    //根据tab头部的数据来重建一个数组，使数组的内容与tab一一对应
-    var result = new Array();
-    for (var n = 0; n < switchtab.length; n++) {
-      let minArr = []
-      for (var i = 0; i < coupons.length; i++) {
-        //根据类型来区分自定义的内容属于哪个tab下面的
-        if (coupons[i]._type == switchtab[n]._type) {
-          minArr.push(coupons[i]);
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var timestamp4 = [];
+          for (var i = 0; i < res.data.data.length; i++) {
+            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            var arr = [];
+            for (var j = 0; j < timestamp4.length; j++) {
+              y = timestamp4[j].getFullYear(),
+                m = timestamp4[j].getMonth() + 1,
+                d = timestamp4[j].getDate();
+              arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
+            } 
+          }
+          if (res.data.data == '') {
+            that.setData({
+              isShow: true
+            })
+          } else {
+            that.setData({
+              isShow: false
+            })
+          };
+          that.setData({
+            coupons: res.data.data,
+            serviceStartTime: arr
+          })
         }
-      }
-      result.push(minArr)
+      });
+    } else if (index == 0) {
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/list_order',
+        method: 'POST',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var timestamp4 = [];
+          for (var i = 0; i < res.data.data.length; i++) {
+            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            var arr = [];
+            for (var j = 0; j < timestamp4.length; j++) {
+              y = timestamp4[j].getFullYear(),
+                m = timestamp4[j].getMonth() + 1,
+                d = timestamp4[j].getDate();
+              arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
+            }
+          }
+          if (res.data.data == '') {
+            that.setData({
+              isShow: true
+            })
+          } else {
+            that.setData({
+              isShow: false
+            })
+          };
+          that.setData({
+            coupons: res.data.data,
+            serviceStartTime: arr
+          })
+        }
+      })
+    } else if (index == 2) {
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/list_order',
+        method: 'POST',
+        data: {
+          orderStatus: 4
+        },
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var timestamp4 = [];
+          for (var i = 0; i < res.data.data.length; i++) {
+            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            var arr = [];
+            for (var j = 0; j < timestamp4.length; j++) {
+                y = timestamp4[j].getFullYear(),
+                m = timestamp4[j].getMonth() + 1,
+                d = timestamp4[j].getDate();
+              arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
+            }
+          }
+          if (res.data.data == '') {
+            that.setData({
+              isShow: true
+            })
+          } else {
+            that.setData({
+              isShow: false
+            })
+          };
+          that.setData({
+            coupons: res.data.data,
+            serviceStartTime: arr
+          })
+        }
+      });
+    } else if (index == 3) {
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/done_order',
+        method: 'POST',
+        data: {
+          orderStatus: 6
+        },
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var timestamp4 = [];
+          for (var i = 0; i < res.data.data.length; i++) {
+            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            var arr = [];
+            for (var j = 0; j < timestamp4.length; j++) {
+              y = timestamp4[j].getFullYear(),
+                m = timestamp4[j].getMonth() + 1,
+                d = timestamp4[j].getDate();
+              arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
+              // arr.push(timestamp4[j].toLocaleDateString().replace(/\//g, "-") + " " + timestamp4[j].toTimeString().substr(0, 8));
+            }
+          }
+          if (res.data.data == '') {
+            that.setData({
+              isShow: true
+            })
+          } else {
+            that.setData({
+              isShow: false
+            })
+          };
+          that.setData({
+            coupons: res.data.data,
+            serviceStartTime: arr
+          })
+        }
+      })
     }
-    return result;
   },
   btntap:function(){
     wx.switchTab({
       url: '../index/index',
     })
   },
-  operationClick:function(){
-     wx.navigateTo({
-       url: '../Order-details-pay/Order-details-pay',
-     })
+  operationClick:function(event){
+    var that = this;
+    var orderNo = event.currentTarget.dataset.orderno;
+    var orderstatus = event.currentTarget.dataset.orderstatus;
+    if (orderstatus==1){
+      var app = getApp();
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/cancel/' + orderNo,
+        method: 'get',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+                wx.showLoading({
+                  title: '加载中...',
+                  mask: true,
+                  success: function (res) {
+                    setTimeout(function () {
+                      wx.hideLoading()
+                    }, 2000);
+                    wx.showToast({
+                      title: '取消成功',
+                      icon: 'success',
+                      success: function () {
+                    that.setData({
+                      current: 0
+                    })
+                    wx.request({
+                      url: app.globalData.baseUrl + '/customerorder/list_order',
+                      method: 'POST',
+                      header: {
+                        'content-Type': 'application/x-www-form-urlencoded',
+                        'auth-token': that.data.token
+                      },
+                      success: function (res) {
+                        console.log(res)
+                        var timestamp4 = [];
+                        for (var i = 0; i < res.data.data.length; i++) {
+                          timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+                          var arr = [];
+                          for (var j = 0; j < timestamp4.length; j++) {
+                            y = timestamp4[j].getFullYear(),
+                              m = timestamp4[j].getMonth() + 1,
+                              d = timestamp4[j].getDate();
+                            arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
+                          }
+                        }
+                        that.setData({
+                          coupons: res.data.data,
+                          serviceStartTime: arr
+                        })
+                      }
+                    });
+                  },
+                })
+              }
+            })
+          };
+        }      
+      })
+    } else if (orderstatus==4){
+      var app = getApp();
+      app.orderNo = orderNo;
+      wx.navigateTo({
+        url: '../order-confirm/order-confirm',
+      })
+    } else if (orderstatus == 5 || orderstatus == 6){
+      var app = getApp();
+      app.orderNo = orderNo;
+      app.orderStatus = orderstatus;
+      wx.navigateTo({
+        url: '../Order-details/Order-details',
+      })
+    }
+     
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+ 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    that.setData({
+      current:0
+    })
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/list_order',
+        method: 'POST',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          var timestamp4 = [];
+          for( var i=0;i<res.data.data.length;i++){
+            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            var arr=[];
+            for (var j = 0; j < timestamp4.length;j++){
+              y = timestamp4[j].getFullYear(),
+                m = timestamp4[j].getMonth() + 1,
+                d = timestamp4[j].getDate();
+              arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
+            }
+          }
+          if(res.data.data==''){
+            that.setData({
+              isShow:true
+            })
+          }else{
+            that.setData({
+              isShow: false
+            })
+          };
+          that.setData({
+            coupons: res.data.data,
+            serviceStartTime:arr
+          })
+        }
+      });
+    }, 
+  clickDetails:function(event){
+    var that = this;
+    var orderNo = event.currentTarget.dataset.orderno;
+    var orderStatus = event.currentTarget.dataset.orderstatus;
+    console.log(orderStatus)
+    var app = getApp();
+    app.orderNo = orderNo;
+    app.orderStatus = orderStatus;
+    wx.navigateTo({
+      url: '../Order-details/Order-details',
+    })
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

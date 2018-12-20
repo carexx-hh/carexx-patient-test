@@ -1,18 +1,10 @@
 <view class='content'>
- <navigator class='hospital' style='margin-bottom:19rpx;' url='/pages/search-hospital/search-hospital' hover-class='none'>
-   <image src='./images/zs.png' style="width:172rpx;height:172rpx;"></image>
+ <view class='hospital' style='margin-bottom:19rpx;'  hover-class='none' wx:for="{{project}}" bindtap='clickproject' data-id='{{item.id}}'>
+   <image src='./images/hospital.png' style="width:172rpx;height:172rpx;border-radius:8rpx;"></image>
    <view class='xiang-q'>
-    <view class='title'>中山医院</view>
-    <view class='phone'>电话：<text class='shu-zi'>(021)64852587</text></view>
-    <view class='address'>地址：<text class='shu-zi'>上海市徐汇区枫林路180号</text></view>
+    <view class='title'>{{item.instName}}</view>
+    <view class='address'>地址：<text class='shu-zi'>{{item.instRegion}}{{item.instAddr}}</text></view>
+    <view class='phone'>简介：<text class='shu-zi'>{{item.introduce}}</text></view>
   </view>
- </navigator>
- <navigator class='hospital' style='margin-bottom:19rpx;'>
-   <image src='./images/hs.png' style="width:172rpx;height:172rpx;"></image>
-   <view class='xiang-q'>
-    <view class='title'>华山医院</view>
-    <view class='phone'>电话：<text class='shu-zi'>(021)64852587</text></view>
-    <view class='address'>地址：<text class='shu-zi'>上海市乌鲁木齐中路12号</text></view>
-  </view>
- </navigator>
+ </view>
 </view>
