@@ -16,13 +16,15 @@ Page({
     latitude: '',
     longitude: '',
     address: [
-      { id: 0, name: "杨浦区" },
+      { id: 0, name: "金山区" },
+      { id: 0, name: "黄浦区" },
       { id: 1, name: "闵行区" },
       { id: 2, name: "青浦区" },
       { id: 3, name: "浦东区" },
-      { id: 4, name: "普陀区" },
+      { id: 4, name: "宝山区" },
+      { id: 0, name: "虹口区" },
       { id: 0, name: "徐汇区" },
-      { id: 5, name: "嘉定区", border: 'none'},
+      { id: 5, name: "杨浦区", border: 'none'},
       ],
   },
   adsclick:function(event){

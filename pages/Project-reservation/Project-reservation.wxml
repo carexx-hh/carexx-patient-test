@@ -19,7 +19,7 @@
 <view class='kind'>
 <view class='kind-name'>姓名</view>
 <view class='t-k-name'>
-<input placeholder='请输入您的姓名' name='input_name' class='input-name' type='text' placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);' style="text-align:right;"  bindinput="nameInput"></input>
+<input placeholder='请输入您的姓名' name='input_name' class='input-name' type='text' placeholder-style='font-size:28rpx;color:rgba(165,170,184,1);' style="text-align:right;"  bindinput="nameInput"></input>
 </view>
 </view>
 </view>
@@ -28,7 +28,7 @@
 <view class='kind'>
 <view class='kind-name'>手机号</view>
 <view class='t-k-name' style='width:38%;'>
-<input placeholder='请输入您的手机号' class='input-name' name='input_phone' value="{{phone}}" type='number' maxlength="11" bindinput="mobileInput" placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);' style="text-align:right;"></input>
+<input placeholder='请输入您的手机号' class='input-name' name='input_phone' value="{{phone}}" type='number' maxlength="11" bindinput="mobileInput" placeholder-style='font-size:28rpx;color:rgba(165,170,184,1);' style="text-align:right;"></input>
 </view>
 </view>
 </view>
@@ -51,7 +51,7 @@
 <view class='kind'>
 <view class='kind-name'>床号</view>
 <view class='t-k-name'>
-<input placeholder='请输入您的床号' class='input-name' type='text' name='input_bed' placeholder-style='font-size:28rpx;font-family:PingFang;color:rgba(165,170,184,1);' style="text-align:right;" bindinput="bedInput"></input>
+<input placeholder='请输入您的床号' class='input-name' type='text' name='input_bed' placeholder-style='font-size:28rpx;color:rgba(165,170,184,1);' style="text-align:right;" bindinput="bedInput"></input>
 </view>
 </view>
 </view>
