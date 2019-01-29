@@ -53,7 +53,7 @@ Page({
       wx.getUserInfo({
         lang: "zh_CN",
         success: res => {
-          var region = res.userInfo.province + '/' + res.userInfo.city
+          var region = res.userInfo.province + res.userInfo.city
           //  登录
           wx.login({
             success: res => {
@@ -78,6 +78,7 @@ Page({
                     console.log('openId=' + res.data.data.openId)
                     wx.setStorageSync('token', res.data.data.token)
                     wx.setStorageSync('openId', res.data.data.openId)
+                    that.phone();
                   },
                 })
               } else {
@@ -93,10 +94,6 @@ Page({
     })
   },
   bindphone:function(event){
-    // var app =getApp()
-    // var phone = event.currentTarget.dataset.phone
-    // app.phone=phone
-    // console.log(app.phone)
     wx.navigateTo({
       url: '../set-phone/set-phone',
     })
@@ -121,10 +118,54 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var phone = this.data.phone
-    wx.setStorageSync('phone', phone)
+    var that=this;
+    if (wx.getStorageSync('token')){
+    wx.request({
+      url: app.globalData.baseUrl + '/user/get_user_info',
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.data.mobile==null){
+          that.setData({
+            phone:'未绑定'
+          })
+        }else{
+          that.setData({
+            phone: res.data.data.mobile
+          })
+        }
+      }
+    }); 
+    }
+    
   },
-
+phone:function(){
+  var that=this;
+  wx.request({
+    url: app.globalData.baseUrl + '/user/get_user_info',
+    method: 'get',
+    header: {
+      'content-Type': 'application/x-www-form-urlencoded',
+      'auth-token': wx.getStorageSync('token')
+    },
+    success: function (res) {
+      console.log(res)
+      if (res.data.data.mobile == null) {
+        that.setData({
+          phone: '未绑定'
+        })
+      } else {
+        that.setData({
+          phone: res.data.data.mobile
+        })
+      }
+    }
+  });
+},
   /**
    * 生命周期函数--监听页面隐藏
    */

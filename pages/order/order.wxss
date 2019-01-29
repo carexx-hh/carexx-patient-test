@@ -79,10 +79,7 @@ font-family:PingFang;
 color:rgba(165,170,184,1);
 }
 .item .cao-z .ddan-tai{
-width:164rpx;
 height:60rpx;
-border:1px solid rgba(170,170,170,1);
-color:rgba(59,64,78,1);
 font-size:28rpx;
 border-radius:30rpx;
 float:right;

@@ -1,0 +1,2 @@
+<!--components/down_loading/down_loading.wxml-->
+<view class="down_loading {{down_loading?'active':''}}"></view>

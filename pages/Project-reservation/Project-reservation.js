@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone:getApp().phone,
     servicename:'',
     money:'',
     service:'',
@@ -101,28 +100,6 @@ Page({
         }
       })
   },
-
-  // textarea事件
-  // onShowTextare() {       //显示textare
-  //   this.setData({
-  //     disabled:false,
-  //     isShowText: false,
-  //     onFacus: true
-  //   })
-  // },
-  // onShowText() {       //显示text
-  //   this.setData({
-  //     disabled:true,
-  //     isShowText: true,
-  //     onFacus: false
-  //   })
-  // },
-  // onRemarkInput(event) {               //保存输入框填写内容
-  //   var value = event.detail.value;
-  //   this.setData({
-  //     remark:value,
-  //   });
-  // },
   bindPickerChange: function (e) {
     this.setData({
       pickerindex: e.detail.value
@@ -247,25 +224,12 @@ Page({
                 }
               }
             })
-          }else if (res.data.code == 400){
-            wx.showModal({
-              cancelColor: '#333333',
-              confirmText: '再次预约',
-              cancelText: '取消',
-              content: '预约失败',
-              confirmColor: '#5489FD',
-              success(res) {
-                if (res.confirm) {
-                  wx.hideToast()
-                } else if (res.cancel) {
-                  wx.switchTab({
-                    url: '../index/index',
-                  })
-                }
-              }
+          } else if (res.data.code == 500){
+            wx.showToast({
+              title: res.data.errorMsg,
+              icon:'none'
             })
           }
-
         }
       })
 

@@ -1,0 +1,32 @@
+.big{
+  position: absolute;
+  margin: auto;
+  top: -140rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 350rpx;
+  height:300rpx;
+}
+.big .one{
+  font-size: 32rpx;
+  color: black;
+  margin-top: 20rpx;
+  display: flex;
+  padding-left: 20rpx;
+}
+.big .picker{
+  width: 150rpx;
+  margin-left: 10rpx;
+  margin-top: 4rpx;
+}
+.big .btn{
+  width: 200rpx;
+  height: 89rpx;
+  text-align: center;
+  line-height: 89rpx;
+  font-size: 40rpx;
+  color: white;
+  margin: 80rpx auto 0;
+  background:linear-gradient(90deg,rgba(87,145,253,1) 12%,rgba(80,120,252,1) 100%); 
+}

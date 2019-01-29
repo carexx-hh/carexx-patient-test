@@ -1,4 +1,5 @@
 // pages/recharge/recharge.js
+var app=getApp();
 Page({
 
   /**
@@ -6,18 +7,63 @@ Page({
    */
   data: {
     num:1,
+    price:300,
   },
   changePrice: function (e) {
-    console.log(e);
+    console.log(e.target.dataset.text);
     this.setData({
-      num: e.target.dataset.num
+      num: e.target.dataset.num,
+      price: e.target.dataset.text
     })
+  },
+  moneyInput:function(e){
+    this.setData({
+      price:e.detail.value,
+    })
+  },
+  click_confirm:function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/useraccount/recharge',
+      method: 'post',
+      data:{
+        openId: wx.getStorageSync('openId'),
+        payAmt:that.data.price
+      },
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        if(res.data.code==200){
+          　wx.requestPayment({
+            'timeStamp': res.data.data.timeStamp,
+             'nonceStr': res.data.data.nonceStr,
+             'package': res.data.data.package,
+             'signType': res.data.data.signType,
+             'paySign': res.data.data.paySign,
+             'success': function (res) {
+              console.log(res);
+              wx.navigateTo({
+                url: '../account/account',
+              })
+              },
+            'fail': function (res) {
+              console.log('fail:' + JSON.stringify(res));
+            }
+          })
+        }
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    that.setData({
+      token: wx.getStorageSync('token')
+    });
   },
 
   /**

@@ -1,0 +1,2 @@
+<!--components/refresh_loading/refresh_loading.wxml-->
+<view class="refresh_loading {{refresh_loading?'active':''}}"></view>

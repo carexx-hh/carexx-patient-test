@@ -61,7 +61,6 @@ border-radius:3rpx;
 }
 .material .title .m-s{
 font-size:30rpx;
-font-family:PingFang;
 color:rgba(59,64,78,1);
 margin-left: 15rpx;
 }
@@ -81,7 +80,6 @@ margin-left: 15rpx;
 .list .kind .kind-name{
 width: 50%;
 font-size:30rpx;
-font-family:PingFang;
 color:rgba(59,64,78,1);
 }
 .list .kind .t-k-name{
@@ -89,7 +87,6 @@ color:rgba(59,64,78,1);
   display: flex;
   justify-content: flex-end;
   font-size:28rpx;
-  font-family:PingFang;
   color:rgba(165,170,184,1);
 }
 .b-zhu{
@@ -105,7 +102,6 @@ color:rgba(59,64,78,1);
 .b-zhu .title{
 width: 30%;
 font-size:30rpx;
-font-family:PingFang;
 color:rgba(59,64,78,1);
 z-index: 9；
 }
@@ -115,7 +111,6 @@ z-index: 9；
   justify-content: flex-end;
   box-sizing: border-box;
   font-size:28rpx;
-  font-family:PingFang;
   color:rgba(165,170,184,1);
 }
 .z-f-m{
@@ -129,9 +124,8 @@ z-index: 9；
   background: #ffffff
 }
 .z-f-m .right{
-width: 57%;
+width: 60%;
 font-size:30rpx;
-font-family:PingFang;
 color:rgba(59,64,78,1);
 }
 .money-r{
@@ -155,7 +149,6 @@ color:rgba(59,64,78,1);
 }
 .money-r .right .r-l{
 font-size:30rpx;
-font-family:PingFang;
 color:rgba(59,64,78,1);
 }
 .middle{
@@ -190,7 +183,6 @@ overflow: hidden;
 width: 100%;
 margin-left: 26rpx;
 font-size:30rpx;
-font-family:PingFang;
 color:rgba(59,64,78,1);
 padding-right: 30rpx;
 box-sizing: border-box;
@@ -219,14 +211,12 @@ box-sizing: border-box;
 }
 .bottom .b-left .r-l{
 font-size:30rpx;
-font-family:PingFang;
 color:rgba(59,64,78,1);
 }
 .bottom .b-right{
   width: 37%;
   background:linear-gradient(90deg,rgba(87,145,253,1) 12%,rgba(80,120,252,1) 100%);
   font-size:34rpx;
-  font-family:PingFang;
   color:rgba(255,255,255,1);
   line-height: 98rpx;
   

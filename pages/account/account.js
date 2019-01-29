@@ -1,11 +1,12 @@
 // pages/account/account.js
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    money:'500.00'
+    money:'0.00'
   },
 
   /**
@@ -29,9 +30,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    var that=this;
+    wx.request({
+      url: app.globalData.baseUrl + '/useraccount/by_userId',
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.data.accountBalance%1===0){
+          that.setData({
+            money: res.data.data.accountBalance+'.00'
+          })
+        }else{
+        that.setData({
+          money: res.data.data.accountBalance
+        })
+      }}
+    });
   },
-
+  click_details:function(){
+    wx.navigateTo({
+      url: '../detail/detail',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

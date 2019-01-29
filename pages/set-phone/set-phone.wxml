@@ -4,7 +4,7 @@
 <input placeholder='请输入手机号码' class='tel' maxlength="11" type='number' data-id="phone" name="phone" placeholder-class='inputClass' bindinput="phoneInput" placeholder-style="font-size:28rpx;color:rgba(153,153,153,1);"></input>
 </view>
 <view class='phone'>
-<input placeholder='请输入手机验证码' class='yan-z' maxlength='6' type='number' data-id="code" name="code" placeholder-class='inputClass' bindinput='Input'  placeholder-style="font-size:28rpx;color:rgba(153,153,153,1);"></input>
+<input placeholder='请输入手机验证码' class='yan-z' maxlength='6' type='number' data-id="code" name="code" placeholder-class='inputClass' bindinput='codeInput'  placeholder-style="font-size:28rpx;color:rgba(153,153,153,1);"></input>
 <button class='y-z' hover-class='none' plain="false" disabled='{{disabled}}'  bindtap="bindButtonTap" style="background-color:{{color}}">{{text}}</button>
 </view>
 <button class="t-j {{formData.phone&&formData.code?'active':''}}"  form-type="submit" bindtap='btntap'>提交</button>

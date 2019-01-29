@@ -1,0 +1,16 @@
+<view class="mod_aside {{open?'open':''}}"  style='z-index:999'>
+  <view class="aside_nav">
+    <view class="aside_nav_item" bindtap='click_charts'>
+      <view class="aside_icon icon1" ></view>
+      <text>清除记录</text>
+    </view>
+  </view>
+  <view wx:if="{{flag}}" class="nav_btn" bindtap="toggle">
+    <view class="btn_icon"></view>
+    <text>功能</text>
+  </view>
+  <view wx:else class="nav_btn1" bindtap="toggle">
+    <view class="btn_icon"></view>
+    <text>收回</text>
+  </view>
+</view>

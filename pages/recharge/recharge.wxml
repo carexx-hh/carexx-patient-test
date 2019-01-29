@@ -4,15 +4,17 @@
 <text class='small-tit'>充值后可提现</text>
 </view>
 <view class="price">
-<view class='pre_x {{num==1?"active":""}}' data-num='1' catchtap='changePrice'>300<text class='yuan'>元</text></view>
-<view class='pre_x {{num==2?"active":""}}' data-num='2' catchtap='changePrice'>500<text class='yuan'>元</text></view>
-<view class='pre_x {{num==3?"active":""}}' data-num='3' catchtap='changePrice' style='margin-right:0;'>800<text class='yuan'>元</text></view>
+<view class='pre_x {{num==1?"active":""}}' data-num='1' catchtap='changePrice' data-text="300">300<text class='yuan' catchtap='changePrice' data-text="300">元</text></view>
+<view class='pre_x {{num==2?"active":""}}' data-num='2' catchtap='changePrice' data-text="500">500<text class='yuan'catchtap='changePrice' data-text="500">元</text></view>
+<view class='pre_x {{num==3?"active":""}}' data-num='3' catchtap='changePrice' data-text="800" style='margin-right:0;'>800<text class='yuan' catchtap='changePrice' data-text="800">元</text></view>
 </view>
 <view class='price' style='margin-top:40rpx;'>
-<view class='pre_x {{num==4?"active":""}}' data-num='4' catchtap='changePrice'>1000<text class='yuan'>元</text></view>
-<view class='pre_x {{num==5?"active":""}}' data-num='5' catchtap='changePrice'>2000<text class='yuan'>元</text></view>
-<view class='pre_x {{num==6?"active":""}}' data-num='6' catchtap='changePrice' style='margin-right:0;'>其他金额</view>
+<view class='pre_x {{num==4?"active":""}}' data-num='4' catchtap='changePrice' data-text="1000">1000<text class='yuan' catchtap='changePrice' data-text="1000">元</text></view>
+<view class='pre_x {{num==5?"active":""}}' data-num='5' catchtap='changePrice' data-text="2000">2000<text class='yuan' catchtap='changePrice' data-text="2000">元</text></view>
+<view class='pre_x' data-num='6' style='margin-right:0;'catchtap='changePrice'>
+<input placeholder='其他金额' class='input-name' type='digit' bindinput="moneyInput"  style="font-size:34rpx;margin-top:26rpx;"></input>
+</view>
 </view>
 <view class='ti-shi'>提示：自定义充值时最低金额不能少于300元</view>
-<navigator class='q-r' url='/pages/recharge-result/recharge-result'>确认充值</navigator>
+<view class='q-r' bindtap='click_confirm'>确认充值</view>
 </view>

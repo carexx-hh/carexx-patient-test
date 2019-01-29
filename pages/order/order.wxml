@@ -13,11 +13,12 @@
              <view class='xiang-q'>
                <view class='title'>{{item.serviceName}}</view>
                <view class='time' wx:key='index'>开始时间：<text >{{serviceStartTime[index]}}</text></view>
-               <view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>{{item.orderAmt}}</text></view>
+               <view class='price' wx:if='{{item.orderStatus!==1}}'>￥<text class='shu-zi' style='font-size:46rpx;'>{{item.orderAmt}}</text></view>
+               <view class='price' wx:else>￥<text class='shu-zi' style='font-size:46rpx;'>{{item.servicePrice}}</text></view>
              </view>
              <view class='cao-z'>
                <view class='zh-tai' value='{{Status}}'>{{item.orderStatus==1?"待排班":(item.orderStatus==4?"进行中":"已完成")}}                 </view>
-               <view class='ddan-tai' data-orderno='{{item.orderNo}}' data-orderstatus='{{item.orderStatus}}' catchtap='operationClick'>{{item.orderStatus==1?"取消订单":(item.orderStatus==4?"支付并结束":"查看详情")}}</view>
+               <view class='ddan-tai' data-orderno='{{item.orderNo}}' data-orderstatus='{{item.orderStatus}}'  catchtap='operationClick' style="border:{{item.orderStatus==4?'none':'1px solid #AAAAAA'}};color:{{item.orderStatus==4?'#FFFFFF':'#3B404E'}};background:{{item.orderStatus==4?'linear-gradient(90deg,rgba(87,145,253,1) 0%,rgba(80,120,252,1) 98%)':'#FFFFFF'}};width:{{item.orderStatus==4?'194rpx':'164rpx'}}">{{item.orderStatus==1?"取消订单":(item.orderStatus==4?"支付并结束":"查看详情")}}</view>
             </view>
        </view>
       </block>
@@ -25,6 +26,5 @@
 <!--切换内容部分end-->
 <block wx:if='{{isShow}}'>
 <image class='img' src='./images/no_order.png' style="width:326rpx;height:319rpx;position:absolute;top:220rpx;left:0;right:0;margin:auto;"></image>
-<button class="gobtn" bindtap='btntap'>去预约</button>
+<button class="gobtn" bindtap='btntap' wx:if='{{current!==3}}'>去预约</button>
 </block>
-<!-- style="background-color:{{coupons.backgroundColor}};border:{{coupons.border}};color:{{coupons.color}};width:{{coupons.width}};height:{{coupons.height}}" -->

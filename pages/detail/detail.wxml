@@ -1,33 +1,11 @@
 <view class='count'>
+<block wx:for='{{coupons}}' wx:key='index'>
 <view class='type'>
 <view class='m-s'>
-<view class='big-ms'>充值</view>
-<view class='time'>2018-08-06  19:08:04</view>
+<view class='big-ms'>{{item.payType==1?"充值":(item.payType==2?"提现":"订单支付")}}</view>
+<view class='time' wx:key='index'>{{time[index]}}</view>
 </view>
-<view class='money'>+300.00</view>
+<view class='money' style='color:{{item.payType==1?"#5489FD":"#3B404E"}}' wx:key='index'>{{item.payType==1?"+":"-"}}{{timestamp1[index]}}</view>
 </view>
-<!--  -->
-<view class='type'>
-<view class='m-s'>
-<view class='big-ms'>提现</view>
-<view class='time'>2018-08-06  19:08:04</view>
-</view>
-<view class='money-t'>-500.00</view>
-</view>
-<!--  -->
-<view class='type'>
-<view class='m-s'>
-<view class='big-ms'>订单支付</view>
-<view class='time'>2018-08-06  19:08:04</view>
-</view>
-<view class='money-t'>-800.00</view>
-</view>
-<!--  -->
-<view class='type'>
-<view class='m-s'>
-<view class='big-ms'>充值</view>
-<view class='time'>2018-08-06  19:08:04</view>
-</view>
-<view class='money'>+300.00</view>
-</view>
+</block>
 </view>

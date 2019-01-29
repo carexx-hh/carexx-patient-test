@@ -180,7 +180,6 @@ Page({
                 m = timestamp4[j].getMonth() + 1,
                 d = timestamp4[j].getDate();
               arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
-              // arr.push(timestamp4[j].toLocaleDateString().replace(/\//g, "-") + " " + timestamp4[j].toTimeString().substr(0, 8));
             }
           }
           if (res.data.data == '') {
@@ -306,6 +305,7 @@ Page({
           'auth-token': that.data.token
         },
         success: function (res) {
+          console.log(res)
           var timestamp4 = [];
           for( var i=0;i<res.data.data.length;i++){
             timestamp4.push(new Date(res.data.data[i].serviceStartTime));

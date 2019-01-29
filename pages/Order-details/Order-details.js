@@ -57,6 +57,15 @@ Page({
         },
         success: function (res) {
           console.log(res)
+          if (res.data.data[0].orderAmt % 1 === 0){
+            that.setData({
+              xshow:true
+            })
+          }else{
+            that.setData({
+              xshow: false
+            })
+          }
           if (res.data.data[0].proofType==1){
             that.setData({
               number: res.data.data[0].receiptNo
@@ -70,6 +79,7 @@ Page({
               number: '无'
             })
           }
+          var serviceDays = ((res.data.data[0].orderServiceEndTime - res.data.data[0].serviceStartTime) / 86400000).toFixed(1)
           timestamp1=new Date(res.data.data[0].serviceStartTime);
             y = timestamp1.getFullYear(),
             m = timestamp1.getMonth() + 1,
@@ -83,7 +93,8 @@ Page({
           that.setData({
             project:res.data.data[0],
             starttime: starttime,
-            endtime: endtime
+            endtime: endtime,
+            serviceDays: serviceDays
           })
         }
       });

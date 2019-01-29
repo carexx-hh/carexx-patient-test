@@ -16,13 +16,11 @@
 }
 .count .type .m-s .big-ms{
 font-size:34rpx;
-font-family:PingFang-SC-Bold;
 font-weight:bold;
 color:rgba(59,64,78,1);
 }
 .count .type .m-s .time{
 font-size:24rpx;
-font-family:PingFang-SC-Medium;
 color:rgba(165,170,184,1);
 margin-top: 21rpx;
 }
@@ -30,7 +28,6 @@ margin-top: 21rpx;
 width: 50%;
 height: 100%;
 font-size:36rpx;
-font-family:PingFang-SC-Bold;
 font-weight:bold;
 color:rgba(84,137,253,1);
 line-height: 72rpx;
@@ -40,7 +37,6 @@ text-align: right;
 width: 50%;
 height: 100%;
 font-size:36rpx;
-font-family:PingFang-SC-Bold;
 font-weight:bold;
 color:rgba(59,64,78,1);
 line-height: 72rpx;

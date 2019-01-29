@@ -1,0 +1,12 @@
+<view class='big'>
+<view class='one'>
+<view class='two'style='margin-left:10rpx;width:60%'>请选择人数：</view>
+<picker bindchange="bindChange" name='input'  value="{{array[index]}}" range="{{array}}" class='picker' style='width:30%;'>
+    <view  style='font-size:14px;color:#A5AAB8;float:left;margin-left:10rpx;'>
+    {{array[index]}}
+    <image src='../Project-reservation/images/bottom.png' style="width:21rpx;height:11rpx;margin-left:8rpx;margin-bottom:4rpx;"></image>
+    </view>
+  </picker>
+</view>
+<view class='btn' bindtap='click_btn'>确认</view>
+</view>

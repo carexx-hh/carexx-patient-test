@@ -1,4 +1,5 @@
 // pages/set/set.js
+var app=getApp();
 Page({
 
   /**
@@ -12,7 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      token: wx.getStorageSync('token')
+    });
   },
 
   /**
@@ -26,11 +29,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var app=getApp()
-    console.log(app.phone)
-    this.setData({
-      phone: app.phone
-    });
+    var that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/user/get_user_info',
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.data.mobile == null) {
+          that.setData({
+            phone: '未绑定'
+          })
+        } else {
+          that.setData({
+            phone: res.data.data.mobile
+          })
+        }
+
+      }
+    }); 
   },
 
   /**

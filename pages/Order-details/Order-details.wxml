@@ -87,6 +87,7 @@
 </view>
 <!--  -->
 <view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
+<block wx:if='{{orderStatus!==1}}'>
 <view class='kind'>
 <view class='kind-name'>服务人员</view>
 <view class='t-k-name' style='width:40%;'>
@@ -107,6 +108,7 @@
 <text>{{project.instName}}</text>
 </view>
 </view>
+</block>
 <!--  -->
 <view class='kind'>
 <view class='kind-name'>状态</view>
@@ -117,7 +119,7 @@
 </view>
 <!--  -->
 <view class='bottom' wx:if='{{!isShow}}'>
-<button  class='btn' bindtap='btnClick'>{{orderStatus==1?"取消订单":"支付并结束"}}</button>
+<button  class='btn' bindtap='btnClick' style="color:{{orderStatus==1?'#3B404E':'#FFFFFF'}};background:{{orderStatus==1?'#FFFFFF':'linear-gradient(90deg,rgba(87,145,253,1) 0%,rgba(80,120,252,1) 98%)'}};border:{{orderStatus==1?'1px solid #AAAAAA':'none'}}">{{orderStatus==1?"取消订单":"支付并结束"}}</button>
 </view>
 <!-- 其他 -->
 <block wx:else>
@@ -144,7 +146,7 @@
 </view>
 </view>
 <view class='bottom'>
-<view   class='z-price'><text style='color:#767C8C'>合计:</text>￥<text class='shu-zi' style='font-size:46rpx;'>{{project.orderAmt}}</text>.00<text style='color:#767C8C'>（共服务2天）</text>
+<view   class='z-price'><text style='color:#767C8C'>合计:</text>￥<text class='shu-zi' style='font-size:46rpx;'>{{project.orderAmt}}</text><text wx:if='{{xshow}}'>.00</text><text style='color:#767C8C'>（共服务{{serviceDays}}天）</text>
 </view>
 </view>
 </block>

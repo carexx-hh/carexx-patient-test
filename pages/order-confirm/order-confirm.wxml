@@ -72,7 +72,7 @@
 <view>
 <text>￥</text>
 <text style='font-size:46rpx;'>{{price}}</text>
-<text>.00</text>
+<text wx:if='{{show_1}}'>.00</text>
 </view>
 </view>
 </view>
@@ -102,7 +102,7 @@
 <view>
 <text>￥</text>
 <text style='font-size:46rpx;'>{{price}}</text>
-<text>.00</text>
+<text wx:if='{{show_1}}'>.00</text>
 </view>
 </view>
 <view class='b-right'>

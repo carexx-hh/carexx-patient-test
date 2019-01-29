@@ -5,28 +5,79 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
+  data:{
     items: [
-      { name: '微信支付', value: 'wchat', checked: 'true'  },
+      { name: '微信支付', value: 'wechat', checked: 'true'  },
       { name: '钱包支付', value: 'wallet'},
-    ]
+    ],
+    payStyle: '微信支付',
   },
   radioChange: function (e) {
     console.log('选择的支付方式是：', e.detail.value)
+    var that=this;
+    that.setData({
+      payStyle: e.detail.value
+      })
   },
   btnClick:function(){
-    wx.requestPayment({
-      timeStamp: '',
-      nonceStr: '',
-      package: '',
-      signType: 'MD5',
-      paySign: '',
-      success(res) {
-        console.log(res)
-       },
-      fail(res) { 
-        console.log(res)}
-    })
+    var that=this;
+    if (that.data.payStyle == '微信支付'){
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/pay',
+        method: 'post',
+        data: {
+          openId: wx.getStorageSync('openId'),
+          orderNo: that.data.orderNo
+        },
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          console.log(res)
+          if (res.data.code == 200) {
+            wx.requestPayment({
+              'timeStamp': res.data.data.timeStamp,
+              'nonceStr': res.data.data.nonceStr,
+              'package': res.data.data.package,
+              'signType': res.data.data.signType,
+              'paySign': res.data.data.paySign,
+              'success': function (res) {
+                console.log(res);
+                wx.switchTab({
+                  url: '../order/order',
+                })
+              },
+              'fail': function (res) {
+                console.log('fail:' + JSON.stringify(res));
+              }
+            })
+          }
+        }
+      });
+    } else if (that.data.payStyle == '钱包支付'){
+      wx.request({
+        url: app.globalData.baseUrl + '/customerorder/account_pay',
+        method: 'post',
+        data: {
+          orderNo: that.data.orderNo
+        },
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          console.log(res)
+          if(res.data.code==200){
+            app.price=that.data.price
+            wx.navigateTo({
+              url: '../pay-success/pay-success',
+            })
+          }
+        }
+      });
+    }
+  
   },
   /**
    * 生命周期函数--监听页面加载
@@ -65,7 +116,12 @@ Page({
         },
         success: function (res) {
           console.log(res)
-          var price = res.data.data[0].orderAmt+4;
+          var price = res.data.data[0].orderAmt;
+          if(price%1===0){
+             show_1:true
+          }else{
+            show_1:false
+          }
           timestamp1 = new Date(res.data.data[0].serviceStartTime);
           y = timestamp1.getFullYear(),
             m = timestamp1.getMonth() + 1,

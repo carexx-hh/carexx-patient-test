@@ -9,6 +9,9 @@
     "pages/search/search",
     "pages/set-phone/set-phone",
     "pages/set/set",
+    "pages/dapai/dapai",
+    "pages/dapai1/dapai1",
+    "pages/dapai2/dapai2",
     "pages/recharge/recharge",
     "pages/search-result/search-result",
     "pages/search-hospital/search-hospital",
@@ -19,7 +22,10 @@
     "pages/detail/detail",
     "pages/account/account",
     "pages/logs/logs",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/pay-success/pay-success",
+    "pages/presentation-details/presentation-details",
+    "pages/recharge-details/recharge-details"  
   ],
   "window": {
     "backgroundTextStyle": "light"

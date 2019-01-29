@@ -1,9 +1,8 @@
 // pages/set-phone/set-phone.js
 const PublicFun = require( '../../utils/PublicFun.js');
 // const phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
-
+var app=getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,11 +12,17 @@ Page({
     disabled: false, //按钮是否禁用
     phone: '', //获取到的手机栏中的值
     color: '#fff',
+    code:''
   },
   //获取手机栏input中的值
   phoneInput: function (e) {
     this.setData({
       phone: e.detail.value
+    })
+  },
+  codeInput: function (e) {
+    this.setData({
+      code: e.detail.value
     })
   },
   //获取验证码按钮
@@ -37,10 +42,31 @@ Page({
       errMsg = '手机号格式有误！';
     } else {
       //当手机号正确的时候提示用户短信验证码已经发送
-      wx.showToast({
-        title: '短信验证码已发送',
-        icon: 'none',
-        duration: 2000
+      wx.request({
+        url: app.globalData.baseUrl + '/sms/send_verify_code/'+phone,
+        method: 'get',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          console.log(res)
+          if(res.data.code==200){
+            setTimeout(function () {
+              wx.showToast({
+                title: '短信验证码已发送',
+                icon: 'none',
+                duration: 2000
+              });
+            }, 500);
+          } else if (res.data.code == 500){
+            wx.showToast({
+              title: '短信验证码发送失败',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        }
       });
 
       //设置一分钟的倒计时
@@ -72,28 +98,56 @@ Page({
     };
   },
   btntap:function(){
-    // wx.request({
-    //   url: '',
-    //   data: '',
-    //   header: {},
-    //   method: 'GET',
-    //   dataType: 'json',
-    //   responseType: 'text',
-    //   success: function (res) {
-        
-    //    },
-    //   fail: function (res) { },
-    //   complete: function (res) { },
-    // }),
-    wx.switchTab({
-        url: '../mine/mine',
-      })
+    var that=this;
+    var code=that.data.code;
+    var phone=that.data.phone;
+    if(code=='' || phone==''){
+      wx.showToast({
+        title: '手机号或验证码不能为空',
+        icon: 'none',
+        duration: 2000
+      });
+    }else if (code !== '' && phone !== ''){
+      wx.request({
+        url: app.globalData.baseUrl + '/user/modify_bind_mobile/' + phone+'/'+code,
+        method: 'get',
+        header: {
+          'content-Type': 'application/x-www-form-urlencoded',
+          'auth-token': that.data.token
+        },
+        success: function (res) {
+          console.log(res)
+          if (res.data.code == 200) {
+            wx.showToast({
+              title: '手机号绑定成功',
+              icon: 'success',
+              duration: 1500,
+              success(res) {
+                setTimeout(function () {
+                  wx.switchTab({
+                    url: '../mine/mine',
+                  })
+                }, 2500);
+              }
+            })
+          } else if (res.data.code !== 200){
+            wx.showToast({
+              title: '手机号绑定失败',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        }
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      token: wx.getStorageSync('token')
+    });
   },
 
   /**

@@ -120,7 +120,7 @@ color:rgba(59,64,78,1);
   padding: 35rpx 30rpx 0;
   box-sizing: border-box;
   background: #ffffff;
-  margin-bottom: 80rpx;
+  margin-bottom: 138rpx;
   margin-top: 20rpx;
   z-index: 10;
 }

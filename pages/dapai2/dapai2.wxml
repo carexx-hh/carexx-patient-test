@@ -1,0 +1,43 @@
+<view class="table">
+  <view class="tr bg-w" style='position:fixed;top:0;z-index:999;'>
+    <input class="th" placeholder='玩家1' placeholder-style='text-align:center;' style='text-align:center;'></input>
+    <input class="th" placeholder='玩家2' placeholder-style='text-align:center;' style='text-align:center;'></input>
+    <input class="th" placeholder='玩家3' placeholder-style='text-align:center;' style='text-align:center;'></input>
+    <input class="th" placeholder='玩家4' placeholder-style='text-align:center;' style='text-align:center;'></input>
+    <input class="th" placeholder='玩家5' placeholder-style='text-align:center;' style='text-align:center;'></input>
+  </view>
+  <scroll-view class='mySwiper' scroll-y="true" style="overflow-y:scroll;margin-top:98rpx;margin-bottom:110rpx;">
+  <block wx:for="{{listData}}" wx:key="index">
+   <view class="tr bg-g" style=''>
+    <view class="tf">{{item.scores[0]}}<text class='rig_b'style="color:{{item.statuses[0]==1?'rgb(0,178,106)':'red'}};font-size:32rpx;">{{item.operantScores[0]}}</text></view>
+    <view class="tf">{{item.scores[1]}}<text class='rig_b'style="color:{{item.statuses[1]==1?'rgb(0,178,106)':'red'}};font-size:32rpx;">{{item.operantScores[1]}}</text></view>
+    <view class="tf">{{item.scores[2]}}<text class='rig_b'style="color:{{item.statuses[2]==1?'rgb(0,178,106)':'red'}};font-size:32rpx;">{{item.operantScores[2]}}</text></view>
+    <view class="tf">{{item.scores[3]}}<text class='rig_b'style="color:{{item.statuses[3]==1?'rgb(0,178,106)':'red'}};font-size:32rpx;">{{item.operantScores[3]}}</text></view>
+    <view class="tf">{{item.scores[4]}}<text class='rig_b'style="color:{{item.statuses[4]==1?'rgb(0,178,106)':'red'}};font-size:32rpx;">{{item.operantScores[4]}}</text></view>
+  </view>
+  </block>
+  </scroll-view>
+  <view class="tr bg-g" style='position:fixed;bottom:0;z-index:999;justify-content:flex-start;height:78rpx;'>
+   <input class='te' name='input_phone'  type='text' bindinput="input1" value='{{inputValue1}}'></input>
+   <input class='te' name='input_phone'  type='text' bindinput="input2" value='{{inputValue2}}'></input>
+   <input class='te' name='input_phone'  type='text' bindinput="input3" value='{{inputValue3}}'></input>
+   <input class='te' name='input_phone'  type='text' bindinput="input4" value='{{inputValue4}}'></input>
+   <input class='te' name='input_phone'  type='text' bindinput="input5" value='{{inputValue5}}'></input>
+  </view>
+  <view class='btn' bindtap='click_btn'>提交</view>
+  </view>
+<!--  -->
+<view class="mod_aside {{open?'open':''}}"  style='z-index:999'>
+  <view class="aside_nav">
+    <view class="aside_nav_item" bindtap='click_charts'>
+      <view class="aside_icon icon1" ></view>
+      <text>清除记录</text>
+    </view>
+  </view>
+  <view wx:if="{{flag}}" class="nav_btn" bindtap="toggle">
+    <view class="btn_icon"></view>
+  </view>
+  <view wx:else class="nav_btn1" bindtap="toggle">
+    <view class="btn_icon"></view>
+  </view>
+</view>
