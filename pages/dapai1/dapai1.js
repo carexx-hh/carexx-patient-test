@@ -9,6 +9,10 @@ Page({
     open: false,
     flag: true,
     token: wx.getStorageSync('token'),
+    input1:'',
+    input2:'',
+    input3:'',
+    input4:'',
   },
 
   /**
@@ -16,6 +20,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    getApp().setWatcher(that);
     that.setData({
       token: wx.getStorageSync('token')
     });
@@ -52,6 +57,23 @@ Page({
         })
       }
     });
+    wx.request({
+      url: app.globalData.baseUrl + '/play_cards/queryUserName',
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          inputname1: res.data.data[0].userName,
+          inputname2: res.data.data[1].userName,
+          inputname3: res.data.data[2].userName,
+          inputname4: res.data.data[3].userName,
+        })
+      }
+    });
   },
   input1: function (e) {
     this.setData({
@@ -64,16 +86,8 @@ Page({
     })
   },
   input3: function (e) {
-    var input1 = this.data.input1;
-    var input2 = this.data.input2;
-    var input3 = e.detail.value;
-    var sum = Number(input1) + Number(input2) + Number(input3);
-    console.log(sum)
-    var input_last = 0 - sum
     this.setData({
-      input3: e.detail.value,
-      inputValue4: input_last,
-      input4: input_last
+      input3: e.detail.value
     })
   },
   input4: function (e) {
@@ -99,6 +113,20 @@ Page({
       success: function (res) {
         console.log(res)
         if(res.data.code==200){
+          that.setData({
+            inputValue1: '',
+            inputValue2: '',
+            inputValue3: '',
+            inputValue4: '',
+            input1: '',
+            input2: '',
+            input3: '',
+            input4: '',
+            newValue1: '',
+            newValue2: '',
+            newValue3: '',
+            newValue4: '',
+          })
           wx.request({
             url: app.globalData.baseUrl + '/play_cards/getScore',
             method: 'post',
@@ -110,14 +138,6 @@ Page({
               console.log(res)
               that.setData({
                 listData: res.data.data,
-                inputValue1:'',
-                inputValue2: '',
-                inputValue3: '',
-                inputValue4: '',
-                input1: '',
-                input2: '',
-                input3: '',
-                input4: '',
               })
             }
           });
@@ -162,6 +182,189 @@ Page({
         }
       }
     });
+  },
+  input_name1:function(e){
+    var that=this;
+    that.setData({
+      input_name1: e.detail.value
+    })
+    wx.request({
+      url: app.globalData.baseUrl + '/play_cards/addUserName/1/'+e.detail.value,
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    });
+  },
+  input_name2: function (e) {
+    var that = this;
+    that.setData({
+      input_name2: e.detail.value
+    })
+    wx.request({
+      url: app.globalData.baseUrl + '/play_cards/addUserName/2/' + e.detail.value,
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    });
+  },
+  input_name3: function (e) {
+    var that = this;
+    that.setData({
+      input_name3: e.detail.value
+    })
+    wx.request({
+      url: app.globalData.baseUrl + '/play_cards/addUserName/3/' + e.detail.value,
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    });
+  },
+  input_name4: function (e) {
+    var that = this;
+    that.setData({
+      input_name4: e.detail.value
+    })
+    wx.request({
+      url: app.globalData.baseUrl + '/play_cards/addUserName/4/' + e.detail.value,
+      method: 'get',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'auth-token': that.data.token
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    });
+  },
+  watch: {
+    input1: {
+      handler(newValue1) {
+        console.log(newValue1);
+        this.setData({
+          newValue1: newValue1,
+        })
+        var input1 = this.data.input1;
+        var input2 = this.data.input2;
+        var input3 = this.data.input3;
+        var input4 = this.data.input4;
+        if (input2 !== '' && input3 !== '' && input1 !== ''){
+           this.setData({
+             inputValue4: 0 - (Number(this.data.newValue1) + Number(this.data.input2) + Number(this.data.input3)),
+           })
+        } else if (input2 !== '' && input4 !== '' && input1 !== '') {
+          this.setData({
+            inputValue3: 0 - (Number(this.data.newValue1) + Number(this.data.input2) + Number(this.data.input4)),
+          })
+        } else if (input3 !== '' && input4 !== '' && input1 !== '') {
+          this.setData({
+            inputValue2: 0 - (Number(this.data.newValue1) + Number(this.data.input3) + Number(this.data.input4)),
+          })
+        }
+      },
+      deep: true
+    },
+    input2: {
+      handler(newValue2){
+        console.log(newValue2);
+        this.setData({
+          newValue2: newValue2,
+        })
+        var input2 = this.data.input2;
+        var input1 = this.data.input1;
+        var input3 = this.data.input3;
+        var input4 = this.data.input4;
+        if (input1 !== '' && input3 !== '' && input2 !== '') {
+          this.setData({
+            inputValue4: 0 - (Number(this.data.newValue2) + Number(this.data.input1) + Number(this.data.input3)),
+            input4: 0 - (Number(this.data.newValue2) + Number(this.data.input1) + Number(this.data.input3)),
+          })
+        } else if (input1 !== '' && input4 !== '' && input2 !== '') {
+          this.setData({
+            inputValue3: 0 - (Number(this.data.newValue2) + Number(this.data.input1) + Number(this.data.input4)),
+            input3: 0 - (Number(this.data.newValue2) + Number(this.data.input1) + Number(this.data.input4)),
+          })
+        } else if (input3 !== '' && input4 !== '' && input2 !== '') {
+          this.setData({
+            inputValue1: 0 - (Number(this.data.newValue2) + Number(this.data.input3) + Number(this.data.input4)),
+            input1: 0 - (Number(this.data.newValue2) + Number(this.data.input3) + Number(this.data.input4)),
+          })
+        }
+      },
+      deep: true
+    },
+    input3: {
+      handler(newValue3) {
+        console.log(newValue3);
+        this.setData({
+          newValue3: newValue3,
+        })
+        var input3 = this.data.input3;
+        var input2 = this.data.input2;
+        var input1 = this.data.input1;
+        var input4 = this.data.input4;
+        if (input1 !== '' && input2 !== '' && input3 !=='') {
+          this.setData({
+            inputValue4: 0 - (Number(this.data.newValue3) + Number(this.data.input2) + Number(this.data.input1)),
+            input4: 0 - (Number(this.data.newValue3) + Number(this.data.input2) + Number(this.data.input1)),
+          })
+        } else if (input2 !== '' && input4 !== '' && input3 !== '') {
+          this.setData({
+            inputValue1: 0 - (Number(this.data.newValue3) + Number(this.data.input2) + Number(this.data.input4)),
+            input1: 0 - (Number(this.data.newValue3) + Number(this.data.input2) + Number(this.data.input4)),
+          })
+        } else if (input1 !== '' && input4 !== '' && input3!== '') {
+          this.setData({
+            inputValue2: 0 - (Number(this.data.newValue3) + Number(this.data.input1) + Number(this.data.input4)),
+            input2: 0 - (Number(this.data.newValue3) + Number(this.data.input1) + Number(this.data.input4)),
+          })
+        }
+      },
+      deep: true
+    },
+    input4: {
+      handler(newValue4) {
+        console.log(newValue4);
+        this.setData({
+          newValue4: newValue4,
+        })
+        var input4 = this.data.input4;
+        var input2 = this.data.input2;
+        var input3 = this.data.input3;
+        var input1 = this.data.input1;
+        if (input1 !== '' && input2 !== '' && input4 !== '') {
+          this.setData({
+            inputValue3: 0 - (Number(this.data.newValue4) + Number(this.data.input1) + Number(this.data.input2)),
+            input3: 0 - (Number(this.data.newValue4) + Number(this.data.input1) + Number(this.data.input2)),
+          })
+        } else if (input2 !== '' && input3 !== '' && input4 !== '') {
+          this.setData({
+            inputValue1: 0 - (Number(this.data.newValue4) + Number(this.data.input2) + Number(this.data.input3)),
+            input1: 0 - (Number(this.data.newValue4) + Number(this.data.input2) + Number(this.data.input3)),
+          })
+        } else if (input1 !== '' && input3 !== '' && input4 !== '') {
+          this.setData({
+            inputValue2: 0 - (Number(this.data.newValue4) + Number(this.data.input1) + Number(this.data.input3)),
+            input2: 0 - (Number(this.data.newValue4) + Number(this.data.input1) + Number(this.data.input3)),
+          })
+        }
+      },
+      deep: true
+    },
   },
   /**
    * 生命周期函数--监听页面隐藏

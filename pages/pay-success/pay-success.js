@@ -32,6 +32,7 @@ Page({
       price:price
     })
   },
+  // 点击返回到首页
   click_btn:function(){
     wx.switchTab({
       url: '../index/index',

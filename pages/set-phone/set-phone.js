@@ -1,4 +1,3 @@
-// pages/set-phone/set-phone.js
 const PublicFun = require( '../../utils/PublicFun.js');
 // const phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
 var app=getApp();
@@ -20,6 +19,7 @@ Page({
       phone: e.detail.value
     })
   },
+  // 获取验证码的值
   codeInput: function (e) {
     this.setData({
       code: e.detail.value
@@ -97,17 +97,19 @@ Page({
       return;
     };
   },
+  // 提交保存手机号
   btntap:function(){
     var that=this;
     var code=that.data.code;
     var phone=that.data.phone;
-    if(code=='' || phone==''){
+    if(code=='' || phone==''){  //手机号或验证码为空时执行提示
       wx.showToast({
         title: '手机号或验证码不能为空',
         icon: 'none',
         duration: 2000
       });
-    }else if (code !== '' && phone !== ''){
+    }else if (code !== '' && phone !== ''){ 
+      //当手机号和验证码都符合时提交请求
       wx.request({
         url: app.globalData.baseUrl + '/user/modify_bind_mobile/' + phone+'/'+code,
         method: 'get',
@@ -117,20 +119,20 @@ Page({
         },
         success: function (res) {
           console.log(res)
-          if (res.data.code == 200) {
+          if (res.data.code == 200) {  //返回200时提示绑定成功
             wx.showToast({
               title: '手机号绑定成功',
               icon: 'success',
               duration: 1500,
               success(res) {
-                setTimeout(function () {
+                setTimeout(function () {  //2500之后自动跳转到'我的'页面
                   wx.switchTab({
                     url: '../mine/mine',
                   })
                 }, 2500);
               }
             })
-          } else if (res.data.code !== 200){
+          } else if (res.data.code !== 200){  //否则提示绑定失败
             wx.showToast({
               title: '手机号绑定失败',
               icon: 'none',
@@ -144,6 +146,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  // 页面初始化获取token
   onLoad: function (options) {
     this.setData({
       token: wx.getStorageSync('token')

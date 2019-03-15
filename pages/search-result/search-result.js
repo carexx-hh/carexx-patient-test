@@ -33,11 +33,12 @@ Page({
     this.setData({
       token: wx.getStorageSync('token')
     })
-    var inputVal = app.inputVal;
+    var inputVal = app.inputVal;  //上级页面搜索内容
     var that = this;
     that.setData({
       inputVal: inputVal
     },function(){
+      //请求所要搜索医院的对应的服务项目
       wx.request({
         url: app.globalData.baseUrl + '/careinst/all',
         method: 'post',
@@ -52,7 +53,7 @@ Page({
           that.setData({
             project: res.data.data,
           },function(){
-            if (that.data.project == '') {
+            if (that.data.project == '') {  //如果无数据则执行此操作
               wx.showToast({
                 title: '无搜索结果',
                 icon: 'none',
@@ -64,8 +65,9 @@ Page({
       })
     });
   },
+  // 点击跳转到对应医院的服务项目
   clickproject:function(e){
-    var instId = e.currentTarget.dataset.id;
+    var instId = e.currentTarget.dataset.id;  //机构id
     app.instId = instId;
     wx.navigateTo({
       url: '../search-hospital/search-hospital',

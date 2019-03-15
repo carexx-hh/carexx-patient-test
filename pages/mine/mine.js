@@ -7,16 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    hasUserInfo: false,
+    userInfo: {},  //个人信息初始值
+    hasUserInfo: false,    //个人信息获取状态
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    phone:'未绑定',
+    phone: '未绑定', //个人信息电话号码初始值
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.userInfo) {
+    if (app.userInfo) {  //查看是否获得用户权限
       this.setData({
         userInfo: app.userInfo,
         hasUserInfo: true
@@ -43,9 +43,10 @@ Page({
       })
     }
   },
+  // 调用微信接口获取用户信息
   getUserInfo: function (e) {
     var that=this;
-    app.userInfo = e.detail.userInfo
+    app.userInfo = e.detail.userInfo  //赋值到全局
     that.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
@@ -76,7 +77,7 @@ Page({
                     console.log(res)
                     console.log('token=' + res.data.data.token)
                     console.log('openId=' + res.data.data.openId)
-                    wx.setStorageSync('token', res.data.data.token)
+                    wx.setStorageSync('token', res.data.data.token)           //把token和openID保存到本地
                     wx.setStorageSync('openId', res.data.data.openId)
                     that.phone();
                   },
@@ -93,11 +94,13 @@ Page({
       })
     })
   },
+  //点击跳转到设置手机号的页面
   bindphone:function(event){
     wx.navigateTo({
       url: '../set-phone/set-phone',
     })
   },
+  //点击跳转到设置的页面
   setbind: function (){
     var app = getApp()
     var phone = this.data.phone
@@ -119,7 +122,8 @@ Page({
    */
   onShow: function () {
     var that=this;
-    if (wx.getStorageSync('token')){
+    if (wx.getStorageSync('token')){   //刷新页面时监测是否获得token
+    //如果有token进行手机号码请求
     wx.request({
       url: app.globalData.baseUrl + '/user/get_user_info',
       method: 'get',
@@ -129,11 +133,11 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        if (res.data.data.mobile==null){
+        if (res.data.data.mobile==null){  // 如果没有绑定过手机号显示未绑定
           that.setData({
             phone:'未绑定'
           })
-        }else{
+        }else{  //否则显示已绑定过的手机号
           that.setData({
             phone: res.data.data.mobile
           })
@@ -143,6 +147,7 @@ Page({
     }
     
   },
+  // 此处是在页面已经获取到用户信息的时候监测是否绑定过手机号
 phone:function(){
   var that=this;
   wx.request({

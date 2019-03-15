@@ -7,20 +7,23 @@ Page({
    */
   data: {
     num:1,
-    price:300,
+    price:300,  //初始的充值金额
   },
+  // 改变充值金额的点击事件
   changePrice: function (e) {
-    console.log(e.target.dataset.text);
+    console.log(e.target.dataset.text); //获取到用户选择的金额
     this.setData({
       num: e.target.dataset.num,
       price: e.target.dataset.text
     })
   },
+  // 获取用户在'其他金额'里输入的值
   moneyInput:function(e){
     this.setData({
       price:e.detail.value,
     })
   },
+  // 确认充值的点击事件
   click_confirm:function(){
     var that = this;
     wx.request({
@@ -35,7 +38,7 @@ Page({
         'auth-token': that.data.token
       },
       success: function (res) {
-        if(res.data.code==200){
+        if(res.data.code==200){  //同样返回200时调起微信的支付接口
           　wx.requestPayment({
             'timeStamp': res.data.data.timeStamp,
              'nonceStr': res.data.data.nonceStr,
@@ -44,7 +47,7 @@ Page({
              'paySign': res.data.data.paySign,
              'success': function (res) {
               console.log(res);
-              wx.navigateTo({
+              wx.navigateTo({  //支付完成后跳转到账户页面
                 url: '../account/account',
               })
               },
@@ -62,7 +65,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      token: wx.getStorageSync('token')
+      token: wx.getStorageSync('token')  //获取本地的token
     });
   },
 

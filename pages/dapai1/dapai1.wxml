@@ -1,9 +1,9 @@
 <view class="table">
   <view class="tr bg-w" style='position:fixed;top:0;z-index:999;'>
-    <input class="th" placeholder='玩家1' placeholder-style='text-align:center;' style='text-align:center;'></input>
-    <input class="th" placeholder='玩家2' placeholder-style='text-align:center;' style='text-align:center;'></input>
-    <input class="th" placeholder='玩家3' placeholder-style='text-align:center;' style='text-align:center;'></input>
-    <input class="th" placeholder='玩家4' placeholder-style='text-align:center;' style='text-align:center;'></input>
+    <input class="th" placeholder='玩家1' placeholder-style='text-align:center;'bindblur="input_name1"value='{{inputname1}}'style='text-align:center;'></input>
+    <input class="th" placeholder='玩家2' placeholder-style='text-align:center;'bindblur="input_name2"value='{{inputname2}}'style='text-align:center;'></input>
+    <input class="th" placeholder='玩家3' placeholder-style='text-align:center;'bindblur="input_name3"value='{{inputname3}}' style='text-align:center;'></input>
+    <input class="th" placeholder='玩家4' placeholder-style='text-align:center;'bindblur="input_name4"value='{{inputname4}}' style='text-align:center;'></input>
     <!-- <view class="th ">玩家5</view> -->
   </view>
   <scroll-view class='mySwiper' scroll-y="true" style="height:{{height}}px;overflow-y:scroll;margin-top:98rpx;margin-bottom:110rpx;">

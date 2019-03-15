@@ -6,10 +6,11 @@ var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 Page({
   data: {
-    // 轮播
+    // 轮播   此处为小程序固定配置参数
     imgUrls: [
       'images/index1.png',
-      'images/index2.png'],
+      'images/index2.png'
+             ],
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
@@ -18,34 +19,34 @@ Page({
     indicatorcolor:"rgba(249,249,249,.4)",
     circular: true,
     //位置
-    province: '',
-    city: '',
-    district:'',
-    latitude: '',
-    longitude: '',
+    province: '',  //省
+    city: '',      //市
+    district:'',   //地区
+    latitude: '',   //纬度
+    longitude: '',   //经度
     // 左边scroll
-    hospitallist: 0,
-    servicelist:'',
+    hospitallist: 0, //医院列表
+    servicelist:'',  //服务项目
     height:'',
-    menu: [],
-    project:[],
-    windowHeight: 0,
-    navbarHeight: 0,
-    bannerHeight: 0,
-    scrollViewHeight: 0 ,
-    instId:'',
+    menu: [],          //菜单
+    project:[],        //服务项目
+    windowHeight: 0,    // 窗口高度
+    navbarHeight: 0,     //nav高度
+    bannerHeight: 0,      //banner高度
+    scrollViewHeight: 0 ,   //左边scroll高度
+    instId:'',              //机构ID
   },  
   onShow: function () {
     this.setData({
-      token: wx.getStorageSync('token')
+      token: wx.getStorageSync('token')      // 获取本地存储的token
     })
     var address = app.datads;
     var that=this;
-    if(address==undefined){
+    if(address==undefined){  //如果address没有值则执行此操作
       that.setData({
         district: that.data.district
       }, function () {
-        //机构
+        //获取地区下面的医院机构
         wx.request({
           url: app.globalData.baseUrl + '/careinst/all',
           method: 'post',
@@ -64,7 +65,7 @@ Page({
               menu: res.data.data,
               instId: instId
             }, function () {
-              // 服务项目
+              // 获取医院的服务项目
               wx.request({
                 url: app.globalData.baseUrl + '/careservice/list_all_service',
                 method: 'post',
@@ -91,7 +92,7 @@ Page({
       that.setData({
         district: address
       }, function () {
-        //机构
+        //获取用户自己选择地区之后的机构
         wx.request({
           url: app.globalData.baseUrl + '/careinst/all',
           method: 'post',
@@ -147,8 +148,8 @@ Page({
             lang: "zh_CN",
             success: res => {
               that.setData({
-                userInfo: res.userInfo,
-                region: res.userInfo.province + '/' + res.userInfo.city
+                userInfo: res.userInfo,   //个人信息
+                region: res.userInfo.province + '/' + res.userInfo.city   //地址
               })
               //  登录
               wx.login({
@@ -160,10 +161,10 @@ Page({
                       method: 'POST',
                       data: {
                         code: res.code,//将code发给后台拿token
-                        nickname: that.data.userInfo.nickName,
-                        avatar: that.data.userInfo.avatarUrl,
-                        sex: that.data.userInfo.gender,
-                        region: that.data.region
+                        nickname: that.data.userInfo.nickName,  //微信昵称
+                        avatar: that.data.userInfo.avatarUrl,    //头像
+                        sex: that.data.userInfo.gender,           //性别
+                        region: that.data.region                 //地址
                       },
                       header: {
                         'content-type': 'application/x-www-form-urlencoded',
@@ -171,6 +172,7 @@ Page({
                       success: function (res) {
                         console.log(res)
                         console.log('token=' + res.data.data.token)
+                        // token保存到本地
                         wx.setStorageSync('token', res.data.data.token)
                       },
                     })
@@ -184,7 +186,7 @@ Page({
               }
             }
           })
-        }else{
+        }else{  //如果监测到用户为首次进入该程序，则需要跳转到‘我的’页面进行信息授权
           wx.showModal({
             content: '需要获取您的用户信息',
             showCancel:false,
@@ -222,21 +224,22 @@ Page({
     query.select('#banner').boundingClientRect();
     query.select('#tiao').boundingClientRect();
     query.exec((res) => {
-      let bannerHeight = res[0].height;
-      let tiaoHeight = res[1].height;
-      let scrollViewHeight = this.data.windowHeight - bannerHeight - tiaoHeight;
+      let bannerHeight = res[0].height;  //获取banner的高度
+      let tiaoHeight = res[1].height;    //获取中间部分的高度
+      let scrollViewHeight = this.data.windowHeight - bannerHeight - tiaoHeight;  //获取左边scroll的高度并赋值到data
       this.setData({
         height: scrollViewHeight
       });
     }); 
   },
+  // 点击左边医院进行查询服务项目
   turnMenu: function (e) {
     var that=this;
     var type = e.target.dataset.index;
     that.setData({
       hospitallist: type
     },function(){
-      // that.getLocation();
+      // 查询所有医疗机构
       wx.request({
         url: app.globalData.baseUrl + '/careinst/all',
         method: 'post',
@@ -414,16 +417,16 @@ Page({
       },
     });
   },
+  // 点击服务项目进行订单预约
   tapClick: function (event){
     var that=this;
-    // console.log(event.currentTarget.dataset)
-    var name = event.currentTarget.dataset.name
-    var money = event.currentTarget.dataset.money
-    var service = event.currentTarget.dataset.serviceid
-    var serviceExplain = event.currentTarget.dataset.serviceexplain
-    var instId = that.data.instId
+    var name = event.currentTarget.dataset.name  //服务名称           
+    var money = event.currentTarget.dataset.money   //服务金额                                
+    var service = event.currentTarget.dataset.serviceid   //服务id
+    var serviceExplain = event.currentTarget.dataset.serviceexplain    //服务备注
+    var instId = that.data.instId         //机构ID                                  
     console.log(name, money, service, serviceExplain, instId)
-    var app = getApp();
+    var app = getApp(); //此处为把参数通过getAPP（）传参到预约订单的页面
     app.dataname = name;
     app.datamoney = money
     app.dataservice = service;

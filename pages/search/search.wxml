@@ -14,6 +14,3 @@
 <view class='left'>热门搜索</view>
 </view>
 <view class='list' wx:for="{{searchhot}}" wx:for-index='key' data-name='{{item.instName}}' data-id='{{item.id}}' bindtap='clickSearch' >{{item.instName}}</view>
-<!-- <view class='o-cancel'> -->
-<!-- <image class='cancel' src='./images/cancel.png' style="width:20rpx;height:20rpx;"  bindtap='remove' id="{{key}}"></image>
-</view> -->

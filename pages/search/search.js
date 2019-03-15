@@ -6,16 +6,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputVal:'',
-    searchRecord:[],
-    searchhot:[]
+    inputVal:'',  //用户搜索输入的值
+    searchRecord:[], //获取的历史记录 
+    searchhot:[]     //获取的热门搜索列表
   
   },
+  // 查看本地存储的历史记录
   openHistorySearch: function () {
     this.setData({
       searchRecord: wx.getStorageSync('searchRecord') || [],//若无储存则为空
     })
   },
+  //搜索提交时的点击事件
   searchSubmitFn: function (e) {
     var that = this;
     var inputVal = e.detail.value;
@@ -24,7 +26,7 @@ Page({
       //输入为空时的处理
     }
     else {
-      //将搜索值放入历史记录中,只能放前10条
+      //将搜索值放入历史记录中,只能放前7条
       if (searchRecord.length < 7) {
         searchRecord.unshift(
           {
@@ -51,11 +53,8 @@ Page({
          })
       }
     }
-    // wx.navigateTo({
-    //   url: '../search-result/search-result'
-    // });
-    // console.log(searchRecord)
   },
+  //点击删除历史记录
   historyDelFn: function () {
     wx.removeStorage({
       key: 'searchRecord',
@@ -79,7 +78,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      token: wx.getStorageSync('token')
+      token: wx.getStorageSync('token')  //获取token
     })
     this.openHistorySearch()
    
@@ -94,7 +93,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function () {  //页面刷新时请求热门医院
     var that=this;
     that.setData({
       token: wx.getStorageSync('token')
@@ -113,18 +112,20 @@ Page({
       }
     })
   },
+  //点击热门医院时跳转到医院对应的页面
   clickSearch:function(e){
     var that = this;
-    var name = e.target.dataset.name;
-    var instId = e.target.dataset.id;
+    var name = e.target.dataset.name;  //机构名称
+    var instId = e.target.dataset.id;   //机构id
     app.instName=name;
     app.instId = instId;
     wx.navigateTo({
       url: '../search-hospital/search-hospital',
     })
   },
+  //点击历史记录时同样跳转到对应的页面
   clickhistory:function(event){
-    var instName = event.currentTarget.dataset.name
+    var instName = event.currentTarget.dataset.name  //需要的参数 机构名称
     app.inputVal = instName
     wx.navigateTo({
       url: '../search-result/search-result',

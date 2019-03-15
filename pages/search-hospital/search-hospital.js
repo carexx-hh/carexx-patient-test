@@ -32,13 +32,14 @@ Page({
     this.setData({
       token: wx.getStorageSync('token')
     })
-    var instId = app.instId;
+    var instId = app.instId;    //上级页面传的参数
     var instName = app.instName;
     var that=this;
     that.setData({
       instId: instId,
       instName: instName
     },function(){
+      // 请求对应医院的服务项目
       wx.request({
         url: app.globalData.baseUrl + '/careservice/list_all_service',
         method: 'post',
@@ -51,15 +52,16 @@ Page({
         },
         success: function (res) {
           that.setData({
-            project: res.data.data,
+            project: res.data.data,  //保存到data
           })
         }
       })
     })
 
   },
+  // 点击服务项目跳转到订单预约页面
   clickproject:function(event){
-    var name = event.currentTarget.dataset.name
+    var name = event.currentTarget.dataset.name        //参数含义详见首页的js（一样）
     var money = event.currentTarget.dataset.money
     var service = event.currentTarget.dataset.serviceid
     var serviceExplain = event.currentTarget.dataset.serviceexplain

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-        phone:'',
+        phone:'', //定义电话号码初始值
   },
 
   /**
@@ -30,6 +30,7 @@ Page({
    */
   onShow: function () {
     var that = this;
+    // 请求电话号码
     wx.request({
       url: app.globalData.baseUrl + '/user/get_user_info',
       method: 'get',
@@ -38,19 +39,19 @@ Page({
         'auth-token': that.data.token
       },
       success: function (res) {
-        console.log(res)
-        if (res.data.data.mobile == null) {
+       
+        if (res.data.data.mobile == null) {  //如果值为null则显示未绑定
           that.setData({
             phone: '未绑定'
           })
         } else {
-          that.setData({
+          that.setData({   //否则显示data的值
             phone: res.data.data.mobile
           })
         }
 
       }
-    }); 
+    });  
   },
 
   /**

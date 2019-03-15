@@ -29,11 +29,11 @@
 <image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
 </view>
 <!-- 打牌 -->
-<view class='x-hx'></view>
+<!-- <view class='x-hx'></view>
 <view class='g-y'>
 <image src='./images/dapai.png' class='img' style='width:40rpx;height:40rpx;'></image>
-<navigator class='m-s' url='/pages/dapai/dapai' hover-class="none">打牌入口</navigator>
+<navigator class='m-s' url='/pages/dapai/dapai' hover-class="none">记账</navigator>
 <image src='./images/j-t.png' class='j-t' style='width:11rpx;height:21rpx;'></image>
-</view>
+</view> -->
 <!--  -->
 </view>

@@ -6,12 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    money:'0.00'
+    money:'0.00' //初始金额
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  // 获取存储在本地的token
   onLoad: function (options) {
     var that = this;
     that.setData({
@@ -31,6 +32,7 @@ Page({
    */
   onShow: function () {
     var that=this;
+    // 请求账户余额
     wx.request({
       url: app.globalData.baseUrl + '/useraccount/by_userId',
       method: 'get',
@@ -40,17 +42,18 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        if (res.data.data.accountBalance%1===0){
+        if (res.data.data.accountBalance%1===0){    //如果为整数，后面加'.00'
           that.setData({
             money: res.data.data.accountBalance+'.00'
           })
         }else{
         that.setData({
-          money: res.data.data.accountBalance
+          money: res.data.data.accountBalance       //否则数据直接展示
         })
       }}
     });
   },
+  // 进入明细页面查看个人钱包明细
   click_details:function(){
     wx.navigateTo({
       url: '../detail/detail',

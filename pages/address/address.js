@@ -10,13 +10,13 @@ Page({
    */
   data: {
     //位置
-    province: '',
-    city: '',
-    district: '',
-    latitude: '',
-    longitude: '',
-    address: [
-      { id: 0, name: "杨浦区" },
+    province: '', //省
+    city: '',     //市
+    district: '',  //区
+    latitude: '',  //纬度
+    longitude: '',  //经度
+    address: [    //地址  
+      { id: 0, name: "杨浦区" },       // 此处地区为后台可维护选项
       { id: 0, name: "闵行区" },
       { id: 2, name: "青浦区" },
       { id: 3, name: "浦东区" },
@@ -25,6 +25,7 @@ Page({
       { id: 5, name: "嘉定区", border: 'none'},
       ],
   },
+  // 获取患者选择的地区并跳转到首页进行医院搜索
   adsclick:function(event){
     let that=this
     var address = event.currentTarget.dataset.name
@@ -34,10 +35,11 @@ Page({
     })
     var app=getApp();
     app.datads = this.data.district
-    wx.navigateBack({
+    wx.navigateBack({   //选择完地区之后返回首页
       delta: 1,
     })
   },
+  // 同上（此处为定位的地区）
   nowadsclick: function (event) {
     var app = getApp();
     app.datads = this.data.district
@@ -61,8 +63,9 @@ Page({
   },
   onShow: function () {
     let vm = this;
-    vm.getUserLocation();
+    vm.getUserLocation();   //页面刷新执行此方法
   },
+  // 要求获取用户地理位置
   getUserLocation: function () {
     let vm = this;
     wx.getSetting({

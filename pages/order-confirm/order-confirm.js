@@ -7,26 +7,28 @@ Page({
    */
   data:{
     items: [
-      { name: '微信支付', value: 'wechat', checked: 'true'  },
+      { name: '微信支付', value: 'wechat', checked: 'true'  },  //俩种支付方式。微信支付为页面初始值的默认选项
       { name: '钱包支付', value: 'wallet'},
     ],
     payStyle: '微信支付',
   },
+  //点击选择支付方式
   radioChange: function (e) {
     console.log('选择的支付方式是：', e.detail.value)
     var that=this;
     that.setData({
-      payStyle: e.detail.value
+      payStyle: e.detail.value  //支付方式赋值到data
       })
   },
+  //点击支付时的操作
   btnClick:function(){
     var that=this;
-    if (that.data.payStyle == '微信支付'){
+    if (that.data.payStyle == '微信支付'){  //选择微信支付时
       wx.request({
         url: app.globalData.baseUrl + '/customerorder/pay',
         method: 'post',
         data: {
-          openId: wx.getStorageSync('openId'),
+          openId: wx.getStorageSync('openId'),  //需要传的参数openID和订单号
           orderNo: that.data.orderNo
         },
         header: {
@@ -35,14 +37,14 @@ Page({
         },
         success: function (res) {
           console.log(res)
-          if (res.data.code == 200) {
-            wx.requestPayment({
+          if (res.data.code == 200) {  //返回200时调用微信接口
+            wx.requestPayment({  //此处为调用微信接口必须的参数（详情可见微信小程序文档）
               'timeStamp': res.data.data.timeStamp,
               'nonceStr': res.data.data.nonceStr,
               'package': res.data.data.package,
               'signType': res.data.data.signType,
               'paySign': res.data.data.paySign,
-              'success': function (res) {
+              'success': function (res) {  //支付成功后跳转到订单页面
                 console.log(res);
                 wx.switchTab({
                   url: '../order/order',
@@ -55,12 +57,12 @@ Page({
           }
         }
       });
-    } else if (that.data.payStyle == '钱包支付'){
+    } else if (that.data.payStyle == '钱包支付'){  //选择钱包支付时
       wx.request({
         url: app.globalData.baseUrl + '/customerorder/account_pay',
         method: 'post',
         data: {
-          orderNo: that.data.orderNo
+          orderNo: that.data.orderNo  
         },
         header: {
           'content-Type': 'application/x-www-form-urlencoded',
@@ -68,7 +70,7 @@ Page({
         },
         success: function (res) {
           console.log(res)
-          if(res.data.code==200){
+          if(res.data.code==200){  //支付成功时跳转到支付成功的页面
             app.price=that.data.price
             wx.navigateTo({
               url: '../pay-success/pay-success',
@@ -82,7 +84,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (options) {  //页面初始化时把本地存储的token和openID放到data里
     this.setData({
       token: wx.getStorageSync('token'),
       openId: wx.getStorageSync('openId')
@@ -106,7 +108,7 @@ Page({
       token: wx.getStorageSync('token'),
       openId: wx.getStorageSync('openId'),
       orderNo: orderNo
-    },function(){
+    },function(){  //页面刷新时请求页面的数据
       wx.request({
         url: app.globalData.baseUrl + '/customerorder/detail/' + that.data.orderNo,
         method: 'get',
@@ -117,25 +119,27 @@ Page({
         success: function (res) {
           console.log(res)
           var price = res.data.data[0].orderAmt;
-          if(price%1===0){
+          if(price%1===0){    //判断金额是否为整数从而判断是否要显示小数点
              show_1:true
           }else{
             show_1:false
           }
-          timestamp1 = new Date(res.data.data[0].serviceStartTime);
-          y = timestamp1.getFullYear(),
+          timestamp1 = new Date(res.data.data[0].serviceStartTime); //开始时间
+            y = timestamp1.getFullYear(),
             m = timestamp1.getMonth() + 1,
             d = timestamp1.getDate();
           var starttime = y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp1.toTimeString().substr(0, 8);
-          timestamp2 = new Date(res.data.data[0].scheduleServiceEndTime);
+          timestamp2 = new Date(res.data.data[0].scheduleServiceEndTime);  //结束时间
             k = timestamp2.getFullYear(),
             f= timestamp2.getMonth() + 1,
             w = timestamp2.getDate();
+
+            // 重新赋值到starttime和endtime
           var endtime = k + "-" + (f < 10 ? "0" + f : f) + "-" + (w < 10 ? "0" + w : w) + " " + timestamp2.toTimeString().substr(0, 8);
-        
+          //服务时间
           var newdata = (res.data.data[0].scheduleServiceEndTime - res.data.data[0].serviceStartTime)/86400000;
           console.log(res.data.data[0].serviceStartTime, res.data.data[0].scheduleServiceEndTime,newdata)
-          that.setData({
+          that.setData({  //保存到data里
             project: res.data.data[0],
             starttime: starttime,
             endtime: endtime,
