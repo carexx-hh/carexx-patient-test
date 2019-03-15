@@ -2,7 +2,7 @@
 <view class='header'>
 <image src='../order/images/o-o.png' style="width:160rpx;height:160rpx;"></image>
 <view class='xiang-q'>
-<view class='title'>{{selvicename}}</view>
+<view class='title'>{{servicename}}</view>
 <view class='time'>{{serviceExplain}}</view>
 <view class='price'>￥<text class='shu-zi' style='font-size:46rpx;'>{{money}}</text>/天<text class='holiday'> (法定节假日当天费用翻倍)</text></view>
 </view>

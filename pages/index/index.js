@@ -279,7 +279,7 @@ Page({
     })
   },
   
-  
+  // 用户授权获取地理位置
   getUserLocation: function () {
     let vm = this;
     wx.getSetting({
