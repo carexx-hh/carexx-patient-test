@@ -383,8 +383,8 @@ Page({
             'auth-token': vm.data.token
           },
           success: function (res) {
-            var instId = res.data.data[vm.data.hospitallist].id
             console.log(res)
+            var instId = res.data.data[vm.data.hospitallist].id
             console.log(instId)
             vm.setData({
               menu: res.data.data,
