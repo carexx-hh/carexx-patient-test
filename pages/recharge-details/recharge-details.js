@@ -1,5 +1,5 @@
 // pages/recharge -details/recharge -details.js
-Component({
+Page({
   /**
    * 组件的属性列表
    */
