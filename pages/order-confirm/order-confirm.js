@@ -75,6 +75,12 @@ Page({
             wx.navigateTo({
               url: '../pay-success/pay-success',
             })
+          }else{
+            wx.showToast({
+              title: res.data.errorMsg,
+              image: './images/cancel.png',
+              duration: 2500
+            })
           }
         }
       });
