@@ -13,15 +13,18 @@ Page({
   changePrice: function (e) {
     console.log(e.target.dataset.text); //获取到用户选择的金额
     this.setData({
-      num: e.target.dataset.num,
-      price: e.target.dataset.text
+      num: e.target.dataset.num||'6',
+      price: e.target.dataset.text||''
     })
+    console.log(this.data.num)
+    console.log(this.data.price)
   },
   // 获取用户在'其他金额'里输入的值
   moneyInput:function(e){
     this.setData({
       price:e.detail.value,
     })
+    console.log(typeof this.data.price)
   },
   // 确认充值的点击事件
   click_confirm:function(){

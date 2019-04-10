@@ -61,17 +61,17 @@ Page({
           'auth-token': that.data.token
         },
         success: function (res) {
-          var timestamp4 = [];
-          for (var i = 0; i < res.data.data.length; i++) {  //把所有的数据中的开始时间先存到timestamp4数组里
-            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
-            var arr = [];
+            var timestamp4 = [];
+                var arr = [];
+            for (var i = 0; i < res.data.data.length; i++) {  //把所有的数据中的开始时间先存到timestamp4数组里
+                timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            }
             for (var j = 0; j < timestamp4.length; j++) {  //把开始时间处理完赋值到arr数组
                 y = timestamp4[j].getFullYear(),
                 m = timestamp4[j].getMonth() + 1,
                 d = timestamp4[j].getDate();
               arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));       
             } 
-          }
           if (res.data.data == '') {  //判断无数据时显示去预约的按钮和页面
             that.setData({
               isShow: true
@@ -96,17 +96,17 @@ Page({
           'auth-token': that.data.token
         },
         success: function (res) {
-          var timestamp4 = [];
-          for (var i = 0; i < res.data.data.length; i++) {
-            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
-            var arr = [];
+            var timestamp4 = [];
+                var arr = [];
+            for (var i = 0; i < res.data.data.length; i++) {
+                timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            }
             for (var j = 0; j < timestamp4.length; j++) {
-              y = timestamp4[j].getFullYear(),
+                y = timestamp4[j].getFullYear(),
                 m = timestamp4[j].getMonth() + 1,
                 d = timestamp4[j].getDate();
-              arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
+                arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
             }
-          }
           if (res.data.data == '') {
             that.setData({
               isShow: true
@@ -120,6 +120,7 @@ Page({
             coupons: res.data.data,
             serviceStartTime: arr
           })
+          console.log(that.data.serviceStartTime)
         }
       })
     } else if (index == 2) {   //状态为进行中时   （以下逻辑处理同上）
@@ -134,17 +135,17 @@ Page({
           'auth-token': that.data.token
         },
         success: function (res) {
-          var timestamp4 = [];
-          for (var i = 0; i < res.data.data.length; i++) {
-            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
-            var arr = [];
+            var timestamp4 = [];
+                var arr = [];
+            for (var i = 0; i < res.data.data.length; i++) {
+                timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            }
             for (var j = 0; j < timestamp4.length; j++) {
                 y = timestamp4[j].getFullYear(),
                 m = timestamp4[j].getMonth() + 1,
                 d = timestamp4[j].getDate();
               arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
             }
-          }
           if (res.data.data == '') {
             that.setData({
               isShow: true
@@ -172,17 +173,17 @@ Page({
           'auth-token': that.data.token
         },
         success: function (res) {
-          var timestamp4 = [];
-          for (var i = 0; i < res.data.data.length; i++) {
-            timestamp4.push(new Date(res.data.data[i].serviceStartTime));
-            var arr = [];
+            var timestamp4 = [];
+                var arr = [];
+            for (var i = 0; i < res.data.data.length; i++) {
+                timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+            }
             for (var j = 0; j < timestamp4.length; j++) {
               y = timestamp4[j].getFullYear(),
                 m = timestamp4[j].getMonth() + 1,
                 d = timestamp4[j].getDate();
               arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
             }
-          }
           if (res.data.data == '') {
             that.setData({
               isShow: true
@@ -247,9 +248,9 @@ Page({
                       success: function (res) {
                         console.log(res)
                         var timestamp4 = [];
+                          var arr = [];
                         for (var i = 0; i < res.data.data.length; i++) {
                           timestamp4.push(new Date(res.data.data[i].serviceStartTime));
-                          var arr = [];
                           for (var j = 0; j < timestamp4.length; j++) {
                             y = timestamp4[j].getFullYear(),
                               m = timestamp4[j].getMonth() + 1,

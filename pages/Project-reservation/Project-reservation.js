@@ -61,17 +61,18 @@ Page({
           'auth-token': that.data.token
         },
         success:function(res){
-          console.log(res)
-          var inpatientArea=[];
-          var inpatientAreaId=[];
-          for(var i=0;i<=res.data.data.length;i++){
-            inpatientArea.push(res.data.data[i].inpatientArea)
-            inpatientAreaId.push(res.data.data[i].id)
+            console.log(res)
+            var inpatientArea=[];
+            var inpatientAreaId=[];
+            for(var i=0;i<res.data.data.length;i++){
+                console.log(res.data.data[i].inpatientArea)
+                inpatientArea.push(res.data.data[i].inpatientArea)
+                inpatientAreaId.push(res.data.data[i].id)
+            }
             that.setData({
-              pickerArray:inpatientArea,
-              inpatientAreaId: inpatientAreaId
+                pickerArray:inpatientArea,
+                inpatientAreaId: inpatientAreaId
             })
-          }
         }
       }),
       // 获取开始时间

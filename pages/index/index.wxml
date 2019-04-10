@@ -9,7 +9,7 @@
 </swiper>
 <view class='header'>
 <navigator class='address' url='/pages/address/address' hover-class="none">{{district}}</navigator> 
-<navigator class='b-sea'hover-class="none" url='/pages/search/search'>
+<navigator class='b-sea' hover-class="none" url='/pages/search/search'>
 <image class='icon-sea' src='./images/search.png' style="width:27rpx;height:27rpx;margin-left:30rpx;margin-top:20rpx;"></image>
 <view class='search'  style='font-size:26rpx;font-family:PingFang;color:rgba(165,170,184,1);magin-left:13rpx;height:64rpx;margin-left:13rpx;line-height:64rpx;'>搜索您所在的医院</view>
 </navigator>
