@@ -314,6 +314,7 @@ Page({
           var timestamp4 = [];
           for( var i=0;i<res.data.data.length;i++){
             timestamp4.push(new Date(res.data.data[i].serviceStartTime));
+          }
             var arr=[];
             for (var j = 0; j < timestamp4.length;j++){
                 y = timestamp4[j].getFullYear(),
@@ -321,7 +322,6 @@ Page({
                 d = timestamp4[j].getDate();
               arr.push(y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp4[j].toTimeString().substr(0, 8));
             }
-          }
           if(res.data.data==''){
             that.setData({
               isShow:true
