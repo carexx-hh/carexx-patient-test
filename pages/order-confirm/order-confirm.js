@@ -135,16 +135,21 @@ Page({
             m = timestamp1.getMonth() + 1,
             d = timestamp1.getDate();
           var starttime = y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + timestamp1.toTimeString().substr(0, 8);
-          timestamp2 = new Date(res.data.data[0].scheduleServiceEndTime);  //结束时间
+          var nowtimestamp = (new Date()).valueOf();
+          var endtimestamp = res.data.data[0].scheduleServiceEndTime;
+          while (nowtimestamp <= endtimestamp){
+            endtimestamp = endtimestamp - 1000 * 60 * 60 * 12;
+          }
+          endtimestamp = endtimestamp + 1000 * 60 * 60 * 12;
+          timestamp2 = new Date(endtimestamp);  //结束时间
             k = timestamp2.getFullYear(),
-            f= timestamp2.getMonth() + 1,
+            f = timestamp2.getMonth() + 1,
             w = timestamp2.getDate();
-
             // 重新赋值到starttime和endtime
           var endtime = k + "-" + (f < 10 ? "0" + f : f) + "-" + (w < 10 ? "0" + w : w) + " " + timestamp2.toTimeString().substr(0, 8);
           //服务时间
-          var newdata = (res.data.data[0].scheduleServiceEndTime - res.data.data[0].serviceStartTime)/86400000;
-          console.log(res.data.data[0].serviceStartTime, res.data.data[0].scheduleServiceEndTime,newdata)
+          var newdata = (endtimestamp - res.data.data[0].serviceStartTime)/86400000;
+          console.log(res.data.data[0].serviceStartTime, endtimestamp, newdata)
           that.setData({  //保存到data里
             project: res.data.data[0],
             starttime: starttime,
