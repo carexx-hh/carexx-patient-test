@@ -3,12 +3,16 @@
 <view class='m-s'>提现金额</view>
 <view class='money'>
 <text class='money-bs' style=''>￥</text>
-<input class='money-input' style='margin-left:11rpx;height:54rpx;align-items: center;' type='digit' focus='true'></input>
+<input class='money-input' value="{{payAmt}}" bindinput="inputPayAmt" style='margin-left:11rpx;height:54rpx;align-items: center;' type='digit' focus='true'></input>
 </view>
 </view>
 <view class='bottom'>
 <view class='left'>额外扣除￥0.50手续费（费率0.1%）</view>
-<view class='right'>全部提现</view>
+<view class='right' bindtap="allwithdraw">全部提现</view>
 </view>
 </view>
+<button class="true" bindtap="withdraw">确认提现</button>
+<!--
 <navigator class='true' url='/pages/withdraw-deposit-result/withdraw-deposit-result'>确认提现</navigator>
+--->
+

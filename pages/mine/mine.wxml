@@ -1,13 +1,13 @@
-<view class='header'>
+<view class='header' bindtap="{{(!hasUserInfo && canIUse)?'':'bindphone'}}">
 <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='h-button'> 点击授权 </button>
 <block wx:else>
-<view class='left'>
-<image  src="{{userInfo.avatarUrl}}"  class='tx'></image>
-</view>
- <view class='right'>
- <view class='name'>{{userInfo.nickName}}</view>
- <view class='phone' bindtap='bindphone' data-phone='{{phone}}'>{{phone}}</view>
- </view>
+    <view class='left'>
+        <image  src="{{userInfo.avatarUrl}}"  class='tx'></image>
+    </view>
+    <view class='right' >
+        <view class='name'>{{userInfo.nickName}}</view>
+        <view class='phone'  data-phone='{{phone}}'>{{phone}}</view>
+    </view>
  </block>
 </view>
 <view class='middle'>

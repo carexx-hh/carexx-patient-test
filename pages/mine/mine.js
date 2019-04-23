@@ -96,6 +96,7 @@ Page({
   },
   //点击跳转到设置手机号的页面
   bindphone:function(event){
+      console.log(event)
     wx.navigateTo({
       url: '../set-phone/set-phone',
     })

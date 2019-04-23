@@ -54,6 +54,17 @@ Page({
     });
   },
   // 进入明细页面查看个人钱包明细
+  todeposit(){
+      wx.navigateTo({
+          url: '/pages/withdraw-deposit/withdraw-deposit?money=' + this.data.money,
+          success: (result)=>{
+              
+          },
+          fail: ()=>{},
+          complete: ()=>{}
+      });
+  },
+  // 进入明细页面查看个人钱包明细
   click_details:function(){
     wx.navigateTo({
       url: '../detail/detail',
