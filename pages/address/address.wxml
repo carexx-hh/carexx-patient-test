@@ -9,9 +9,12 @@
 <view class='ti-ao'></view>
 <view class='other'>
 <view class='qt-address'>全部区域</view>
-<view class='oth-address'>
-<block wx:for='{{address}}' wx:key="name" wx:for-index='key'>
-<view class='list-other' data-name='{{item.name}}'   style='border:{{item.border}}'  bindtap='adsclick'  id="{{key}}">{{item.name}}</view>
-</block>
+<view class='oth-address' wx:if="{{!norecord}}">
+    <block wx:for='{{address}}' wx:key="key" wx:for-index='key'>
+        <view class='list-other' data-name='{{item.inst_region}}'   style='border:{{item.border}}'  bindtap='adsclick'  >{{item.inst_region}}</view>
+    </block>
 </view>
+<block wx:else>
+    <image class='img' src='./images/record.png' style="width:326rpx;height:319rpx;position:absolute;top:220rpx;left:0;right:0;margin:auto;"></image>
+</block>
 </view>

@@ -16,14 +16,15 @@ Page({
     latitude: '',  //纬度
     longitude: '',  //经度
     address: [    //地址  
-      { id: 0, name: "杨浦区" },       // 此处地区为后台可维护选项
-      { id: 0, name: "闵行区" },
-      { id: 2, name: "青浦区" },
-      { id: 3, name: "浦东区" },
-      { id: 4, name: "普陀区" },
-      { id: 0, name: "徐汇区" },
-      { id: 5, name: "嘉定区", border: 'none'},
+    //   { id: 0, name: "杨浦区" },       // 此处地区为后台可维护选项
+    //   { id: 0, name: "闵行区" },
+    //   { id: 2, name: "青浦区" },
+    //   { id: 3, name: "浦东区" },
+    //   { id: 4, name: "普陀区" },
+    //   { id: 0, name: "徐汇区" },
+    //   { id: 5, name: "嘉定区", border: 'none'},
       ],
+      norecord:false,//无地区记录
   },
   // 获取患者选择的地区并跳转到首页进行医院搜索
   adsclick:function(event){
@@ -64,6 +65,7 @@ Page({
   onShow: function () {
     let vm = this;
     vm.getUserLocation();   //页面刷新执行此方法
+    vm.getDistrict() //请求地区
   },
   // 要求获取用户地理位置
   getUserLocation: function () {
@@ -162,6 +164,39 @@ Page({
         // console.log(res);
       }
     });
+  },
+  // 获取地区列表
+  getDistrict(){
+      let that = this;
+      that.setData({
+          norecord:false
+      },()=>{
+        wx.request({
+            url: app.globalData.baseUrl + '/careinst/list_Region',
+            method: 'get',
+            data: {
+                
+            },
+            header: {
+                'content-Type': 'application/x-www-form-urlencoded',
+                'auth-token': wx.getStorageSync('token')
+            },
+            success: function (res) {
+                    console.log(res)
+                    if(res.data.data.length>0)
+                        that.setData({
+                            address:res.data.data,
+                            norecord: false
+                        })
+                    else that.setData({
+                        address:[],
+                        norecord:true
+                    })
+
+            }
+        })
+
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

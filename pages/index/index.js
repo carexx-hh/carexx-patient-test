@@ -35,6 +35,8 @@ Page({
         bannerHeight: 0,      //banner高度
         scrollViewHeight: 0 ,   //左边scroll高度
         instId:'',              //机构ID
+        nohosp:false, //无医院
+        noproj: false, //无服务项目
     },  
     onShow: function () {
         console.log('onShow')
@@ -206,29 +208,44 @@ Page({
             'auth-token': that.data.token
             },
             success: function (res) {
-            var instId = res.data.data[that.data.hospitallist].id
-            that.setData({
-                menu: res.data.data,
-                instId:instId
-            }, function () {
-                // 服务项目
-                wx.request({
-                url: app.globalData.baseUrl + '/careservice/list_all_service',
-                method: 'post',
-                data: {
-                    instId: instId
-                },
-                header: {
-                    'content-Type': 'application/x-www-form-urlencoded',
-                    'auth-token': that.data.token
-                },
-                success: function (res) {
+                if (res.data.data.length == 0) {
                     that.setData({
-                    project: res.data.data,
+                        menu: [],
+                        project: [],
+                        nohosp: true
                     })
+                    return;
                 }
+                var instId = res.data.data[that.data.hospitallist].id
+                that.setData({
+                    menu: res.data.data,
+                    instId:instId,
+                    nohosp:false
+                }, function () {
+                    // 服务项目
+                    wx.request({
+                    url: app.globalData.baseUrl + '/careservice/list_all_service',
+                    method: 'post',
+                    data: {
+                        instId: instId
+                    },
+                    header: {
+                        'content-Type': 'application/x-www-form-urlencoded',
+                        'auth-token': that.data.token
+                    },
+                    success: function (res) {
+                        if (res.data.data.length > 0)
+                            that.setData({
+                                project: res.data.data,
+                                noproj: false
+                            })
+                        else that.setData({
+                            project: [],
+                            noproj: true
+                        })
+                    }
+                    })
                 })
-            })
             }
         })
         })
@@ -372,11 +389,13 @@ Page({
     //   获取医院和服务
     getHisAndSer: function (res) {
         var that = this;
-        
+        console.log('dis',res)
+        console.log(that.data)
         if(res.data.data.length==0){
             that.setData({
                 menu: [],
-                project: []
+                project: [],
+                nohosp:true
             })
             return;
         }
@@ -387,24 +406,31 @@ Page({
         console.log(instId)
         that.setData({
             menu: res.data.data,
-            instId: instId
+            instId: instId,
+            nohosp:false
         }, function () {
             // 获取医院的服务项目
             wx.request({
-            url: app.globalData.baseUrl + '/careservice/list_all_service',
-            method: 'post',
-            data: {
-                instId: instId
-            },
-            header: {
-                'content-Type': 'application/x-www-form-urlencoded',
-                'auth-token': that.data.token
-            },
-            success: function (res) {
-                that.setData({
-                project: res.data.data,
-                })
-            }
+                url: app.globalData.baseUrl + '/careservice/list_all_service',
+                method: 'post',
+                data: {
+                    instId: instId
+                },
+                header: {
+                    'content-Type': 'application/x-www-form-urlencoded',
+                    'auth-token': that.data.token
+                },
+                success: function (res) {
+                    if(res.data.data.length>0)
+                        that.setData({
+                            project: res.data.data,
+                            noproj:false
+                        })
+                    else that.setData({
+                        project:[],
+                        noproj:true
+                    })
+                }
             })
         })
     },  

@@ -1,42 +1,49 @@
 <!--index.wxml-->
 <view class='banner' id='banner'>
-<swiper indicator-dots="{{indicatorDots}}"autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatoractivecolor}}" indicator-colo="{{indicatorcolor}}" circular="{{circular}}">
-  <block wx:for="{{imgUrls}}" wx:key="*this">
-    <swiper-item >
-      <image src="{{item}}" class="slide-image"/>
-    </swiper-item>
-  </block>
-</swiper>
-<view class='header'>
-<navigator class='address' url='/pages/address/address' hover-class="none">{{district}}</navigator> 
-<navigator class='b-sea' hover-class="none" url='/pages/search/search'>
-<image class='icon-sea' src='./images/search.png' style="width:27rpx;height:27rpx;margin-left:30rpx;margin-top:20rpx;"></image>
-<view class='search'  style='font-size:26rpx;font-family:PingFang;color:rgba(165,170,184,1);magin-left:13rpx;height:64rpx;margin-left:13rpx;line-height:64rpx;'>搜索您所在的医院</view>
-</navigator>
-</view>
+    <swiper indicator-dots="{{indicatorDots}}"autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatoractivecolor}}" indicator-colo="{{indicatorcolor}}" circular="{{circular}}">
+    <block wx:for="{{imgUrls}}" wx:key="*this">
+        <swiper-item >
+        <image src="{{item}}" class="slide-image"/>
+        </swiper-item>
+    </block>
+    </swiper>
+    <view class='header'>
+        <navigator class='address' url='/pages/address/address' hover-class="none">{{district}}</navigator> 
+        <navigator class='b-sea' hover-class="none" url='/pages/search/search'>
+            <image class='icon-sea' src='./images/search.png' style="width:27rpx;height:27rpx;margin-left:30rpx;margin-top:20rpx;"></image>
+            <view class='search'  style='font-size:26rpx;font-family:PingFang;color:rgba(165,170,184,1);magin-left:13rpx;height:64rpx;margin-left:13rpx;line-height:64rpx;'>搜索您所在的医院</view>
+        </navigator>
+    </view>
 </view>
 <view style='width:100%;height:21rpx;background:rgba(249,249,249,1);' id="tiao"></view>
 <!-- 中间style -->
-<view class='middle'style="position:relative;overflow:hidden">
-<!-- 左侧栏 -->
-<scroll-view class="left" bindscrolltolower="lower" scroll-y="true" style="height:{{height}}px;overflow-y:scroll">
-      <block wx:for="{{menu}}" wx:key="index">
-        <view class="nav_left_items">
-          <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.instName}}</view>
+<view wx:if="{{!nohosp}}" class='middle'style="position:relative;overflow:hidden">
+    <!-- 左侧栏 -->
+    <scroll-view class="left" bindscrolltolower="lower" scroll-y="true" style="height:{{height}}px;overflow-y:scroll">
+        <block wx:for="{{menu}}" wx:key="index">
+            <view class="nav_left_items">
+            <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.instName}}</view>
+            </view>
+        </block>
+    </scroll-view>  
+    <!-- 右侧栏 -->
+    <view class='right'>
+        <view class='title'>服务项目</view>
+        <view class='xm-xq' wx:if="{{!noproj}}">
+            <block wx:for="{{project}}"  wx:key="index">
+                <view class='o-o' data-index="{{index}}" bindtap='tapClick'  data-name='{{item.serviceName}}' data-money='{{item.servicePrice}}' data-serviceid='{{item.serviceId}}' data-serviceexplain='{{item.serviceExplain}}'>
+                    <image class='t-x' src='./images/o-o.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
+                    <view class='bt-xq'>{{item.serviceName}}</view>
+                    <view class='price'>￥{{item.servicePrice}}/天</view>
+                </view>
+            </block> 
         </view>
-      </block>
-</scroll-view>  
-<!-- 右侧栏 -->
-<view class='right'>
-<view class='title'>服务项目</view>
-<view class='xm-xq'>
-<block wx:for="{{project}}"  wx:key="index">
-<view class='o-o' data-index="{{index}}" bindtap='tapClick'  data-name='{{item.serviceName}}' data-money='{{item.servicePrice}}' data-serviceid='{{item.serviceId}}' data-serviceexplain='{{item.serviceExplain}}'>
-     <image class='t-x' src='./images/o-o.png' style="width:120rpx;height:120rpx;margin-left:26rpx;"></image>
-     <view class='bt-xq'>{{item.serviceName}}</view>
-     <view class='price'>￥{{item.servicePrice}}/天</view>
+        <block wx:else>
+            <image class='img' src='./images/record.png' style="width:326rpx;height:319rpx;position:absolute;top:220rpx;left:0;right:0;margin:auto;"></image>
+        </block>
+            
+    </view>
 </view>
-</block> 
-</view>
-</view>
+<view wx:else class="" style="height:{{height}}px;position:relative">
+    <image class='img' src='./images/record.png' style="width:326rpx;height:319rpx;position:absolute;top:220rpx;left:0;right:0;margin:auto;"></image>  
 </view>
