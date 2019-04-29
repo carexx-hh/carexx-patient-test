@@ -41,13 +41,17 @@ Page({
       let openId,token;
       if(!payAmt){
           wx.showToast({
-              title: '请输入提现金额'
+              title: '请输入提现金额',
+              image: './images/cancel.png',
+              duration: 2000
           });
           return;
             
       }else if(payAmt>money){
           wx.showToast({
-              title: '余额不足'
+              title: '账户余额不足',
+              image: './images/cancel.png',
+              duration: 2000
           });
           return;
       }
@@ -76,7 +80,7 @@ Page({
           console.log(e)
       }
       wx.request({
-          url: 'https://test-m.carexx.cn/useraccount/refund',
+        url: app.globalData.baseUrl + '/useraccount/refund',
           data: {
               openId,
               payAmt
@@ -95,7 +99,9 @@ Page({
                   url: '/pages/withdraw-deposit-result/withdraw-deposit-result',
               });
               else wx.showToast({
-                  title: 'err,code:'+res.data.code
+                  title: 'err,code:'+res.data.code,
+                  image: './images/cancel.png',
+                  duration: 2000
               });
           },
           fail: ()=>{
