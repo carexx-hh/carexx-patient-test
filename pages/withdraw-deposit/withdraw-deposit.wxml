@@ -19,7 +19,7 @@
       
 </view>
 </view>
-<button class="{{(payAmt!==''&&payAmt<=money)?'true':'false'}}" bindtap="withdraw">确认提现</button>
+<button class="{{(payAmt!==''&&payAmt<=money)?'true':'false'}}"  bindtap="withdraw">确认提现</button>
 <!--
 <navigator class='true' url='/pages/withdraw-deposit-result/withdraw-deposit-result'>确认提现</navigator>
 --->
