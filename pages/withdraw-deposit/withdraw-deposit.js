@@ -51,7 +51,16 @@ Page({
           });
           return;
       }
-      console.log(app)
+      console.log(typeof payAmt)
+      console.log(payAmt !== '' && payAmt <= money)
+      if (!(payAmt !== '' && payAmt <= money)){
+          wx.showToast({
+              title: '请输入有效金额',
+          });
+          return;
+            
+      }
+
       try {
           openId = wx.getStorageSync('openId')
           token = wx.getStorageSync('token')

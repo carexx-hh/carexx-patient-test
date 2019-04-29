@@ -7,11 +7,19 @@
 </view>
 </view>
 <view class='bottom'>
-<view class='left'>额外扣除￥0.50手续费（费率0.1%）</view>
-<view class='right' bindtap="allwithdraw">全部提现</view>
+    <block wx:if="{{payAmt!==''&&payAmt>money}}">
+        <text class="" style='color:red;' >
+            提现金额超出余额
+        </text>
+    </block >
+    <block wx:else>
+        <view class='left'>额外扣除￥0.50手续费（费率0.1%）</view>
+        <view class='right' bindtap="allwithdraw">全部提现</view>
+    </block>
+      
 </view>
 </view>
-<button class="true" bindtap="withdraw">确认提现</button>
+<button class="{{(payAmt!==''&&payAmt<=money)?'true':'false'}}" bindtap="withdraw">确认提现</button>
 <!--
 <navigator class='true' url='/pages/withdraw-deposit-result/withdraw-deposit-result'>确认提现</navigator>
 --->
