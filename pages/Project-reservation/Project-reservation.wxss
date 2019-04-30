@@ -88,8 +88,14 @@ margin-left: 12rpx;
   align-items: center;
   justify-content: space-between;
 }
+.list .kind .bottom{
+    width:21rpx;
+    height:11rpx;
+    margin-left:26rpx;
+    margin-bottom:4rpx;
+}
 .list .kind .kind-name{
-width: 50%;
+width: 30%;
 font-size:30rpx;
 font-family:PingFang;
 color:rgba(59,64,78,1);
@@ -98,20 +104,21 @@ color:rgba(59,64,78,1);
   font-size:28rpx;
   font-family:PingFang; 
   color:rgba(59,64,78,1);
-  float: left;
+  /* float: left; */
  
 }
 .list .kind .date-name{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    width:70%;
+    text-align: right;
 }
 .picker-date{
-  float: left;
   line-height: 99rpx;
 }
+.picker-time .picker,
+.picker-date .picker{
+    width:100%
+}
 .picker-time{
-  float: right;
   line-height: 99rpx;
 }
 .b-zhu{

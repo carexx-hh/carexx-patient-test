@@ -27,7 +27,7 @@
 <view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
 <view class='kind'>
 <view class='kind-name'>手机号</view>
-<view class='t-k-name' style='width:38%;'>
+<view class='t-k-name'>
 <input placeholder='请输入您的手机号' class='input-name' name='input_phone' value="{{phone}}" type='number' maxlength="11" bindinput="mobileInput" placeholder-style='font-size:28rpx;color:rgba(165,170,184,1);' style="text-align:right;"></input>
 </view>
 </view>
@@ -36,12 +36,12 @@
 <view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
 <view class='kind'>
 <view class='kind-name'>病区</view>
-<view class='date-name' style='width:50%;'>
-<picker mode="selector" bindchange="bindPickerChange" name='input_bq'  value="{{inpatientAreaId[pickerindex]}}" range="{{pickerArray}}" class='picker-date'  style="text-align:right;">
-    <view class="picker" style="text-align:right;">
+<view class='date-name'>
+<picker mode="selector" bindchange="bindPickerChange" name='input_bq'  value="{{inpatientAreaId[pickerindex]}}" range="{{pickerArray}}" class='picker-date'  style="text-align:right;width:100%">
+    <view class="picker" >
     {{pickerArray[pickerindex]}}
+    <image src='./images/bottom.png' class="bottom"></image>
     </view>
-    <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
   </picker>
 </view>
 </view>
@@ -66,13 +66,13 @@
 <!--  -->
 <view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
 <view class='kind'>
-<view class='kind-name' style='width:50%;'>开始日期</view>
-<view class='date-name' style='width:50%;'>
+<view class='kind-name' >开始日期</view>
+<view class='date-name' >
 <picker mode="date" value="{{date}}" name='input_datastart' start="2015-09-01" end="2050-09-01" bindchange="bindDateChange" class='picker-date'>
     <view class="picker">
      {{date}}
+    <image src='./images/bottom.png' class="bottom"></image>
     </view>
-    <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
   </picker>
 </view>
 </view>
@@ -80,13 +80,13 @@
 <!--  -->
 <view class='list' style='padding-left:30rpx;box-sizing:border-box;'>
 <view class='kind'>
-<view class='kind-name' style='width:50%;'>开始时间</view>
-<view class='date-name' style='width:50%;'>
+<view class='kind-name' >开始时间</view>
+<view class='date-name' >
 <picker bindchange="bindTimeChange" name='input_starttime'  value="{{timearray[timeindex]}}" range="{{timearray}}" class='picker-time'>
     <view class="picker">
     {{timearray[timeindex]}}
+    <image src='./images/bottom.png' class="bottom"></image>
     </view>
-    <image src='./images/bottom.png' style="width:21rpx;height:11rpx;margin-left:26rpx;margin-bottom:4rpx;"></image>
   </picker>
 </view>
 </view>
