@@ -197,7 +197,13 @@ Page({
         icon: 'none',
         duration: 1500
       })
-    }else{
+    } else if (phone.trim().length != 11 || !/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(phone)) {
+      wx.showToast({
+        title: '手机号格式有误！',
+        icon: 'none',
+        duration: 1500
+      })
+    } else {
       // 提交订单
       wx.request({
         url: app.globalData.baseUrl + '/customerorder/add_appointOrder',
