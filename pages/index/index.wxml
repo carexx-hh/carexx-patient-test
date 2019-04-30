@@ -22,7 +22,7 @@
     <scroll-view class="left" bindscrolltolower="lower" scroll-y="true" style="height:{{height}}px;overflow-y:scroll">
         <block wx:for="{{menu}}" wx:key="index">
             <view class="nav_left_items">
-            <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.instName}}</view>
+            <view class="{{index==hospitallist?'selected':''}}" data-index="{{index}}" data-id="{{item.id}}" bindtap="turnMenu">{{item.instName}}</view>
             </view>
         </block>
     </scroll-view>  
