@@ -9,7 +9,7 @@
 <view class='bottom'>
     <block wx:if="{{deductAmt!==''&&deductAmt>money}}">
         <text class="" style='color:red;' >
-            提现金额超出余额
+            可提现余额不足
         </text>
     </block >
     <block wx:else>

@@ -15,6 +15,6 @@
 <input placeholder='其他金额' class='input-name' type='digit' bindinput="moneyInput"  style="font-size:34rpx;margin-top:26rpx;"></input>
 </view>
 </view>
-<view class='ti-shi'>提示：自定义充值时最低金额不能少于300元</view>
+<view class='ti-shi'>提示：自定义充值时最低金额不能少于1元</view>
 <view class='q-r' bindtap='click_confirm'>确认充值</view>
 </view>
