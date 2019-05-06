@@ -38,7 +38,7 @@ page{
   margin-bottom: 20rpx;
 }
 .item .xiang-q{
-  width: 267rpx;
+  width: 330rpx;
   margin-left: 31rpx;
 }
 .item .cao-z{
