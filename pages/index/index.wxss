@@ -98,9 +98,9 @@ swiper{
   box-sizing: border-box;
 }
 .middle .right .xm-xq .o-o{
-  margin-top: 34rpx;
+  margin-top: 30rpx;
   float: left;
-  height: 207rpx;
+  height: 230rpx;
   width: 171rpx;
 }
 .middle .right .xm-xq .bt-xq{

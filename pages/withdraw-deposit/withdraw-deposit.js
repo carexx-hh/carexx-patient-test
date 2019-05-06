@@ -9,6 +9,8 @@ Page({
   data: {
       money:'',  //余额
       payAmt:'',  //提现金额
+      poundage: '', //手续费
+      deductAmt: '',  //从余额中扣除金额
       canClick:true,  //可以点击
   },
 
@@ -20,7 +22,6 @@ Page({
       this.setData({
           money: Number(options.money)
       })
-      console.log(this.data.money)
   },
   /**
    * inputPayAmt
@@ -29,8 +30,18 @@ Page({
       console.log(e)
       console.log(e.detail.value)
       this.setData({
-          payAmt:e.detail.value
+          payAmt:e.detail.value,
+          poundage: parseFloat(e.detail.value * 0.002).toFixed(2)*100/100,
+          deductAmt: parseFloat(e.detail.value) + parseFloat((e.detail.value * 0.002).toFixed(2)) * 100 / 100
       })
+
+      if ((e.detail.value * 0.002) < 0.02) {
+          this.setData({
+            payAmt: e.detail.value,
+            poundage: 0.02,
+            deductAmt: parseFloat(e.detail.value) + parseFloat(0.02)
+          })
+        }
   },
   /**
    * 提现
@@ -139,8 +150,15 @@ Page({
      */
     allwithdraw(){
       this.setData({
-          payAmt:this.data.money
+        payAmt: parseFloat(this.data.money) - parseFloat(this.data.money * 0.002).toFixed(2),
+        poundage: parseFloat(this.data.money * 0.002).toFixed(2) * 100 / 100
       })
+      if ((this.data.money * 0.002) < 0.02) {
+        this.setData({
+          payAmt: parseFloat(this.data.money) - parseFloat(0.02),
+          poundage: 0.02
+        })
+      }
   },
 
   /**

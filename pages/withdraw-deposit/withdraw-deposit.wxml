@@ -7,13 +7,13 @@
 </view>
 </view>
 <view class='bottom'>
-    <block wx:if="{{payAmt!==''&&payAmt>money}}">
+    <block wx:if="{{deductAmt!==''&&deductAmt>money}}">
         <text class="" style='color:red;' >
             提现金额超出余额
         </text>
     </block >
     <block wx:else>
-        <view class='left'>额外扣除￥0.50手续费（费率0.1%）</view>
+        <view class='left'>额外扣除￥<text>{{poundage}}</text>手续费（费率0.2%）</view>
         <view class='right' bindtap="allwithdraw">全部提现</view>
     </block>
       
