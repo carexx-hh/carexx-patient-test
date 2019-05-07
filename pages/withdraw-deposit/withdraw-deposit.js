@@ -153,7 +153,7 @@ Page({
         payAmt: parseFloat(this.data.money) - parseFloat(this.data.money * 0.002).toFixed(2),
         poundage: parseFloat(this.data.money * 0.002).toFixed(2) * 100 / 100
       })
-      if ((this.data.money * 0.002) < 0.02) {
+      if ((this.data.money * 0.002) < 0.02 && this.data.money != 0) {
         this.setData({
           payAmt: parseFloat(this.data.money) - parseFloat(0.02),
           poundage: 0.02

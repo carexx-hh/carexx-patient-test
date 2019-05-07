@@ -50,7 +50,7 @@ Page({
              'paySign': res.data.data.paySign,
              'success': function (res) {
               console.log(res);
-              wx.navigateTo({  //支付完成后跳转到账户页面
+               wx.redirectTo({  //支付完成后跳转到账户页面
                 url: '../account/account',
               })
               },
