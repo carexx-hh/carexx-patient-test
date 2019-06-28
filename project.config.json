@@ -11,7 +11,8 @@
 		"newFeature": true,
 		"nodeModules": false,
 		"autoAudits": false,
-		"uglifyFileName": true
+		"uglifyFileName": true,
+    "checkSiteMap": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
